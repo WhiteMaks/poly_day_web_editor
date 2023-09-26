@@ -4,20 +4,16 @@ abstract class Common {
 	public static generateHeadersContentTypeJson(): Map<string, string> {
 		const headers = new Map<string, string>();
 		headers.set("Content-Type", "application/json;charset=UTF-8");
-		headers.set("Authorization", this.getBearerToken());
+		headers.set("Authorization", this.getTokenInLocalStorage());
 		headers.set("Accept", "application/json");
 		return headers;
 	}
 
 	public static generateHeadersContentTypeMultipartFormData(): Map<string, string> {
 		const headers = new Map<string, string>();
-		headers.set("Authorization", this.getBearerToken());
+		headers.set("Authorization", this.getTokenInLocalStorage());
 		headers.set("Accept", "application/json");
 		return headers;
-	}
-
-	public static getBearerToken(): string {
-		return "Bearer " + this.getTokenInLocalStorage();
 	}
 
 	public static setTokenInLocalStorage(token: string): void {

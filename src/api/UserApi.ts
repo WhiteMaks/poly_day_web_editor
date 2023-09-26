@@ -1,11 +1,14 @@
 import CreateUserResponse from "./models/CreateUserResponse";
 import CheckUserResponse from "./models/CheckUserResponse";
-import BaseRestApi from "./BaseRestApi";
+import Common from "../core/Common";
+import RestApi from "../core/RestApi";
 
-class UserApi extends BaseRestApi {
+class UserApi extends RestApi {
+	private readonly baseUrl: string
 
 	public constructor(baseUrl: string) {
-		super(baseUrl.concat("user/"));
+		super();
+		this.baseUrl = baseUrl.concat("user/");
 	}
 
 	public async create(username: string, password: string): Promise<CreateUserResponse> {
@@ -26,7 +29,7 @@ class UserApi extends BaseRestApi {
 		return this.responseToJson(
 			await this.sendRequestGet(
 				this.baseUrl.concat("check"),
-				this.generateHeadersContentTypeJson()
+				Common.generateHeadersContentTypeJson()
 			)
 		);
 	}

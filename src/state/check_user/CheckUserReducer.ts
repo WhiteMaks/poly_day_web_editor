@@ -1,14 +1,14 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import CheckUserResponse from "../../../api/models/CheckUserResponse";
-import {serviceConnectionError} from "../../../index";
-import AuthenticateApi from "../../../api/AuthenticateApi";
+import CheckUserResponse from "../../api/models/CheckUserResponse";
+import {serviceConnectionError} from "../../index";
+import AuthenticateApi from "../../api/AuthenticateApi";
 
-interface CheckAuthenticateState {
+interface CheckUserState {
 	loading:    boolean,
 	check:      CheckUserResponse
 }
 
-const initialState: CheckAuthenticateState = {
+const initialState: CheckUserState = {
 	loading: true,
 	check: {
 		error: "",
@@ -22,8 +22,8 @@ export const fetchCheckUser = createAsyncThunk<CheckUserResponse>("user/check", 
 	return userApi.check()
 });
 
-export const checkAuthenticateSlice = createSlice({
-	name: "check-authenticate",
+export const checkUserSlice = createSlice({
+	name: "check-user",
 	initialState: initialState,
 	reducers: {},
 	extraReducers: builder => {
@@ -42,4 +42,4 @@ export const checkAuthenticateSlice = createSlice({
 });
 
 
-export default checkAuthenticateSlice.reducer;
+export default checkUserSlice.reducer;

@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import CheckAuthenticate from "./components/check_authenticate/CheckAuthenticate";
 import {Provider} from "react-redux";
-import {initGlobalStore} from "./store";
+import {initGlobalStore} from "./state/store";
+import Application from "./Application";
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -17,11 +17,8 @@ const globalStore = initGlobalStore();
 root.render(
 	<Provider
 		store={globalStore}>
-		<CheckAuthenticate
-			renderIfNotAuthorized={<div>NOt Authorized</div>}
-			renderIfAuthorized={<div>Authorized</div>}/>
+		<Application/>
 	</Provider>
-
 );
 
 // If you want to start measuring performance in your app, pass a function
