@@ -4,6 +4,7 @@ import {fetchCheckUser} from "./state/check_user/CheckUserReducer";
 import CheckUserComponent from "./components/check_user/CheckUserComponent";
 import AuthenticatePage from "./pages/AuthenticatePage";
 import FixedFullScreenWrapper from "./components/wrappers/FixedFullScreenWrapper";
+import EditorPage from "./pages/EditorPage";
 
 const Application: FC = () => {
 	const globalDispatch = useGlobalDispatch();
@@ -21,7 +22,7 @@ const Application: FC = () => {
 		<FixedFullScreenWrapper>
 			<CheckUserComponent
 				userNotAuthorized={<AuthenticatePage/>}
-				userAuthorized={<div>Authorized</div>}
+				userAuthorized={<EditorPage/>}
 				loading={loading}
 				check={check}/>
 		</FixedFullScreenWrapper>
