@@ -2,6 +2,7 @@ import CreateUserResponse from "./models/CreateUserResponse";
 import CheckUserResponse from "./models/CheckUserResponse";
 import Common from "../core/Common";
 import RestApi from "../core/RestApi";
+import LoginUserResponse from "./models/LoginUserResponse";
 
 class UserApi extends RestApi {
 	private readonly baseUrl: string
@@ -20,6 +21,20 @@ class UserApi extends RestApi {
 		return super.responseToJson(
 			await this.sendRequestPostJson(
 				this.baseUrl.concat("create"),
+				requestBody
+			)
+		);
+	}
+
+	public async login(username: string, password: string): Promise<LoginUserResponse> {
+		const requestBody = {
+			username: username,
+			password: password
+		}
+
+		return super.responseToJson(
+			await this.sendRequestPostJson(
+				this.baseUrl.concat("login"),
 				requestBody
 			)
 		);

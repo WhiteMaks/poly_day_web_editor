@@ -1,17 +1,50 @@
 import AuthenticateType from "../../core/enums/AuthenticateType";
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
+import AuthenticateApi from "../../api/AuthenticateApi";
+import LoginUserResponse from "../../api/models/LoginUserResponse";
+import {serviceConnectionError} from "../../index";
+import Common from "../../core/Common";
+import CreateUserResponse from "../../api/models/CreateUserResponse";
 
 interface AuthenticateState {
-	type: AuthenticateType
-	username: string
-	password: string
+	type:       AuthenticateType
+	login:      LoginUserResponse
+	create:     CreateUserResponse
+	loading:    boolean,
+	username:   string
+	password:   string
 }
 
 const initialState: AuthenticateState = {
+	loading: false,
 	type: AuthenticateType.LOGIN,
 	username: "",
-	password: ""
+	password: "",
+	create: {
+		error: "",
+		id: 0
+	},
+	login: {
+		error: "",
+		token: ""
+	}
 }
+
+const userApi = AuthenticateApi.getInstance().getUserApi();
+
+export const fetchLoginUser = createAsyncThunk<LoginUserResponse, {username: string, password: string}>("user/login", (args) => {
+	return userApi.login(
+		args.username,
+		args.password
+	);
+});
+
+export const fetchCreateUser = createAsyncThunk<CreateUserResponse, {username: string, password: string}>("user/create", (args) => {
+	return userApi.create(
+		args.username,
+		args.password
+	);
+});
 
 export const authenticateSlice = createSlice({
 	name: "authenticate",
@@ -26,6 +59,32 @@ export const authenticateSlice = createSlice({
 		updateType: (state, action: PayloadAction<AuthenticateType>) => {
 			state.type = action.payload;
 		}
+	},
+	extraReducers: builder => {
+		builder.addCase(fetchLoginUser.pending, state => {
+			state.loading = true;
+		});
+		builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
+			state.loading = false;
+			state.login = action.payload;
+			Common.setTokenInLocalStorage(action.payload.token);
+		});
+		builder.addCase(fetchLoginUser.rejected, (state, action) => {
+			state.loading = false;
+			state.login.error = serviceConnectionError;
+		});
+
+		builder.addCase(fetchCreateUser.pending, state => {
+			state.loading = true;
+		});
+		builder.addCase(fetchCreateUser.fulfilled, (state, action) => {
+			state.loading = false;
+			state.create = action.payload;
+		});
+		builder.addCase(fetchCreateUser.rejected, (state, action) => {
+			state.loading = false;
+			state.create.error = serviceConnectionError;
+		});
 	}
 });
 

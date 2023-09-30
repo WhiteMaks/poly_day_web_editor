@@ -3,7 +3,9 @@ import {useGlobalDispatch, useGlobalSelector} from "../state/store";
 import AuthenticateType from "../core/enums/AuthenticateType";
 import LoginUserComponent from "../components/login_user/LoginUserComponent";
 import AbsoluteCenterWrapper from "../components/wrappers/AbsoluteCenterWrapper";
-import {authenticateActions} from "../state/authenticate/AuthenticateReducer";
+import {authenticateActions, fetchCreateUser, fetchLoginUser} from "../state/authenticate/AuthenticateReducer";
+import {fetchCheckUser} from "../state/check_user/CheckUserReducer";
+import RegisterUserComponent from "../components/register_user/RegisterUserComponent";
 
 const AuthenticatePage: FC = () => {
 	const globalDispatch = useGlobalDispatch();
@@ -28,11 +30,31 @@ const AuthenticatePage: FC = () => {
 	);
 
 	const onLogin = () => {
-		console.log(username, password)
+		globalDispatch(
+			fetchLoginUser({
+				username: username,
+				password: password
+			})
+		).then(() => {
+			globalDispatch(fetchCheckUser())
+		});
+	}
+
+	const onRegister = () => {
+		globalDispatch(
+			fetchCreateUser({
+				username: username,
+				password: password
+			})
+		);
 	}
 
 	const goToRegister = () => {
 		globalDispatch(authenticateActions.updateType(AuthenticateType.REGISTER));
+	}
+
+	const goToLogin = () => {
+		globalDispatch(authenticateActions.updateType(AuthenticateType.LOGIN));
 	}
 
 	const renderBody = () => {
@@ -49,10 +71,16 @@ const AuthenticatePage: FC = () => {
 		}
 
 		if (type === AuthenticateType.REGISTER) {
-			return "register";
+			return (
+				<RegisterUserComponent
+					username={username}
+					usernameChanged={usernameChanged}
+					password={password}
+					passwordChanged={passwordChanged}
+					onRegister={onRegister}
+					goToLogin={goToLogin}/>
+			);
 		}
-
-		throw Error("not valid authenticate type");
 	}
 
 	return (
