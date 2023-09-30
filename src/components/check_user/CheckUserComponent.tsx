@@ -1,5 +1,6 @@
 import {FC, ReactNode} from "react";
 import CheckUserResponse from "../../api/models/CheckUserResponse";
+import BlockWrapper from "../wrappers/BlockWrapper";
 
 interface CheckAuthenticateComponentProps {
 	userAuthorized: ReactNode;
@@ -23,9 +24,9 @@ const CheckUserComponent: FC<CheckAuthenticateComponentProps> = (props) => {
 	}
 
 	return(
-		<div>
+		<BlockWrapper>
 			{renderBody()}
-		</div>
+		</BlockWrapper>
 	);
 
 }
