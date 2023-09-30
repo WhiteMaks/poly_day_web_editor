@@ -15,11 +15,11 @@ const CheckUserComponent: FC<CheckAuthenticateComponentProps> = (props) => {
 			return "loading";
 		}
 
-		if (props.check.authorized) {
-			return props.userAuthorized;
+		if (!props.check.authorized) {
+			return props.userNotAuthorized;
 		}
 
-		return props.userNotAuthorized;
+		return props.userAuthorized;
 	}
 
 	return(
