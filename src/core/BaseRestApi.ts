@@ -1,9 +1,9 @@
 import Common from "./Common";
-import RequestApi from "./wrappers/RequestApi";
+import RestApi from "./wrappers/RestApi";
 import ExtFetch from "./wrappers/impl/ExtFetch";
 
-abstract class RestApi {
-	private readonly api: RequestApi;
+abstract class BaseRestApi {
+	private readonly api: RestApi;
 
 	protected constructor() {
 		this.api = new ExtFetch();
@@ -27,4 +27,4 @@ abstract class RestApi {
 }
 
 
-export default RestApi;
+export default BaseRestApi;

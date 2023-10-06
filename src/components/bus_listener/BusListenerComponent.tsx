@@ -1,11 +1,11 @@
 import {FC} from "react";
 import BlockWrapper from "../wrappers/BlockWrapper";
-import BusClient from "../../socket/BusClient";
+import BusClient from "../../service_bus/BusClient";
 import ReactComponentProps from "../ReactComponentProps";
 import {useGlobalDispatch} from "../../state/store";
 import {busActions} from "../../state/bus/BusReducer";
 import BusStatus from "../../core/enums/BusStatus";
-import {OK} from "../../socket/microservices/consts/Statuses";
+import {OK} from "../../service_bus/microservices/consts/Statuses";
 
 interface BusListenerComponentProps extends ReactComponentProps {
 	bus: BusClient

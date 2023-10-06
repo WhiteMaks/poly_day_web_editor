@@ -1,4 +1,4 @@
-interface RequestApi {
+interface RestApi {
 
 	sendGet(url: string, headers: Map<string, string>): Promise<Response>;
 
@@ -8,4 +8,4 @@ interface RequestApi {
 
 }
 
-export default RequestApi;
+export default RestApi;

@@ -1,6 +1,6 @@
-import RequestApi from "../RequestApi";
+import RestApi from "../RestApi";
 
-class ExtFetch implements RequestApi {
+class ExtFetch implements RestApi {
 
 	public sendGet(url: string, headers: Map<string, string>): Promise<Response> {
 		return this.sendRequest(url, "GET", headers, undefined);

@@ -1,10 +1,10 @@
 import CreateUserResponse from "./models/CreateUserResponse";
 import CheckUserResponse from "./models/CheckUserResponse";
 import Common from "../core/Common";
-import RestApi from "../core/RestApi";
+import BaseRestApi from "../core/BaseRestApi";
 import LoginUserResponse from "./models/LoginUserResponse";
 
-class UserApi extends RestApi {
+class UserApi extends BaseRestApi {
 	private readonly baseUrl: string
 
 	public constructor(baseUrl: string) {

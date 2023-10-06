@@ -3,7 +3,7 @@ import Common from "../core/Common";
 import TopPaneComponent from "../components/top_pane/TopPaneComponent";
 import MiddlePaneComponent from "../components/middle_pane/MiddlePaneComponent";
 import BottomPaneComponent from "../components/bottom_pane/BottomPaneComponent";
-import BusClient from "../socket/BusClient";
+import BusClient from "../service_bus/BusClient";
 import BusListenerComponent from "../components/bus_listener/BusListenerComponent";
 
 const EditorPage: FC = () => {

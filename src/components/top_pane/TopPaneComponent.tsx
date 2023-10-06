@@ -3,7 +3,7 @@ import CreateReleaseButton from "./actions/CreateReleaseButton";
 import FlexboxWrapper from "../wrappers/FlexboxWrapper";
 import style from "./top_pane.module.css";
 import ReleaseTabsContainer from "./containers/ReleaseTabsContainer";
-import BusClient from "../../socket/BusClient";
+import BusClient from "../../service_bus/BusClient";
 
 interface TopPaneComponentProps {
 	bus: BusClient
