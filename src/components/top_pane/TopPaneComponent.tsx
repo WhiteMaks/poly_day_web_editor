@@ -1,12 +1,19 @@
 import {FC} from "react";
-import BlockWrapper from "../wrappers/BlockWrapper";
+import CreateReleaseButton from "./actions/CreateReleaseButton";
+import FlexboxWrapper from "../wrappers/FlexboxWrapper";
+import style from "./top_pane.module.css";
+import ReleaseTabsContainer from "./containers/ReleaseTabsContainer";
 
 const TopPaneComponent: FC = () => {
 
 	return (
-		<BlockWrapper>
-			top pane
-		</BlockWrapper>
+		<FlexboxWrapper
+			className={style.wrapper}>
+			<CreateReleaseButton
+				onClick={() => console.log("create release click")}/>
+			<ReleaseTabsContainer
+				onReleaseTabSelect={() => console.log("selected tab")}/>
+		</FlexboxWrapper>
 	);
 
 }

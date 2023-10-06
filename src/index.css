@@ -1,5 +1,8 @@
 :root {
 	--base-background-color: #282828;
+	--base-dark-pane-color: #191919;
+	--base-action-color: #383838;
+	--base-hover-color: #50EFA3;
 }
 
 body {
