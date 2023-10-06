@@ -17,7 +17,8 @@ const EditorPage: FC = () => {
 	return (
 		<BusListenerComponent
 			bus={bus}>
-			<TopPaneComponent/>
+			<TopPaneComponent
+				bus={bus}/>
 			<MiddlePaneComponent/>
 			<BottomPaneComponent/>
 		</BusListenerComponent>

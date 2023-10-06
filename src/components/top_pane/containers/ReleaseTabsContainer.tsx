@@ -2,7 +2,7 @@ import {FC} from "react";
 import FlexboxWrapper from "../../wrappers/FlexboxWrapper";
 
 interface ReleaseTabsContainerProps {
-	onReleaseTabSelect: () => void;
+	selectOnReleaseTab: () => void;
 }
 
 const ReleaseTabsContainer: FC<ReleaseTabsContainerProps> = (props) => {

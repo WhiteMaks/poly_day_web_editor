@@ -3,8 +3,13 @@ import CreateReleaseButton from "./actions/CreateReleaseButton";
 import FlexboxWrapper from "../wrappers/FlexboxWrapper";
 import style from "./top_pane.module.css";
 import ReleaseTabsContainer from "./containers/ReleaseTabsContainer";
+import BusClient from "../../socket/BusClient";
 
-const TopPaneComponent: FC = () => {
+interface TopPaneComponentProps {
+	bus: BusClient
+}
+
+const TopPaneComponent: FC<TopPaneComponentProps> = (props) => {
 
 	return (
 		<FlexboxWrapper
@@ -12,7 +17,7 @@ const TopPaneComponent: FC = () => {
 			<CreateReleaseButton
 				onClick={() => console.log("create release click")}/>
 			<ReleaseTabsContainer
-				onReleaseTabSelect={() => console.log("selected tab")}/>
+				selectOnReleaseTab={() => console.log("selected tab")}/>
 		</FlexboxWrapper>
 	);
 
