@@ -33,14 +33,14 @@ services:
       - "15432:5432"
 
   poly_day_microservice_authenticate_migrator:
-    image: whitemaks/poly_day_microservice_authenticate_migrator:release_0.0.9
+    image: whitemaks/poly_day_microservice_authenticate_migrator:release_0.1.0
     container_name: poly_day_microservice_authenticate_migrator
     environment:
       POSTGRES_CONNECTING_STRING: "postgres://user:password@poly_day_microservice_authenticate_postgresql:5432/authenticate?sslmode=disable"
     restart: on-failure
 
   poly_day_microservice_authenticate_app:
-    image: whitemaks/poly_day_microservice_authenticate:release_0.0.9
+    image: whitemaks/poly_day_microservice_authenticate:release_0.1.0
     container_name: poly_day_microservice_authenticate_app
     environment:
       POSTGRES_CONNECTING_STRING: "postgres://user:password@poly_day_microservice_authenticate_postgresql:5432/authenticate?sslmode=disable"
@@ -51,7 +51,7 @@ services:
     restart: on-failure
 
   poly_day_microservice_gateway_app:
-    image: whitemaks/poly_day_microservice_gateway:release_0.0.1
+    image: whitemaks/poly_day_microservice_gateway:release_0.0.2
     container_name: poly_day_microservice_gateway_app
     environment:
       RABBIT_CONNECTING_STRING: "amqp://user:password@poly_day_service_bus:5672"

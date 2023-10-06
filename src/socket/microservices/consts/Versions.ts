@@ -1,0 +1,1 @@
+export const VERSION_10 = "1.0";

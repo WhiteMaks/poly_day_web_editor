@@ -2,10 +2,12 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import checkUserReducer from "./check_user/CheckUserReducer";
 import authenticateReducer from "./authenticate/AuthenticateReducer";
+import busReducer from "./bus/BusReducer";
 
 const globalReducer = combineReducers({
 	checkUserReducer,
-	authenticateReducer
+	authenticateReducer,
+	busReducer,
 });
 
 export const initGlobalStore = () => {
