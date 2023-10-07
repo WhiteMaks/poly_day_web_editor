@@ -1,0 +1,33 @@
+name: Poly Day release preparation web editor
+
+on:
+  pull_request:
+    branches: [ "release_**" ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      REACT_APP_GATEWAY_HOST: ws://localhost:8181/websocket
+      REACT_APP_AUTHENTICATE_HOST: http://localhost:8080
+
+    steps:
+      - name: Preparing git branch
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: make install-dependencies
+
+      - name: Unit test
+        run: make test
+
+      - name: Build binary
+        run: make build
