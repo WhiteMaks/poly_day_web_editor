@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import BlockWrapper from "../wrappers/BlockWrapper";
 import BusClient from "../../service_bus/BusClient";
 import ReactComponentProps from "../ReactComponentProps";
@@ -6,6 +6,7 @@ import {useGlobalDispatch} from "../../state/store";
 import {busActions} from "../../state/bus/BusReducer";
 import BusStatus from "../../core/enums/BusStatus";
 import {OK} from "../../service_bus/microservices/consts/Statuses";
+import {releaseActions} from "../../state/develop/release/ReleaseReducer";
 
 interface BusListenerComponentProps extends ReactComponentProps {
 	bus: BusClient
@@ -14,19 +15,31 @@ interface BusListenerComponentProps extends ReactComponentProps {
 const BusListenerComponent: FC<BusListenerComponentProps> = (props) => {
 	const globalDispatch = useGlobalDispatch();
 
-	props.bus.onConnected(() => {
-		globalDispatch(busActions.updateStatus(BusStatus.CONNECTED));
-	});
+	useEffect(() => {
+		props.bus.onConnected(() => {
+			globalDispatch(busActions.updateStatus(BusStatus.CONNECTED));
+		});
 
-	props.bus.onDisconnected(() => {
-		globalDispatch(busActions.updateStatus(BusStatus.OFFLINE));
-	});
+		props.bus.onDisconnected(() => {
+			globalDispatch(busActions.updateStatus(BusStatus.OFFLINE));
+		});
 
-	props.bus.getAuthenticate().processEventIdentifyUser(event => {
-		if (event.status === OK) {
-			globalDispatch(busActions.updateStatus(BusStatus.AUTHORIZED));
-		}
-	})
+		props.bus.getAuthenticate().processEventIdentifyUser10(event => {
+			if (event.status === OK) {
+				globalDispatch(busActions.updateStatus(BusStatus.AUTHORIZED));
+			}
+		});
+
+		props.bus.getDeveloperService().processEventCreateRelease10(event => {
+			console.log(event);
+		});
+
+		props.bus.getDeveloperService().processEventGetReleases10(event => {
+			if (event.status === OK) {
+				globalDispatch(releaseActions.updateReleases(event.body.releases));
+			}
+		});
+	}, [props.bus, globalDispatch]);
 
 	return (
 		<BlockWrapper>

@@ -3,11 +3,13 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import checkUserReducer from "./check_user/CheckUserReducer";
 import authenticateReducer from "./authenticate/AuthenticateReducer";
 import busReducer from "./bus/BusReducer";
+import releaseReducer from "./develop/release/ReleaseReducer";
 
 const globalReducer = combineReducers({
 	checkUserReducer,
 	authenticateReducer,
 	busReducer,
+	releaseReducer,
 });
 
 export const initGlobalStore = () => {

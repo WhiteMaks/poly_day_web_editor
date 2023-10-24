@@ -5,6 +5,7 @@ const BlockWrapper: FC<ReactComponentProps> = (props) => {
 
 	return (
 		<div
+			onClick={props.onClick}
 			className={props.className}>
 			{props.children}
 		</div>

@@ -1,13 +1,13 @@
 import BaseMicroservice from "../BaseMicroservice";
-import GatewayMicroservice from "../gateway/GatewayMicroservice";
+import MicroserviceGateway from "../gateway/MicroserviceGateway";
 import IdentifyUser10Command from "./commands/IdentifyUser10Command";
 import Event from "../../Event";
 import IdentifyUser10BodyResponse from "./models/IdentifyUser10BodyResponse";
 import {IDENTIFY_USER} from "../consts/Methods";
 
-class AuthenticateMicroservice extends BaseMicroservice {
+class MicroserviceAuthenticate extends BaseMicroservice {
 
-	public constructor(gateway: GatewayMicroservice) {
+	public constructor(gateway: MicroserviceGateway) {
 		super(gateway);
 	}
 
@@ -17,9 +17,9 @@ class AuthenticateMicroservice extends BaseMicroservice {
 		this.send(request.makeRequest());
 	}
 
-	public processEventIdentifyUser(callback: (event: Event<IdentifyUser10BodyResponse>) => void): void {
+	public processEventIdentifyUser10(callback: (event: Event<IdentifyUser10BodyResponse>) => void): void {
 		this.processEvent<IdentifyUser10BodyResponse>(IDENTIFY_USER, callback);
 	}
 }
 
-export default AuthenticateMicroservice;
+export default MicroserviceAuthenticate;

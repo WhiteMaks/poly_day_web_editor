@@ -1,4 +1,4 @@
-import {FC, useEffect} from "react";
+import {FC} from "react";
 import Common from "../core/Common";
 import TopPaneComponent from "../components/top_pane/TopPaneComponent";
 import MiddlePaneComponent from "../components/middle_pane/MiddlePaneComponent";
@@ -9,10 +9,8 @@ import BusListenerComponent from "../components/bus_listener/BusListenerComponen
 const EditorPage: FC = () => {
 	const bus = new BusClient(process.env.REACT_APP_GATEWAY_HOST ? process.env.REACT_APP_GATEWAY_HOST: "");
 
-	useEffect(() => {
-		bus.getAuthenticate()
-			.identifyUser10(Common.getTokenInLocalStorage());
-	});
+	bus.getAuthenticate()
+		.identifyUser10(Common.getTokenInLocalStorage());
 
 	return (
 		<BusListenerComponent

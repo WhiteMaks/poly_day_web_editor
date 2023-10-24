@@ -5,7 +5,6 @@ import style from "./action.module.css";
 interface IconButtonProps extends ReactComponentProps {
 	description: string;
 	iconPath: string;
-	onClick?: () => void;
 }
 
 const IconButton: FC<IconButtonProps> = (props) => {

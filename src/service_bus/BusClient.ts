@@ -1,13 +1,16 @@
-import GatewayMicroservice from "./microservices/gateway/GatewayMicroservice";
-import AuthenticateMicroservice from "./microservices/authenticate/AuthenticateMicroservice";
+import MicroserviceGateway from "./microservices/gateway/MicroserviceGateway";
+import MicroserviceAuthenticate from "./microservices/authenticate/MicroserviceAuthenticate";
+import MicroserviceDeveloperService from "./microservices/developer_service/MicroserviceDeveloperService";
 
 class BusClient {
-	private readonly gateway: GatewayMicroservice;
-	private readonly authenticate: AuthenticateMicroservice;
+	private readonly gateway: MicroserviceGateway;
+	private readonly authenticate: MicroserviceAuthenticate;
+	private readonly developerService: MicroserviceDeveloperService;
 
 	public constructor(address: string) {
-		this.gateway = new GatewayMicroservice(address)
-		this.authenticate = new AuthenticateMicroservice(this.gateway);
+		this.gateway = new MicroserviceGateway(address)
+		this.authenticate = new MicroserviceAuthenticate(this.gateway);
+		this.developerService = new MicroserviceDeveloperService(this.gateway);
 	}
 
 	public onConnected(callback: () => void): void {
@@ -18,8 +21,12 @@ class BusClient {
 		this.gateway.onDisconnected(callback);
 	}
 
-	public getAuthenticate(): AuthenticateMicroservice {
+	public getAuthenticate(): MicroserviceAuthenticate {
 		return this.authenticate;
+	}
+
+	public getDeveloperService(): MicroserviceDeveloperService {
+		return this.developerService;
 	}
 }
 

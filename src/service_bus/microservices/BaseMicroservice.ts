@@ -1,11 +1,11 @@
-import GatewayMicroservice from "./gateway/GatewayMicroservice";
+import MicroserviceGateway from "./gateway/MicroserviceGateway";
 import Message from "../Message";
 import Event from "../Event";
 
 abstract class BaseMicroservice {
-	private readonly gateway: GatewayMicroservice;
+	private readonly gateway: MicroserviceGateway;
 
-	protected constructor(gateway: GatewayMicroservice) {
+	protected constructor(gateway: MicroserviceGateway) {
 		this.gateway = gateway;
 	}
 

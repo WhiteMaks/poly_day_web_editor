@@ -1,7 +1,7 @@
 import Message from "../../Message";
 import Event from "../../Event";
 
-class GatewayMicroservice {
+class MicroserviceGateway {
 	private readonly webSocket: WebSocket;
 	private readonly methods: Map<string, (event: Event<any>) => void>
 	private messageBuffer: Message<any>[];
@@ -62,4 +62,4 @@ class GatewayMicroservice {
 	}
 }
 
-export default GatewayMicroservice;
+export default MicroserviceGateway;
