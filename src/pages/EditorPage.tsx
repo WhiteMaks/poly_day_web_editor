@@ -1,10 +1,11 @@
 import {FC} from "react";
 import Common from "../core/Common";
-import TopPaneComponent from "../components/top_pane/TopPaneComponent";
-import MiddlePaneComponent from "../components/middle_pane/MiddlePaneComponent";
-import BottomPaneComponent from "../components/bottom_pane/BottomPaneComponent";
+import TopPaneComponent from "../components/editor/top_pane/TopPaneComponent";
+import MiddlePaneComponent from "../components/editor/middle_pane/MiddlePaneComponent";
+import BottomPaneComponent from "../components/editor/bottom_pane/BottomPaneComponent";
 import BusClient from "../service_bus/BusClient";
-import BusListenerComponent from "../components/bus_listener/BusListenerComponent";
+import BusListener from "../components/common/listeners/BusListener";
+import ModalListener from "../components/common/listeners/ModalListener";
 
 const EditorPage: FC = () => {
 	const bus = new BusClient(process.env.REACT_APP_GATEWAY_HOST ? process.env.REACT_APP_GATEWAY_HOST: "");
@@ -13,13 +14,15 @@ const EditorPage: FC = () => {
 		.identifyUser10(Common.getTokenInLocalStorage());
 
 	return (
-		<BusListenerComponent
+		<BusListener
 			bus={bus}>
 			<TopPaneComponent
 				bus={bus}/>
 			<MiddlePaneComponent/>
 			<BottomPaneComponent/>
-		</BusListenerComponent>
+			<ModalListener
+				bus={bus}/>
+		</BusListener>
 	)
 
 }

@@ -1,18 +1,18 @@
 import {FC, useEffect} from "react";
 import BlockWrapper from "../wrappers/BlockWrapper";
-import BusClient from "../../service_bus/BusClient";
+import BusClient from "../../../service_bus/BusClient";
 import ReactComponentProps from "../ReactComponentProps";
-import {useGlobalDispatch} from "../../state/store";
-import {busActions} from "../../state/bus/BusReducer";
-import BusStatus from "../../core/enums/BusStatus";
-import {OK} from "../../service_bus/microservices/consts/Statuses";
-import {releaseActions} from "../../state/develop/release/ReleaseReducer";
+import {useGlobalDispatch} from "../../../state/store";
+import {busActions} from "../../../state/bus/BusReducer";
+import BusStatus from "../../../core/enums/BusStatus";
+import {OK} from "../../../service_bus/microservices/consts/Statuses";
+import {releaseActions} from "../../../state/develop/release/ReleaseReducer";
 
-interface BusListenerComponentProps extends ReactComponentProps {
+interface BusListenerProps extends ReactComponentProps {
 	bus: BusClient
 }
 
-const BusListenerComponent: FC<BusListenerComponentProps> = (props) => {
+const BusListener: FC<BusListenerProps> = (props) => {
 	const globalDispatch = useGlobalDispatch();
 
 	useEffect(() => {
@@ -49,4 +49,4 @@ const BusListenerComponent: FC<BusListenerComponentProps> = (props) => {
 
 }
 
-export default BusListenerComponent;
+export default BusListener;

@@ -1,10 +1,11 @@
 import React, {FC, useEffect} from "react";
 import {useGlobalDispatch, useGlobalSelector} from "./state/store";
 import {fetchCheckUser} from "./state/check_user/CheckUserReducer";
-import CheckUserComponent from "./components/check_user/CheckUserComponent";
+import CheckUserComponent from "./components/authenticate/check_user/CheckUserComponent";
 import AuthenticatePage from "./pages/AuthenticatePage";
-import FixedFullScreenWrapper from "./components/wrappers/FixedFullScreenWrapper";
+import FixedFullScreenWrapper from "./components/common/wrappers/FixedFullScreenWrapper";
 import EditorPage from "./pages/EditorPage";
+import style from "./application.module.css";
 
 const Application: FC = () => {
 	const globalDispatch = useGlobalDispatch();
@@ -19,7 +20,8 @@ const Application: FC = () => {
 
 
 	return(
-		<FixedFullScreenWrapper>
+		<FixedFullScreenWrapper
+			className={style.wrapper}>
 			<CheckUserComponent
 				userNotAuthorized={<AuthenticatePage/>}
 				userAuthorized={<EditorPage/>}

@@ -1,5 +1,5 @@
 import {ChangeEventHandler, FC} from "react";
-import BlockWrapper from "../wrappers/BlockWrapper";
+import BlockWrapper from "../../common/wrappers/BlockWrapper";
 
 interface LoginUserComponentProps {
 	username: string
@@ -8,11 +8,11 @@ interface LoginUserComponentProps {
 	usernameChanged: ChangeEventHandler<HTMLInputElement>
 	passwordChanged: ChangeEventHandler<HTMLInputElement>
 
-	onRegister: () => void
-	goToLogin: () => void
+	onLogin: () => void
+	goToRegister: () => void
 }
 
-const RegisterUserComponent: FC<LoginUserComponentProps> = (props) => {
+const LoginUserComponent: FC<LoginUserComponentProps> = (props) => {
 	return (
 		<BlockWrapper>
 			<input
@@ -23,15 +23,15 @@ const RegisterUserComponent: FC<LoginUserComponentProps> = (props) => {
 				value={props.password}
 				onChange={props.passwordChanged}/>
 			<button
-				onClick={() => props.onRegister()}>
-				Register
+				onClick={() => props.onLogin()}>
+				Login
 			</button>
 			<button
-				onClick={() => props.goToLogin()}>
-				Login
+				onClick={() => props.goToRegister()}>
+				Register
 			</button>
 		</BlockWrapper>
 	);
 }
 
-export default RegisterUserComponent;
+export default LoginUserComponent;

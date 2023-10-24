@@ -7,7 +7,7 @@ const FixedFullScreenWrapper: FC<ReactComponentProps> = (props) => {
 
 	return (
 		<BlockWrapper
-			className={style.fixed_full_screen}>
+			className={`${style.fixed_full_screen} ${props.className}`}>
 			{props.children}
 		</BlockWrapper>
 	);

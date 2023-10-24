@@ -4,12 +4,14 @@ import checkUserReducer from "./check_user/CheckUserReducer";
 import authenticateReducer from "./authenticate/AuthenticateReducer";
 import busReducer from "./bus/BusReducer";
 import releaseReducer from "./develop/release/ReleaseReducer";
+import modalReducer from "./modal/ModalReducer";
 
 const globalReducer = combineReducers({
 	checkUserReducer,
 	authenticateReducer,
 	busReducer,
 	releaseReducer,
+	modalReducer,
 });
 
 export const initGlobalStore = () => {

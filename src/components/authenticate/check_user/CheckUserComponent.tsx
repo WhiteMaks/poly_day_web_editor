@@ -1,6 +1,6 @@
 import {FC, ReactNode} from "react";
-import CheckUserResponse from "../../api/models/CheckUserResponse";
-import BlockWrapper from "../wrappers/BlockWrapper";
+import CheckUserResponse from "../../../api/models/CheckUserResponse";
+import BlockWrapper from "../../common/wrappers/BlockWrapper";
 
 interface CheckAuthenticateComponentProps {
 	userAuthorized: ReactNode;

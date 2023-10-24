@@ -1,5 +1,5 @@
 import {FC} from "react";
-import BlockWrapper from "../wrappers/BlockWrapper";
+import BlockWrapper from "../../common/wrappers/BlockWrapper";
 
 const BottomPaneComponent: FC = () => {
 

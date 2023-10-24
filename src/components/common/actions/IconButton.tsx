@@ -1,5 +1,5 @@
 import {FC} from "react";
-import ReactComponentProps from "../../ReactComponentProps";
+import ReactComponentProps from "../ReactComponentProps";
 import style from "./action.module.css";
 
 interface IconButtonProps extends ReactComponentProps {

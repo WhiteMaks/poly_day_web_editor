@@ -1,11 +1,11 @@
 import {ChangeEvent, FC, useCallback} from "react";
 import {useGlobalDispatch, useGlobalSelector} from "../state/store";
 import AuthenticateType from "../core/enums/AuthenticateType";
-import LoginUserComponent from "../components/login_user/LoginUserComponent";
-import AbsoluteCenterWrapper from "../components/wrappers/AbsoluteCenterWrapper";
+import LoginUserComponent from "../components/authenticate/login_user/LoginUserComponent";
+import AbsoluteCenterWrapper from "../components/common/wrappers/AbsoluteCenterWrapper";
 import {authenticateActions, fetchCreateUser, fetchLoginUser} from "../state/authenticate/AuthenticateReducer";
 import {fetchCheckUser} from "../state/check_user/CheckUserReducer";
-import RegisterUserComponent from "../components/register_user/RegisterUserComponent";
+import RegisterUserComponent from "../components/authenticate/register_user/RegisterUserComponent";
 
 const AuthenticatePage: FC = () => {
 	const globalDispatch = useGlobalDispatch();

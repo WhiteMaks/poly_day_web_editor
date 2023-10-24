@@ -1,8 +1,8 @@
 import {FC} from "react";
-import BlockWrapper from "../../wrappers/BlockWrapper";
-import {Release} from "../../../service_bus/microservices/developer_service/models/GetReleases10BodyResponse";
+import BlockWrapper from "../../../common/wrappers/BlockWrapper";
+import {Release} from "../../../../service_bus/microservices/developer_service/models/GetReleases10BodyResponse";
 import style from "./release_tab.module.css";
-import {useGlobalSelector} from "../../../state/store";
+import {useGlobalSelector} from "../../../../state/store";
 
 interface ReleaseTabProps {
 	onSelect: (selectedRelease: Release) => void;

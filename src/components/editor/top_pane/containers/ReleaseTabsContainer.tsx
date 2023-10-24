@@ -1,9 +1,9 @@
 import {FC} from "react";
-import FlexboxWrapper from "../../wrappers/FlexboxWrapper";
-import {useGlobalSelector} from "../../../state/store";
+import FlexboxWrapper from "../../../common/wrappers/FlexboxWrapper";
+import {useGlobalSelector} from "../../../../state/store";
 import ReleaseTab from "../actions/ReleaseTab";
 import style from "./release_tabs_container.module.css";
-import {Release} from "../../../service_bus/microservices/developer_service/models/GetReleases10BodyResponse";
+import {Release} from "../../../../service_bus/microservices/developer_service/models/GetReleases10BodyResponse";
 
 interface ReleaseTabsContainerProps {
 	onSelectReleaseTab: (selectedRelease: Release) => void;

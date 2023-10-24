@@ -6,7 +6,6 @@
 }
 
 .fixed_full_screen {
-	background: var(--base-background-color);
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
@@ -14,4 +13,12 @@
 
 .flexbox {
 	display: flex;
+}
+
+.fade {
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background: rgba(0,0,0,0.55);
+	backdrop-filter: blur(1px);
 }
