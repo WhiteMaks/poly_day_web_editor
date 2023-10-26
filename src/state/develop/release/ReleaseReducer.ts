@@ -4,11 +4,13 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 interface ReleaseState {
 	selectedRelease: Release | null;
 	releases: Release[];
+	newReleaseName: string;
 }
 
 const initialState: ReleaseState = {
 	selectedRelease: null,
-	releases: []
+	releases: [],
+	newReleaseName: ""
 }
 
 export const ReleaseSlice = createSlice({
@@ -20,6 +22,9 @@ export const ReleaseSlice = createSlice({
 		},
 		updateSelectedRelease: (state, action: PayloadAction<Release>) => {
 			state.selectedRelease = action.payload;
+		},
+		updateNewReleaseName: (state, action: PayloadAction<string>) => {
+			state.newReleaseName = action.payload;
 		}
 	}
 });
