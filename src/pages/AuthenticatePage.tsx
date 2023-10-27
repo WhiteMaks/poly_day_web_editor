@@ -50,10 +50,16 @@ const AuthenticatePage: FC = () => {
 	}
 
 	const goToRegister = () => {
+		globalDispatch(authenticateActions.updateUsername(""));
+		globalDispatch(authenticateActions.updatePassword(""));
+
 		globalDispatch(authenticateActions.updateType(AuthenticateType.REGISTER));
 	}
 
 	const goToLogin = () => {
+		globalDispatch(authenticateActions.updateUsername(""));
+		globalDispatch(authenticateActions.updatePassword(""));
+
 		globalDispatch(authenticateActions.updateType(AuthenticateType.LOGIN));
 	}
 
