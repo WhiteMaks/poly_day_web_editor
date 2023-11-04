@@ -31,12 +31,26 @@ const BusListener: FC<BusListenerProps> = (props) => {
 		});
 
 		props.bus.getDeveloperService().processEventCreateRelease10(event => {
-			console.log(event);
+			if (event.status === OK) {
+				props.bus.getDeveloperService().getReleases10();
+			}
+		});
+
+		props.bus.getDeveloperService().processEventDeleteRelease10(event => {
+			if (event.status === OK) {
+				props.bus.getDeveloperService().getReleases10();
+			}
 		});
 
 		props.bus.getDeveloperService().processEventGetReleases10(event => {
 			if (event.status === OK) {
-				globalDispatch(releaseActions.updateReleases(event.body.releases));
+				const releases = event.body.releases;
+
+				globalDispatch(releaseActions.updateReleases(releases));
+
+				if (releases.length > 0) {
+					globalDispatch(releaseActions.updateSelectedRelease(releases[0]));
+				}
 			}
 		});
 	}, [props.bus, globalDispatch]);

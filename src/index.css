@@ -3,6 +3,8 @@
 	--base-dark-pane-color: #191919;
 	--base-action-color: #383838;
 	--base-hover-color: #50EFA3;
+
+	--base-hover-gradient-color: linear-gradient(180deg, rgba(80, 239, 163, 0.49) 0%, rgba(80, 239, 163, 0.24) 25.45%, rgba(80, 239, 163, 0.25) 76.49%, rgba(80, 239, 163, 0.49) 100%);
 }
 
 body {

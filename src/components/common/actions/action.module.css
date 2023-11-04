@@ -34,3 +34,19 @@
 .text_button:hover {
 	box-shadow: 0 1px 2px 0 var(--base-hover-color);
 }
+
+.context_menu {
+	position: absolute;
+	background: var(--base-background-color);
+	min-width: 86px;
+}
+
+.context_menu_action {
+	transition: all 0.3s;
+	padding-left: 5px;
+	cursor: pointer;
+}
+
+.context_menu_action:hover {
+	background: var(--base-hover-gradient-color);
+}

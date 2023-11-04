@@ -6,6 +6,7 @@ import BottomPaneComponent from "../components/editor/bottom_pane/BottomPaneComp
 import BusClient from "../service_bus/BusClient";
 import BusListener from "../components/common/listeners/BusListener";
 import ModalListener from "../components/common/listeners/ModalListener";
+import ContextMenuListener from "../components/common/listeners/ContextMenuListener";
 
 const EditorPage: FC = () => {
 	const bus = new BusClient(process.env.REACT_APP_GATEWAY_HOST ? process.env.REACT_APP_GATEWAY_HOST: "");
@@ -21,6 +22,8 @@ const EditorPage: FC = () => {
 			<MiddlePaneComponent/>
 			<BottomPaneComponent/>
 			<ModalListener
+				bus={bus}/>
+			<ContextMenuListener
 				bus={bus}/>
 		</BusListener>
 	)
