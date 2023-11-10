@@ -11,6 +11,8 @@ interface ReactComponentProps {
 
 	onClick?: () => void
 
+	onDoubleClick?: () => void
+
 	onContextMenu?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 

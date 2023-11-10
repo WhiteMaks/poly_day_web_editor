@@ -1,0 +1,6 @@
+.wrapper {
+	flex-grow: 3;
+	background: var(--base-dark-pane-color);
+	margin-top: 5px;
+	padding: 30px;
+}

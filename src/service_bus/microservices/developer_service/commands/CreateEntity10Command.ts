@@ -3,6 +3,7 @@ import {CREATE_ENTITY} from "../../consts/Methods";
 import {DEVELOPER_SERVICE} from "../../consts/Microservices";
 import {VERSION_10} from "../../consts/Versions";
 import CreateEntity10BodyRequest from "../models/CreateEntity10BodyRequest";
+import EntityType from "../../consts/EntityType";
 
 class CreateEntity10Command extends Command<CreateEntity10BodyRequest> {
 
@@ -10,7 +11,7 @@ class CreateEntity10Command extends Command<CreateEntity10BodyRequest> {
 		const body: CreateEntity10BodyRequest = {
 			name: "",
 			parent_entity_id: 0,
-			type: ""
+			type: EntityType.FOLDER
 		};
 
 		super(DEVELOPER_SERVICE, CREATE_ENTITY, VERSION_10, body);

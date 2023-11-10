@@ -1,5 +1,4 @@
 import {FC} from "react";
-import BlockWrapper from "../wrappers/BlockWrapper";
 import {useGlobalSelector} from "../../../state/store";
 import CreateReleaseModal from "../../editor/modals/CreateReleaseModal";
 import BusClient from "../../../service_bus/BusClient";
@@ -13,14 +12,14 @@ const ModalListener: FC<ModalListenerProps> = (props) => {
 		createReleaseIsDisplayed
 	} = useGlobalSelector(state => state.modalReducer);
 
-	return (
-		<BlockWrapper>
-			{createReleaseIsDisplayed ?
-				<CreateReleaseModal
-					bus={props.bus}/> : null}
-		</BlockWrapper>
-	);
+	if (createReleaseIsDisplayed) {
+		return (
+			<CreateReleaseModal
+				bus={props.bus}/>
+		);
+	}
 
+	return null;
 }
 
 export default ModalListener;
