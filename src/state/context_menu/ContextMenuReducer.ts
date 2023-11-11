@@ -6,6 +6,10 @@ interface ContextMenuState {
 	releaseTabX: number
 	releaseTabY: number
 	selectedRelease: Release
+
+	createEntityIsDisplayed: boolean
+	createEntityX: number
+	createEntityY: number
 }
 
 const initialState: ContextMenuState = {
@@ -15,7 +19,11 @@ const initialState: ContextMenuState = {
 	selectedRelease: {
 		name: "",
 		id: 0
-	}
+	},
+
+	createEntityIsDisplayed: false,
+	createEntityX: 0,
+	createEntityY: 0
 }
 
 export const ContextMenuSlice = createSlice({
@@ -33,6 +41,16 @@ export const ContextMenuSlice = createSlice({
 		},
 		updateSelectedRelease: (state, action: PayloadAction<Release>) => {
 			state.selectedRelease = action.payload;
+		},
+
+		updateCreateEntityIsDisplayed: (state, action: PayloadAction<boolean>) => {
+			state.createEntityIsDisplayed = action.payload;
+		},
+		updateCreateEntityX: (state, action: PayloadAction<number>) => {
+			state.createEntityX = action.payload;
+		},
+		updateCreateEntityY: (state, action: PayloadAction<number>) => {
+			state.createEntityY = action.payload;
 		}
 	}
 });

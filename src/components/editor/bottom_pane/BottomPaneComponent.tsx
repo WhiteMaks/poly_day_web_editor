@@ -1,28 +1,26 @@
 import {FC} from "react";
 import style from "./bottom_pane.module.css";
-import BlockWrapper from "../../common/wrappers/BlockWrapper";
-import EntityObjectsContainer from "./containers/EntityObjectsContainer";
 import {useGlobalDispatch} from "../../../state/store";
-import {entityActions} from "../../../state/develop/entity/EntityReducer";
+import EntityExplorer from "./EntityExplorer";
+import {contextMenuActions} from "../../../state/context_menu/ContextMenuReducer";
+import FlexboxWrapper from "../../common/wrappers/FlexboxWrapper";
 
-const BottomPaneComponent: FC = () => {
+interface BottomPaneComponentProps {
+}
+
+const BottomPaneComponent: FC<BottomPaneComponentProps> = (props) => {
 	const globalDispatch = useGlobalDispatch();
 
 	return (
-		<BlockWrapper
-			onContextMenu={event => {
-				event.preventDefault();
-
-				const className = (event.target as Element).className.toString();
-
-				if (className.startsWith("bottom") || className.startsWith("wrapper")) {
-
-				}
-			}}
+		<FlexboxWrapper
 			className={style.wrapper}>
-			<EntityObjectsContainer
-				onSelectEntityObject={entity => globalDispatch(entityActions.updateParentEntity(entity))}/>
-		</BlockWrapper>
+			<EntityExplorer
+				onContext={(x, y) => {
+					globalDispatch(contextMenuActions.updateCreateEntityX(x));
+					globalDispatch(contextMenuActions.updateCreateEntityY(y));
+					globalDispatch(contextMenuActions.updateCreateEntityIsDisplayed(true));
+				}}/>
+		</FlexboxWrapper>
 	);
 
 }

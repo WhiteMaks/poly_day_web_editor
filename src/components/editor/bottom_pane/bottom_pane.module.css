@@ -1,6 +1,10 @@
 .wrapper {
 	flex-grow: 3;
-	background: var(--base-dark-pane-color);
 	margin-top: 5px;
+}
+
+.explorer {
+	background: var(--base-dark-pane-color);
 	padding: 30px;
+	flex-grow: 3;
 }
