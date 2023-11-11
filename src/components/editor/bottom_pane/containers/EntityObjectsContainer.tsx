@@ -3,6 +3,7 @@ import FlexboxWrapper from "../../../common/wrappers/FlexboxWrapper";
 import {useGlobalSelector} from "../../../../state/store";
 import EntityObject from "../actions/EntityObject";
 import {Entity} from "../../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
+import style from "./entity_objects_container.module.css";
 
 interface EntityObjectsContainerProps {
 	onSelectEntityObject: (entity: Entity) => void
@@ -14,7 +15,8 @@ const EntityObjectsContainer: FC<EntityObjectsContainerProps> = (props) => {
 	} = useGlobalSelector(state => state.entityReducer);
 
 	return (
-		<FlexboxWrapper>
+		<FlexboxWrapper
+			className={style.wrapper}>
 			{entities.map(
 				entity =>
 					<EntityObject

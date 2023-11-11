@@ -2,6 +2,7 @@ import {FC} from "react";
 import {useGlobalSelector} from "../../../state/store";
 import CreateReleaseModal from "../../editor/modals/CreateReleaseModal";
 import BusClient from "../../../service_bus/BusClient";
+import CreateEntityModal from "../../editor/modals/CreateEntityModal";
 
 interface ModalListenerProps {
 	bus: BusClient
@@ -9,12 +10,20 @@ interface ModalListenerProps {
 
 const ModalListener: FC<ModalListenerProps> = (props) => {
 	const {
-		createReleaseIsDisplayed
+		createReleaseIsDisplayed,
+		createEntityIsDisplayed
 	} = useGlobalSelector(state => state.modalReducer);
 
 	if (createReleaseIsDisplayed) {
 		return (
 			<CreateReleaseModal
+				bus={props.bus}/>
+		);
+	}
+
+	if (createEntityIsDisplayed) {
+		return (
+			<CreateEntityModal
 				bus={props.bus}/>
 		);
 	}

@@ -4,6 +4,9 @@ import {contextMenuActions} from "../../../state/context_menu/ContextMenuReducer
 import BusClient from "../../../service_bus/BusClient";
 import BaseContextMenu from "../../common/actions/BaseContextMenu";
 import ContextMenuAction from "../../common/actions/ContextMenuAction";
+import {entityActions} from "../../../state/develop/entity/EntityReducer";
+import EntityType from "../../../service_bus/microservices/consts/EntityType";
+import {modalActions} from "../../../state/modal/ModalReducer";
 
 interface CreateEntityContextMenuProps {
 	bus: BusClient;
@@ -28,37 +31,43 @@ const CreateEntityContextMenu: FC<CreateEntityContextMenuProps> = (props) => {
 			<ContextMenuAction
 				name={"Create folder"}
 				onClick={() => {
-					console.log("create folder");
+					globalDispatch(entityActions.updateNewEntityType(EntityType.FOLDER));
+					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
 					clickOnUotSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create model"}
 				onClick={() => {
-					console.log("create model");
+					globalDispatch(entityActions.updateNewEntityType(EntityType.MODEL));
+					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
 					clickOnUotSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create shader"}
 				onClick={() => {
-					console.log("create shader");
+					globalDispatch(entityActions.updateNewEntityType(EntityType.SHADER));
+					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
 					clickOnUotSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create script"}
 				onClick={() => {
-					console.log("create script");
+					globalDispatch(entityActions.updateNewEntityType(EntityType.SCRIPT));
+					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
 					clickOnUotSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create sound"}
 				onClick={() => {
-					console.log("create sound");
+					globalDispatch(entityActions.updateNewEntityType(EntityType.SOUND));
+					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
 					clickOnUotSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create music"}
 				onClick={() => {
-					console.log("create music");
+					globalDispatch(entityActions.updateNewEntityType(EntityType.MUSIC));
+					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
 					clickOnUotSide();
 				}}/>
 		</BaseContextMenu>

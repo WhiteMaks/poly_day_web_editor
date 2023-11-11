@@ -60,7 +60,13 @@ const BusListener: FC<BusListenerProps> = (props) => {
 			if (event.status === OK) {
 				globalDispatch(entityActions.updateEntities(event.body.entities));
 			}
-		})
+		});
+
+		props.bus.getDeveloperService().processEventCreateEntity10(event => {
+			if (event.status === OK) {
+				props.bus.getDeveloperService().getEntities10();
+			}
+		});
 	}, [props.bus, globalDispatch]);
 
 	return null;

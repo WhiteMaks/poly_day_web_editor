@@ -1,13 +1,8 @@
 .entity_object {
 	width: 100px;
-	height: 98px;
-	margin-right: 30px;
+	margin: 0 30px 50px 0;
 	text-align: center;
 	cursor: pointer;
-}
-
-.entity_object:last-child {
-	margin-right: 0;
 }
 
 .entity_object_name {
@@ -24,8 +19,11 @@
 
 .entity_object_icon path {
 	color: var(--base-action-color);
-	/*color: red;*/
 	transition: all 0.3s;
+}
+
+.entity_object_icon {
+	height: 65px;
 }
 
 .entity_object:hover .entity_object_icon {

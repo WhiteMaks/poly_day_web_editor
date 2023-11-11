@@ -1,14 +1,19 @@
 import {Entity} from "../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import EntityType from "../../../service_bus/microservices/consts/EntityType";
 
 interface EntityState {
 	parentEntity: Entity | null;
 	entities: Entity[];
+	newEntityName: string;
+	newEntityType: EntityType;
 }
 
 const initialState: EntityState = {
 	parentEntity: null,
 	entities: [],
+	newEntityName: "",
+	newEntityType: EntityType.FOLDER
 }
 
 export const EntitySlice = createSlice({
@@ -20,6 +25,12 @@ export const EntitySlice = createSlice({
 		},
 		updateParentEntity: (state, action: PayloadAction<Entity>) => {
 			state.parentEntity = action.payload;
+		},
+		updateNewEntityName: (state, action: PayloadAction<string>) => {
+			state.newEntityName = action.payload;
+		},
+		updateNewEntityType: (state, action: PayloadAction<EntityType>) => {
+			state.newEntityType = action.payload;
 		}
 	}
 });

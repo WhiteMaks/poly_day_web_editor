@@ -1,12 +1,19 @@
 import {FC} from "react";
-import BlockWrapper from "../../common/wrappers/BlockWrapper";
+import FlexboxWrapper from "../../common/wrappers/FlexboxWrapper";
+import style from "./midle_pane.module.css";
+import Hierarchy from "./Hierarchy";
+import Window from "./Window";
+import ComponentSetup from "./ComponentSetup";
 
 const MiddlePaneComponent: FC = () => {
 
 	return (
-		<BlockWrapper>
-			middle pane
-		</BlockWrapper>
+		<FlexboxWrapper
+			className={style.wrapper}>
+			<Hierarchy/>
+			<Window/>
+			<ComponentSetup/>
+		</FlexboxWrapper>
 	);
 	
 }

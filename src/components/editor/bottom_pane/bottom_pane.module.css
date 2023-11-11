@@ -1,10 +1,13 @@
 .wrapper {
 	flex-grow: 3;
 	margin-top: 5px;
+	min-height: 0;
 }
 
 .explorer {
 	background: var(--base-dark-pane-color);
 	padding: 30px;
 	flex-grow: 3;
+
+	overflow: auto;
 }
