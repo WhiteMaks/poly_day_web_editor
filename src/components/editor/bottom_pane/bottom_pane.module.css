@@ -6,8 +6,14 @@
 
 .explorer {
 	background: var(--base-dark-pane-color);
-	padding: 30px;
+	padding: 40px 25px;
 	flex-grow: 3;
 
 	overflow: auto;
+}
+
+.hierarchy {
+	background: var(--base-light-pane-color);
+	overflow: auto;
+	min-width: 219px;
 }

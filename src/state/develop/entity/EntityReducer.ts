@@ -16,12 +16,40 @@ const initialState: EntityState = {
 	newEntityType: EntityType.FOLDER
 }
 
+const compareByName = (first: Entity, second: Entity) => {
+	if (first.name < second.name) {
+		return -1;
+	}
+
+	if (first.name > second.name) {
+		return 1;
+	}
+
+	return 0;
+}
+
+const compareByTypeFolder = (first: Entity, second: Entity) => {
+	if (first.type !== second.type) {
+		if (first.type === EntityType.FOLDER) {
+			return -1;
+		}
+
+		if (second.type === EntityType.FOLDER) {
+			return 1;
+		}
+	}
+
+	return 0;
+}
+
 export const EntitySlice = createSlice({
 	name: "entity",
 	initialState: initialState,
 	reducers: {
 		updateEntities: (state, action: PayloadAction<Entity[]>) => {
-			state.entities = action.payload;
+			state.entities = action.payload
+				.sort(compareByName)
+				.sort(compareByTypeFolder);
 		},
 		updateParentEntity: (state, action: PayloadAction<Entity>) => {
 			state.parentEntity = action.payload;

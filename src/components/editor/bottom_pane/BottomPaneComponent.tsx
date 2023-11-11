@@ -4,6 +4,7 @@ import {useGlobalDispatch} from "../../../state/store";
 import EntityExplorer from "./EntityExplorer";
 import {contextMenuActions} from "../../../state/context_menu/ContextMenuReducer";
 import FlexboxWrapper from "../../common/wrappers/FlexboxWrapper";
+import Hierarchy from "./Hierarchy";
 
 interface BottomPaneComponentProps {
 }
@@ -14,6 +15,7 @@ const BottomPaneComponent: FC<BottomPaneComponentProps> = (props) => {
 	return (
 		<FlexboxWrapper
 			className={style.wrapper}>
+			<Hierarchy/>
 			<EntityExplorer
 				onContext={(x, y) => {
 					globalDispatch(contextMenuActions.updateCreateEntityX(x));
