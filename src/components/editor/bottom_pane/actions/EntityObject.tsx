@@ -2,7 +2,7 @@ import {FC} from "react";
 import BlockWrapper from "../../../common/wrappers/BlockWrapper";
 import {Entity} from "../../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
 import style from "./actions.module.css";
-import IconFolder from "../../../common/icons/IconFolder";
+import IconFolderForExplorer from "../../../common/icons/IconFolderForExplorer";
 import EntityType from "../../../../service_bus/microservices/consts/EntityType";
 import {useGlobalSelector} from "../../../../state/store";
 import IconModel from "../../../common/icons/IconModel";
@@ -27,7 +27,7 @@ const EntityObject: FC<EntityObjectProps> = (props) => {
 		switch (props.entity.type) {
 			case EntityType.FOLDER: {
 				return (
-					<IconFolder
+					<IconFolderForExplorer
 						className={className}/>
 				);
 			}

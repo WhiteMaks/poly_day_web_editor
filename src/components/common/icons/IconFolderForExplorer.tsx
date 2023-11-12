@@ -2,7 +2,7 @@ import {FC} from "react";
 import ReactComponentProps from "../ReactComponentProps";
 import BlockWrapper from "../wrappers/BlockWrapper";
 
-const IconFolder: FC<ReactComponentProps> = (props) => {
+const IconFolderForExplorer: FC<ReactComponentProps> = (props) => {
 
 	return (
 		<BlockWrapper>
@@ -22,4 +22,4 @@ const IconFolder: FC<ReactComponentProps> = (props) => {
 
 }
 
-export default IconFolder;
+export default IconFolderForExplorer;

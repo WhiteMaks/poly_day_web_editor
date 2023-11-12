@@ -1,4 +1,7 @@
-import {Entity} from "../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
+import {
+	compareByName, compareByTypeFolder,
+	Entity
+} from "../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import EntityType from "../../../service_bus/microservices/consts/EntityType";
 
@@ -14,32 +17,6 @@ const initialState: EntityState = {
 	entities: [],
 	newEntityName: "",
 	newEntityType: EntityType.FOLDER
-}
-
-const compareByName = (first: Entity, second: Entity) => {
-	if (first.name < second.name) {
-		return -1;
-	}
-
-	if (first.name > second.name) {
-		return 1;
-	}
-
-	return 0;
-}
-
-const compareByTypeFolder = (first: Entity, second: Entity) => {
-	if (first.type !== second.type) {
-		if (first.type === EntityType.FOLDER) {
-			return -1;
-		}
-
-		if (second.type === EntityType.FOLDER) {
-			return 1;
-		}
-	}
-
-	return 0;
 }
 
 export const EntitySlice = createSlice({
