@@ -1,6 +1,7 @@
 import {
-	compareByName, compareByTypeFolder,
-	Entity
+	Entity,
+	findEntityById,
+	sortEntities
 } from "../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import EntityType from "../../../service_bus/microservices/consts/EntityType";
@@ -24,9 +25,13 @@ export const EntitySlice = createSlice({
 	initialState: initialState,
 	reducers: {
 		updateEntities: (state, action: PayloadAction<Entity[]>) => {
-			state.entities = action.payload
-				.sort(compareByName)
-				.sort(compareByTypeFolder);
+			const result = action.payload;
+			sortEntities(result);
+			state.entities = result;
+
+			if (state.parentEntity) {
+				state.parentEntity = findEntityById(action.payload, state.parentEntity.id);
+			}
 		},
 		updateParentEntity: (state, action: PayloadAction<Entity | null>) => {
 			state.parentEntity = action.payload;

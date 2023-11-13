@@ -41,4 +41,32 @@ export const getOnlyFolders = (entities: Entity[]): Entity[] => {
 	return entities.filter(entity => entity.type === EntityType.FOLDER);
 }
 
+export const sortEntities = (entities: Entity[]) => {
+	entities.sort(compareByName)
+		.sort(compareByTypeFolder);
+
+	for (const entity of entities) {
+		if (entity.type === EntityType.FOLDER) {
+			sortEntities(entity.entities);
+		}
+	}
+}
+
+export const findEntityById = (entities: Entity[], entityId: number): Entity | null => {
+	for (const entity of entities) {
+		if (entity.id === entityId) {
+			return entity;
+		}
+
+		if (entity.type === EntityType.FOLDER) {
+			const result = findEntityById(entity.entities, entityId);
+			if (result) {
+				return result;
+			}
+		}
+	}
+
+	return null;
+}
+
 export default GetEntities10BodyResponse;
