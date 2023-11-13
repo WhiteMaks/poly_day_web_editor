@@ -11,13 +11,16 @@ interface EntityObjectsContainerProps {
 
 const EntityObjectsContainer: FC<EntityObjectsContainerProps> = (props) => {
 	const {
-		entities
+		entities,
+		parentEntity
 	} = useGlobalSelector(state => state.entityReducer);
+
+	const entitiesForeRender = parentEntity ? parentEntity.entities : entities;
 
 	return (
 		<FlexboxWrapper
 			className={style.wrapper}>
-			{entities.map(
+			{entitiesForeRender.map(
 				entity =>
 					<EntityObject
 						key={entity.id}

@@ -15,5 +15,5 @@
 .hierarchy {
 	background: var(--base-light-pane-color);
 	overflow: auto;
-	min-width: 219px;
+	width: 219px;
 }

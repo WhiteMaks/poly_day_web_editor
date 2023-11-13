@@ -28,7 +28,7 @@ export const EntitySlice = createSlice({
 				.sort(compareByName)
 				.sort(compareByTypeFolder);
 		},
-		updateParentEntity: (state, action: PayloadAction<Entity>) => {
+		updateParentEntity: (state, action: PayloadAction<Entity | null>) => {
 			state.parentEntity = action.payload;
 		},
 		updateNewEntityName: (state, action: PayloadAction<string>) => {

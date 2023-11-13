@@ -4,15 +4,14 @@ import {
 	Entity,
 	getOnlyFolders
 } from "../../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
-import IconArrowDown from "../../../common/icons/IconArrowDown";
 import style from "./actions.module.css";
 import IconFolderForHierarchy from "../../../common/icons/IconFolderForHierarchy";
 import BlockWrapper from "../../../common/wrappers/BlockWrapper";
-import IconArrowUp from "../../../common/icons/IconArrowUp";
+import IconArrow from "./IconArrow";
 
 interface FolderObjectProps {
 	folder: Entity;
-	level: number;
+	onDoubleClick: (folder: Entity) => void;
 }
 
 const FolderObject: FC<FolderObjectProps> = (props) => {
@@ -20,10 +19,12 @@ const FolderObject: FC<FolderObjectProps> = (props) => {
 
 	return (
 		<BlockWrapper
-			style={{
-				marginLeft: props.level > 0 ? 27 : 0
-			}}>
+			className={style.folder_object_wrapper}>
 			<FlexboxWrapper
+				onDoubleClick={() => {
+					setIsActive(true);
+					props.onDoubleClick(props.folder)
+				}}
 				onClick={() => setIsActive(!isActive)}
 				className={style.folder_object}>
 				<IconArrow
@@ -39,30 +40,10 @@ const FolderObject: FC<FolderObjectProps> = (props) => {
 				getOnlyFolders(props.folder.entities).map(
 					folder =>
 						<FolderObject
-							level={props.level + 1}
+							onDoubleClick={props.onDoubleClick}
 							key={folder.id}
 							folder={folder}/>) : null}
 		</BlockWrapper>
-	);
-
-}
-
-interface IconArrowProps {
-	isActive: boolean;
-}
-
-const IconArrow: FC<IconArrowProps> = (props) => {
-
-	if (props.isActive) {
-		return (
-			<IconArrowUp
-				className={style.folder_object_arrow_icon}/>
-		);
-	}
-
-	return (
-		<IconArrowDown
-			className={style.folder_object_arrow_icon}/>
 	);
 
 }
