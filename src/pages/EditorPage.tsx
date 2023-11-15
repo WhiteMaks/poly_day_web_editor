@@ -7,6 +7,7 @@ import BusClient from "../service_bus/BusClient";
 import BusListener from "../components/common/listeners/BusListener";
 import ModalListener from "../components/common/listeners/ModalListener";
 import ContextMenuListener from "../components/common/listeners/ContextMenuListener";
+import EditorWrapper from "../components/editor/wrappers/EditorWrapper";
 
 const EditorPage: FC = () => {
 	const bus = new BusClient(process.env.REACT_APP_GATEWAY_HOST ? process.env.REACT_APP_GATEWAY_HOST: "");
@@ -15,17 +16,17 @@ const EditorPage: FC = () => {
 		.identifyUser10(Common.getTokenInLocalStorage());
 
 	return (
-		<BusListener
-			bus={bus}>
-			<TopPaneComponent
-				bus={bus}/>
+		<EditorWrapper>
+			<TopPaneComponent/>
 			<MiddlePaneComponent/>
 			<BottomPaneComponent/>
+			<BusListener
+				bus={bus}/>
 			<ModalListener
 				bus={bus}/>
 			<ContextMenuListener
 				bus={bus}/>
-		</BusListener>
+		</EditorWrapper>
 	)
 
 }

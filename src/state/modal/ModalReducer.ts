@@ -1,11 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 interface ModalState {
-	createReleaseIsDisplayed: boolean
+	createReleaseIsDisplayed: boolean;
+	createEntityIsDisplayed: boolean;
 }
 
 const initialState: ModalState = {
-	createReleaseIsDisplayed: false
+	createReleaseIsDisplayed: false,
+	createEntityIsDisplayed: false
 }
 
 export const ModalSlice = createSlice({
@@ -14,6 +16,9 @@ export const ModalSlice = createSlice({
 	reducers: {
 		updateCreateReleaseIsDisplayed: (state, action: PayloadAction<boolean>) => {
 			state.createReleaseIsDisplayed = action.payload;
+		},
+		updateCreateEntityIsDisplayed: (state, action: PayloadAction<boolean>) => {
+			state.createEntityIsDisplayed = action.payload;
 		}
 	}
 });

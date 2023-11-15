@@ -7,6 +7,8 @@ const FlexboxWrapper: FC<ReactComponentProps> = (props) => {
 
 	return (
 		<BlockWrapper
+			onDoubleClick={props.onDoubleClick}
+			onClick={props.onClick}
 			className={`${style.flexbox} ${props.className}`}>
 			{props.children}
 		</BlockWrapper>

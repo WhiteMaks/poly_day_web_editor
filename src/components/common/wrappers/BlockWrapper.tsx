@@ -8,7 +8,22 @@ const BlockWrapper: FC<ReactComponentProps> = (props) => {
 			ref={props.innerRef}
 			style={props.style}
 			onContextMenu={props.onContextMenu}
-			onClick={props.onClick}
+			onClick={event => {
+				switch (event.detail) {
+					case 2: {
+						if (props.onDoubleClick) {
+							props.onDoubleClick();
+						}
+						break
+					}
+					case 1: {
+						if (props.onClick) {
+							props.onClick();
+						}
+						break
+					}
+				}
+			}}
 			className={props.className}>
 			{props.children}
 		</div>
