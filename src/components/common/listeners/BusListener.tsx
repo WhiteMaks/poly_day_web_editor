@@ -67,6 +67,12 @@ const BusListener: FC<BusListenerProps> = (props) => {
 				props.bus.getDeveloperService().getEntities10();
 			}
 		});
+
+		props.bus.getDeveloperService().processEventDeleteEntity10(event => {
+			if (event.status === OK) {
+				props.bus.getDeveloperService().getEntities10();
+			}
+		});
 	}, [props.bus, globalDispatch]);
 
 	return null;

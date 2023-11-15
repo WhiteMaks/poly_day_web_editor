@@ -14,6 +14,7 @@ import IconMusic from "../../../common/icons/IconMusic";
 interface EntityObjectProps {
 	entity: Entity;
 	onSelect: (entity: Entity) => void;
+	onContext: (clientX: number, clientY: number, entity: Entity) => void;
 }
 
 const EntityObject: FC<EntityObjectProps> = (props) => {
@@ -68,6 +69,11 @@ const EntityObject: FC<EntityObjectProps> = (props) => {
 
 	return (
 		<BlockWrapper
+			onContextMenu={event => {
+				event.preventDefault();
+
+				props.onContext(event.clientX, event.clientY, props.entity);
+			}}
 			onDoubleClick={() => props.onSelect(props.entity)}
 			className={style.entity_object}>
 			{renderIcon()}

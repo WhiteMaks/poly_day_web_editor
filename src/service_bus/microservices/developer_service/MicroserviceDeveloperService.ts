@@ -2,7 +2,14 @@ import BaseMicroservice from "../BaseMicroservice";
 import MicroserviceGateway from "../gateway/MicroserviceGateway";
 import CreateRelease10Command from "./commands/CreateRelease10Command";
 import Event from "../../Event";
-import {CREATE_ENTITY, CREATE_RELEASE, DELETE_RELEASE, GET_ENTITY, GET_RELEASES} from "../consts/Methods";
+import {
+	CREATE_ENTITY,
+	CREATE_RELEASE,
+	DELETE_ENTITY,
+	DELETE_RELEASE,
+	GET_ENTITY,
+	GET_RELEASES
+} from "../consts/Methods";
 import CreateRelease10BodyResponse from "./models/CreateRelease10BodyResponse";
 import GetReleases10Command from "./commands/GetReleases10Command";
 import GetReleases10BodyResponse from "./models/GetReleases10BodyResponse";
@@ -13,6 +20,8 @@ import CreateEntity10BodyResponse from "./models/CreateEntity10BodyResponse";
 import GetEntities10Command from "./commands/GetEntities10Command";
 import GetEntities10BodyResponse from "./models/GetEntities10BodyResponse";
 import EntityType from "../consts/EntityType";
+import DeleteEntity10Command from "./commands/DeleteEntity10Command";
+import DeleteEntity10BodyResponse from "./models/DeleteEntity10BodyResponse";
 
 class MicroserviceDeveloperService extends BaseMicroservice {
 
@@ -68,6 +77,16 @@ class MicroserviceDeveloperService extends BaseMicroservice {
 
 	public processEventCreateEntity10(callback: (event: Event<CreateEntity10BodyResponse>) => void): void {
 		this.processEvent<CreateEntity10BodyResponse>(CREATE_ENTITY, callback);
+	}
+
+	public deleteEntity10(id: number): void {
+		const request = new DeleteEntity10Command();
+		request.getBody().id = id;
+		this.send(request.makeRequest());
+	}
+
+	public processEventDeleteEntity10(callback: (event: Event<DeleteEntity10BodyResponse>) => void): void {
+		this.processEvent<DeleteEntity10BodyResponse>(DELETE_ENTITY, callback);
 	}
 }
 
