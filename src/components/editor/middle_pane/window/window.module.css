@@ -10,10 +10,53 @@
 }
 
 .viewport {
-	width: 1024px;
-	height: 578px;
+	width: 256px;
+	height: 144px;
 	background: black;
 	margin: 5px;
+}
+/*896*/
+
+@media screen and (min-width: 1216px) {
+	.viewport {
+		width: 320px;
+		height: 180px;
+	}
+}
+
+@media screen and (min-width: 1322px) {
+	.viewport {
+		width: 426px;
+		height: 240px;
+	}
+}
+
+@media screen and (min-width: 1536px) {
+	.viewport {
+		width: 640px;
+		height: 360px;
+	}
+}
+
+@media screen and (min-width: 1750px) {
+	.viewport {
+		width: 854px;
+		height: 480px;
+	}
+}
+
+@media screen and (min-width: 1856px) {
+	.viewport {
+		width: 960px;
+		height: 540px;
+	}
+}
+
+@media screen and (min-width: 1920px) {
+	.viewport {
+		width: 1024px;
+		height: 578px;
+	}
 }
 
 @media screen and (min-width: 2176px) {
@@ -34,6 +77,27 @@
 	.viewport {
 		width: 1600px;
 		height: 900px;
+	}
+}
+
+@media screen and (min-width: 2816px) {
+	.viewport {
+		width: 1920px;
+		height: 1080px;
+	}
+}
+
+@media screen and (min-width: 3456px) {
+	.viewport {
+		width: 2560px;
+		height: 1440px;
+	}
+}
+
+@media screen and (min-width: 4096px) {
+	.viewport {
+		width: 3200px;
+		height: 1800px;
 	}
 }
 
