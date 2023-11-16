@@ -1,5 +1,4 @@
 import {FC} from "react";
-import Common from "../core/Common";
 import TopPaneComponent from "../components/editor/top_pane/TopPaneComponent";
 import MiddlePaneComponent from "../components/editor/middle_pane/MiddlePaneComponent";
 import BottomPaneComponent from "../components/editor/bottom_pane/BottomPaneComponent";
@@ -10,10 +9,7 @@ import ContextMenuListener from "../components/common/listeners/ContextMenuListe
 import EditorWrapper from "../components/editor/wrappers/EditorWrapper";
 
 const EditorPage: FC = () => {
-	const bus = new BusClient(process.env.REACT_APP_GATEWAY_HOST ? process.env.REACT_APP_GATEWAY_HOST: "");
-
-	bus.getAuthenticate()
-		.identifyUser10(Common.getTokenInLocalStorage());
+	const bus = new BusClient(process.env.REACT_APP_GATEWAY_HOST ?? "");
 
 	return (
 		<EditorWrapper>

@@ -7,6 +7,7 @@ import BusStatus from "../../../core/enums/BusStatus";
 import {OK} from "../../../service_bus/microservices/consts/Statuses";
 import {releaseActions} from "../../../state/develop/release/ReleaseReducer";
 import {entityActions} from "../../../state/develop/entity/EntityReducer";
+import Common from "../../../core/Common";
 
 interface BusListenerProps extends ReactComponentProps {
 	bus: BusClient
@@ -18,6 +19,8 @@ const BusListener: FC<BusListenerProps> = (props) => {
 	useEffect(() => {
 		props.bus.onConnected(() => {
 			globalDispatch(busActions.updateStatus(BusStatus.CONNECTED));
+
+			props.bus.getAuthenticate().identifyUser10(Common.getTokenInLocalStorage());
 		});
 
 		props.bus.onDisconnected(() => {
