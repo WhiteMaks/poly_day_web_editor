@@ -12,7 +12,7 @@ const BaseIconButton: FC<BaseIconButtonProps> = (props) => {
 
 	return (
 		<IconButton
-			className={style.base_button}
+			className={`${style.base_button} ${props.className}`}
 			onClick={props.onClick}
 			description={props.description}
 			iconPath={props.iconPath}/>

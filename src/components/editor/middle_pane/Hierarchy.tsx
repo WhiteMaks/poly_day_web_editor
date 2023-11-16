@@ -1,6 +1,5 @@
 import {FC} from "react";
-import BlockWrapper from "../../common/wrappers/BlockWrapper";
-import style from "./midle_pane.module.css";
+import SidePane from "./side_pane/SidePane";
 
 
 interface HierarchyProps {
@@ -10,9 +9,8 @@ interface HierarchyProps {
 const Hierarchy: FC<HierarchyProps> = (props) => {
 
 	return (
-		<BlockWrapper className={style.side_pane}>
-			Hierarchy
-		</BlockWrapper>
+		<SidePane
+			title={"Hierarchy"}/>
 	);
 
 }

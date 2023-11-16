@@ -1,5 +1,5 @@
 import {FC} from "react";
-import BlockWrapper from "../../common/wrappers/BlockWrapper";
+import SidePane from "./side_pane/SidePane";
 
 interface ComponentSetupProps {
 
@@ -8,9 +8,8 @@ interface ComponentSetupProps {
 const ComponentSetup: FC<ComponentSetupProps> = () => {
 
 	return (
-		<BlockWrapper>
-			ComponentSetup
-		</BlockWrapper>
+		<SidePane
+			title={"ComponentSetup"}/>
 	);
 
 }
