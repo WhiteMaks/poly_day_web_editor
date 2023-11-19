@@ -9,7 +9,8 @@ const ComponentSetup: FC<ComponentSetupProps> = () => {
 
 	return (
 		<SidePane
-			title={"ComponentSetup"}/>
+			title={"Editing a component"}>
+		</SidePane>
 	);
 
 }

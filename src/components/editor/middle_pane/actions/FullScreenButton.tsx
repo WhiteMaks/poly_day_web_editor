@@ -7,7 +7,7 @@ const FullScreenButton: FC = () => {
 
 	return (
 		<BaseIconButton
-			className={style.wrapper}
+			className={style.button}
 			description={"Full screen"}
 			iconPath={fullScreenIcon}/>
 	);

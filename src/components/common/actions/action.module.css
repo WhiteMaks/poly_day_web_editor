@@ -10,6 +10,17 @@
 	display: block;
 }
 
+.base_icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: transparent;
+}
+
+.base_icon img {
+	display: block;
+}
+
 .base_button {
 	display: flex;
 	justify-content: center;

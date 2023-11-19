@@ -7,7 +7,7 @@ const PlayButton: FC = () => {
 
 	return (
 		<BaseIconButton
-			className={style.wrapper}
+			className={style.button}
 			description={"Play"}
 			iconPath={playIcon}/>
 	);

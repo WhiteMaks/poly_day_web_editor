@@ -7,7 +7,7 @@ const PauseButton: FC = () => {
 
 	return (
 		<BaseIconButton
-			className={style.wrapper}
+			className={style.button}
 			description={"Pause"}
 			iconPath={pauseIcon}/>
 	);
