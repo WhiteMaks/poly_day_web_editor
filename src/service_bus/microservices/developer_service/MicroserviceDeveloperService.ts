@@ -8,7 +8,7 @@ import {
 	DELETE_ENTITY,
 	DELETE_RELEASE,
 	GET_ENTITY,
-	GET_RELEASES
+	GET_RELEASES, SAVE_MODEL_SOURCE
 } from "../consts/Methods";
 import CreateRelease10BodyResponse from "./models/CreateRelease10BodyResponse";
 import GetReleases10Command from "./commands/GetReleases10Command";
@@ -22,6 +22,8 @@ import GetEntities10BodyResponse from "./models/GetEntities10BodyResponse";
 import EntityType from "../consts/EntityType";
 import DeleteEntity10Command from "./commands/DeleteEntity10Command";
 import DeleteEntity10BodyResponse from "./models/DeleteEntity10BodyResponse";
+import SaveModelSource10Command from "./commands/SaveModelSource10Command";
+import SaveModelSource10BodyResponse from "./models/SaveModelSource10BodyResponse";
 
 class MicroserviceDeveloperService extends BaseMicroservice {
 
@@ -87,6 +89,17 @@ class MicroserviceDeveloperService extends BaseMicroservice {
 
 	public processEventDeleteEntity10(callback: (event: Event<DeleteEntity10BodyResponse>) => void): void {
 		this.processEvent<DeleteEntity10BodyResponse>(DELETE_ENTITY, callback);
+	}
+
+	public saveModelSource10(entityId: number, sourceBase64: string): void {
+		const request = new SaveModelSource10Command();
+		request.getBody().entity_id = entityId;
+		request.getBody().source_base_64 = sourceBase64;
+		this.send(request.makeRequest());
+	}
+
+	public processEventSaveModelSource10(callback: (event: Event<SaveModelSource10BodyResponse>) => void): void {
+		this.processEvent<SaveModelSource10BodyResponse>(SAVE_MODEL_SOURCE, callback);
 	}
 }
 

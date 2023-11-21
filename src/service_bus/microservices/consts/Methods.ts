@@ -5,3 +5,4 @@ export const GET_RELEASES = "get-releases";
 export const CREATE_ENTITY = "create-entity";
 export const DELETE_ENTITY = "delete-entity";
 export const GET_ENTITY = "get-entities";
+export const SAVE_MODEL_SOURCE = "save-model-source";

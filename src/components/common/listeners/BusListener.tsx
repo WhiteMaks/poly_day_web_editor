@@ -76,6 +76,10 @@ const BusListener: FC<BusListenerProps> = (props) => {
 				props.bus.getDeveloperService().getEntities10();
 			}
 		});
+
+		props.bus.getDeveloperService().processEventSaveModelSource10(event => {
+			console.log(event);
+		});
 	}, [props.bus, globalDispatch]);
 
 	return null;
