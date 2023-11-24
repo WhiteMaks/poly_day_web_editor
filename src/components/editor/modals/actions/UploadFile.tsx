@@ -45,9 +45,7 @@ const UploadFile: FC<UploadFileProps> = (props) => {
 							isDeleting={isDeleting}/> :
 						<UploadModel
 							onFileUpload={file => {
-								Encoder.getBase64FromFile(file, (base64) => {
-									props.onUpload(base64);
-								});
+								Encoder.getBase64FromFile(file, base64 => props.onUpload(base64));
 							}}/>}
 				</BlockWrapper>
 			</FlexboxWrapper>

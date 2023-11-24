@@ -4,7 +4,7 @@ class Encoder {
 		let reader = new FileReader();
 		reader.readAsDataURL(file);
 		reader.onload = () => callback(reader.result!.toString());
-		reader.onerror = (error) => console.log(error);
+		reader.onerror = error => console.log(error);
 	}
 
 }
