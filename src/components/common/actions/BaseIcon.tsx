@@ -12,10 +12,14 @@ const BaseIcon: FC<BaseIconProps> = (props) => {
 
 	return (
 		<BlockWrapper
+			onClick={props.onClick}
+			onMouseEnter={props.onMouseEnter}
+			onMouseLeave={props.onMouseLeave}
 			className={`${props.className} ${style.base_icon}`}>
 			<img
 				alt={props.description}
 				src={props.iconPath}/>
+			{props.children}
 		</BlockWrapper>
 	);
 

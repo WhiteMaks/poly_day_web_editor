@@ -18,6 +18,10 @@ export const SourceSlice = createSlice({
 	reducers: {
 		updateModel: (state, action: PayloadAction<GetModelSource10BodyResponse | null>) => {
 			state.model = action.payload;
+
+			if (action.payload) {
+				state.newModelSource = action.payload.source_base_64;
+			}
 		},
 		updateNewModelSource: (state, action: PayloadAction<string>) => {
 			state.newModelSource = action.payload;

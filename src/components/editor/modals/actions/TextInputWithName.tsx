@@ -12,9 +12,9 @@ const TextInputWithName: FC<TextInputWithNameProps> = (props) => {
 
 	return (
 		<BlockWrapper
-			className={style.text_input_wrapper}>
+			className={style.body_wrapper}>
 			<BlockWrapper
-				className={style.input_name}>
+				className={style.title_wrapper}>
 				{props.name}
 			</BlockWrapper>
 			<input

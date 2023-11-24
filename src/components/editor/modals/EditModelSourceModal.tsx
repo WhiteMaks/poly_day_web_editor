@@ -6,6 +6,7 @@ import {useGlobalDispatch, useGlobalSelector} from "../../../state/store";
 import BusClient from "../../../service_bus/BusClient";
 import SaveButton from "./actions/SaveButton";
 import {sourceActions} from "../../../state/develop/source/SourceReducer";
+import UploadFile from "./actions/UploadFile";
 
 interface EditModelSourceModalProps {
 	bus: BusClient
@@ -28,6 +29,7 @@ const EditModelSourceModal: FC<EditModelSourceModalProps> = (props) => {
 
 	useEffect(() => () => {
 		globalDispatch(sourceActions.updateModel(null));
+		globalDispatch(sourceActions.updateNewModelSource(""));
 	}, [globalDispatch]);
 
 	return (
@@ -39,11 +41,18 @@ const EditModelSourceModal: FC<EditModelSourceModalProps> = (props) => {
 					onClick={() => {
 						props.bus.getDeveloperService()
 							.saveModelSource10(selectedEntity!.id, newModelSource);
+						globalDispatch(modalActions.updateEditModelSourceIsDisplayed(false));
 					}}/>,
 				<CancelButton
 					onClick={() => globalDispatch(modalActions.updateEditModelSourceIsDisplayed(false))}/>
 			]}>
-			{model ? "Model" : "Loading"}
+			{model ?
+				<UploadFile
+					title={selectedEntity!.name}
+					onDelete={() => globalDispatch(sourceActions.updateNewModelSource(""))}
+					onUpload={base64 => globalDispatch(sourceActions.updateNewModelSource(base64))}
+					newModelSourceBase64={newModelSource}/> : null}
+
 		</Modal>
 	);
 
