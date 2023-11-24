@@ -6,3 +6,4 @@ export const CREATE_ENTITY = "create-entity";
 export const DELETE_ENTITY = "delete-entity";
 export const GET_ENTITY = "get-entities";
 export const SAVE_MODEL_SOURCE = "save-model-source";
+export const GET_MODEL_SOURCE = "get-model-source";
