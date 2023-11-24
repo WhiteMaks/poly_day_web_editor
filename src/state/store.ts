@@ -7,6 +7,7 @@ import releaseReducer from "./develop/release/ReleaseReducer";
 import modalReducer from "./modal/ModalReducer";
 import contextMenuReducer from "./context_menu/ContextMenuReducer";
 import entityReducer from "./develop/entity/EntityReducer";
+import sourceReducer from "./develop/source/SourceReducer";
 
 const globalReducer = combineReducers({
 	checkUserReducer,
@@ -16,6 +17,7 @@ const globalReducer = combineReducers({
 	modalReducer,
 	contextMenuReducer,
 	entityReducer,
+	sourceReducer
 });
 
 export const initGlobalStore = () => {

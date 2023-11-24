@@ -8,6 +8,7 @@ import EntityType from "../../../service_bus/microservices/consts/EntityType";
 
 interface EntityState {
 	parentEntity: Entity | null;
+	selectedEntity: Entity | null;
 	entities: Entity[];
 	newEntityName: string;
 	newEntityType: EntityType;
@@ -15,6 +16,7 @@ interface EntityState {
 
 const initialState: EntityState = {
 	parentEntity: null,
+	selectedEntity: null,
 	entities: [],
 	newEntityName: "",
 	newEntityType: EntityType.FOLDER
@@ -35,6 +37,9 @@ export const EntitySlice = createSlice({
 		},
 		updateParentEntity: (state, action: PayloadAction<Entity | null>) => {
 			state.parentEntity = action.payload;
+		},
+		updateSelectedEntity: (state, action: PayloadAction<Entity | null>) => {
+			state.selectedEntity = action.payload;
 		},
 		updateNewEntityName: (state, action: PayloadAction<string>) => {
 			state.newEntityName = action.payload;
