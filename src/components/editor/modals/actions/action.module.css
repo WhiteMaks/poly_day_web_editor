@@ -21,6 +21,10 @@
 	border: 1px solid var(--base-hover-color);
 }
 
+.flex_start {
+	align-items: flex-start
+}
+
 .upload_file_wrapper {
 	padding: 5px 5px 10px 5px;
 	background: var(--base-action-color);
@@ -34,10 +38,10 @@
 }
 
 .upload_file_button_wrapper {
-	display: inline-block;
 	background: var(--base-background-color);
 	filter: drop-shadow(0px 1px 2px black);
 	cursor: pointer;
+	margin-right: 5px;
 }
 
 .upload_file_button_wrapper label {
@@ -48,6 +52,11 @@
 	position: relative;
 	width: 50px;
 	height: 50px;
+}
+
+.download_file_icon_wrapper {
+	width: 24px;
+	height: 24px;
 }
 
 .upload_file {

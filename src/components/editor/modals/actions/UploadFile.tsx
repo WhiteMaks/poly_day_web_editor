@@ -5,6 +5,7 @@ import BaseIcon from "../../../common/actions/BaseIcon";
 import addIcon from "../../../../resources/icons/add.svg";
 import modelIcon from "../../../../resources/icons/model.svg";
 import trashIcon from "../../../../resources/icons/trash.svg";
+import downloadIcon from "../../../../resources/icons/download.svg";
 import Encoder from "../../../../core/Encoder";
 import FlexboxWrapper from "../../../common/wrappers/FlexboxWrapper";
 
@@ -26,7 +27,8 @@ const UploadFile: FC<UploadFileProps> = (props) => {
 				className={style.title_wrapper}>
 				{props.title}
 			</BlockWrapper>
-			<FlexboxWrapper>
+			<FlexboxWrapper
+				className={style.flex_start}>
 				<BlockWrapper
 					onMouseEnter={() => {
 						if (props.newModelSourceBase64.length > 0) {
@@ -48,6 +50,19 @@ const UploadFile: FC<UploadFileProps> = (props) => {
 								Encoder.getBase64FromFile(file, base64 => props.onUpload(base64));
 							}}/>}
 				</BlockWrapper>
+				{props.newModelSourceBase64.length > 0 ?
+					<BlockWrapper
+						className={style.upload_file_button_wrapper}>
+						<a
+							download={props.title + ".fbx"}
+							href={props.newModelSourceBase64}>
+							<BaseIcon
+								className={style.download_file_icon_wrapper}
+								description={"Download model"}
+								iconPath={downloadIcon}/>
+						</a>
+					</BlockWrapper> : null}
+
 			</FlexboxWrapper>
 		</BlockWrapper>
 	);
