@@ -7,7 +7,7 @@ const Body: FC<ReactComponentProps> = (props) => {
 
 	return (
 		<BlockWrapper
-			className={style.body}>
+			className={props.className ?? style.body}>
 			{props.children}
 		</BlockWrapper>
 	);

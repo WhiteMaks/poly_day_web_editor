@@ -1,6 +1,7 @@
 import React, {LegacyRef} from "react";
 
 interface ReactComponentProps {
+	id?: string;
 	className?: string;
 
 	style?: React.CSSProperties;

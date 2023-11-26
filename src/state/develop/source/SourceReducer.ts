@@ -3,6 +3,7 @@ import GetModelSource10BodyResponse
 	from "../../../service_bus/microservices/developer_service/models/GetModelSource10BodyResponse";
 import GetShaderSource10BodyResponse
 	from "../../../service_bus/microservices/developer_service/models/GetShaderSource10BodyResponse";
+import ShaderType from "../../../core/enums/ShaderType";
 
 interface SourceState {
 	model: GetModelSource10BodyResponse | null,
@@ -10,6 +11,7 @@ interface SourceState {
 	shader: GetShaderSource10BodyResponse | null,
 	newVertexShader: string,
 	newFragmentShader: string
+	selectedShaderType: ShaderType
 }
 
 const initialState: SourceState = {
@@ -17,7 +19,8 @@ const initialState: SourceState = {
 	newModelSource: "",
 	shader: null,
 	newVertexShader: "",
-	newFragmentShader: ""
+	newFragmentShader: "",
+	selectedShaderType: ShaderType.VERTEX
 }
 
 export const SourceSlice = createSlice({
@@ -47,6 +50,9 @@ export const SourceSlice = createSlice({
 		},
 		updateNewFragmentShader: (state, action: PayloadAction<string>) => {
 			state.newFragmentShader = action.payload;
+		},
+		updateSelectedShaderType: (state, action: PayloadAction<ShaderType>) => {
+			state.selectedShaderType = action.payload;
 		}
 	}
 });

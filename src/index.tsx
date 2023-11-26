@@ -6,6 +6,8 @@ import {Provider} from "react-redux";
 import {initGlobalStore} from "./state/store";
 import Application from "./Application";
 
+ace.require("ace/ext/language_tools");
+
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 );

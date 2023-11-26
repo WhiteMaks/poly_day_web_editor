@@ -67,7 +67,16 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	backdrop-filter: blur(3.5px);
+	backdrop-filter: blur(4px);
 
 	transform: translate(-50%, -50%);
+}
+
+.shader_code {
+	width: 1150px;
+	height: 570px;
+	margin: 20px 25px;
+	border-radius: 2px;
+	background: var(--base-light-pane-color);
+	box-shadow: 0 0 6px 0 var(--base-dark-pane-color);
 }
