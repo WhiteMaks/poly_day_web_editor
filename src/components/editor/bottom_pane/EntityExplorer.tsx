@@ -38,6 +38,7 @@ const EntityExplorer: FC<EntityExplorerProps> = (props) => {
 							break;
 						}
 						case EntityType.SHADER: {
+							globalDispatch(modalActions.updateEditShaderSourceIsDisplayed(true));
 							break;
 						}
 						case EntityType.SOUND: {

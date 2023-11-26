@@ -87,6 +87,16 @@ const BusListener: FC<BusListenerProps> = (props) => {
 				globalDispatch(sourceActions.updateModel(event.body));
 			}
 		});
+
+		props.bus.getDeveloperService().processEventSaveShaderSource10(event => {
+			console.log(event);
+		});
+
+		props.bus.getDeveloperService().processEventGetShaderSource10(event => {
+			if (event.status === OK) {
+				globalDispatch(sourceActions.updateShader(event.body));
+			}
+		});
 	}, [props.bus, globalDispatch]);
 
 	return null;

@@ -4,12 +4,14 @@ interface ModalState {
 	createReleaseIsDisplayed: boolean;
 	createEntityIsDisplayed: boolean;
 	editModelSourceIsDisplayed: boolean;
+	editShaderSourceIsDisplayed: boolean;
 }
 
 const initialState: ModalState = {
 	createReleaseIsDisplayed: false,
 	createEntityIsDisplayed: false,
-	editModelSourceIsDisplayed: false
+	editModelSourceIsDisplayed: false,
+	editShaderSourceIsDisplayed: false
 }
 
 export const ModalSlice = createSlice({
@@ -24,6 +26,9 @@ export const ModalSlice = createSlice({
 		},
 		updateEditModelSourceIsDisplayed: (state, action: PayloadAction<boolean>) => {
 			state.editModelSourceIsDisplayed = action.payload;
+		},
+		updateEditShaderSourceIsDisplayed: (state, action: PayloadAction<boolean>) => {
+			state.editShaderSourceIsDisplayed = action.payload;
 		}
 	}
 });
