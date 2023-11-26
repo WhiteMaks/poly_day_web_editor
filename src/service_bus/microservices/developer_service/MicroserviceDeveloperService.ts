@@ -10,7 +10,9 @@ import {
 	GET_ENTITY,
 	GET_MODEL_SOURCE,
 	GET_RELEASES,
-	SAVE_MODEL_SOURCE
+	GET_SHADER_SOURCE,
+	SAVE_MODEL_SOURCE,
+	SAVE_SHADER_SOURCE
 } from "../consts/Methods";
 import CreateRelease10BodyResponse from "./models/CreateRelease10BodyResponse";
 import GetReleases10Command from "./commands/GetReleases10Command";
@@ -28,6 +30,10 @@ import SaveModelSource10Command from "./commands/SaveModelSource10Command";
 import SaveModelSource10BodyResponse from "./models/SaveModelSource10BodyResponse";
 import GetModelSource10Command from "./commands/GetModelSource10Command";
 import GetModelSource10BodyResponse from "./models/GetModelSource10BodyResponse";
+import SaveShaderSource10Command from "./commands/SaveShaderSource10Command";
+import SaveShaderSource10BodyResponse from "./models/SaveShaderSource10BodyResponse";
+import GetShaderSource10Command from "./commands/GetShaderSource10Command";
+import GetShaderSource10BodyResponse from "./models/GetShaderSource10BodyResponse";
 
 class MicroserviceDeveloperService extends BaseMicroservice {
 
@@ -114,6 +120,28 @@ class MicroserviceDeveloperService extends BaseMicroservice {
 
 	public processEventGetModelSource10(callback: (event: Event<GetModelSource10BodyResponse>) => void): void {
 		this.processEvent<GetModelSource10BodyResponse>(GET_MODEL_SOURCE, callback);
+	}
+
+	public saveShaderSource10(entityId: number, vertexShader: string, fragmentShader: string): void {
+		const request = new SaveShaderSource10Command();
+		request.getBody().entity_id = entityId;
+		request.getBody().vertex_shader = vertexShader;
+		request.getBody().fragment_shader = fragmentShader;
+		this.send(request.makeRequest());
+	}
+
+	public processEventSaveShaderSource10(callback: (event: Event<SaveShaderSource10BodyResponse>) => void): void {
+		this.processEvent<SaveShaderSource10BodyResponse>(SAVE_SHADER_SOURCE, callback);
+	}
+
+	public getShaderSource10(entityId: number): void {
+		const request = new GetShaderSource10Command();
+		request.getBody().entity_id = entityId;
+		this.send(request.makeRequest());
+	}
+
+	public processEventGetShaderSource10(callback: (event: Event<GetShaderSource10BodyResponse>) => void): void {
+		this.processEvent<GetShaderSource10BodyResponse>(GET_SHADER_SOURCE, callback);
 	}
 }
 

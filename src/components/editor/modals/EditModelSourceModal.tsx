@@ -52,7 +52,6 @@ const EditModelSourceModal: FC<EditModelSourceModalProps> = (props) => {
 					onDelete={() => globalDispatch(sourceActions.updateNewModelSource(""))}
 					onUpload={base64 => globalDispatch(sourceActions.updateNewModelSource(base64))}
 					newModelSourceBase64={newModelSource}/> : null}
-
 		</Modal>
 	);
 
