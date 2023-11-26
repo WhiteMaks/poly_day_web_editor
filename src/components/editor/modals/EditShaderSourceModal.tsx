@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useEffect} from "react";
 import {modalActions} from "../../../state/modal/ModalReducer";
 import CancelButton from "./actions/CancelButton";
 import Modal from "../../common/forms/modal/Modal";

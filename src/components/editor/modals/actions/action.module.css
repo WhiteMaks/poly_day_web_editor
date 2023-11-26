@@ -72,9 +72,9 @@
 	transform: translate(-50%, -50%);
 }
 
-.shader_code {
-	width: 1150px;
-	height: 570px;
+#shader_code_editor {
+	width: 1150px !important;
+	height: 570px !important;
 	margin: 20px 25px;
 	border-radius: 2px;
 	background: var(--base-light-pane-color);
