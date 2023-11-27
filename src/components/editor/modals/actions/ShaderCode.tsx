@@ -22,6 +22,7 @@ const ShaderCode: FC<ShaderCodeProps> = (props) => {
 			value={props.value}
 			onChange={props.onChange}
 			name={style.shader_code_editor}
+			fontSize={16}
 			setOptions={{
 				enableBasicAutocompletion: true,
 				enableLiveAutocompletion: true,
