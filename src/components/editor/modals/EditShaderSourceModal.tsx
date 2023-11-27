@@ -27,7 +27,6 @@ const EditShaderSourceModal: FC<EditShaderSourceModalProps> = (props) => {
 		selectedEntity
 	} = useGlobalSelector(state => state.entityReducer)
 	const {
-		shader,
 		newVertexShader,
 		newFragmentShader,
 		selectedShaderType
@@ -43,6 +42,38 @@ const EditShaderSourceModal: FC<EditShaderSourceModalProps> = (props) => {
 		globalDispatch(sourceActions.updateNewVertexShader(""));
 		globalDispatch(sourceActions.updateNewFragmentShader(""));
 	}, [globalDispatch]);
+
+	const renderShaderCodeEditor = () => {
+		switch (selectedShaderType) {
+			case ShaderType.VERTEX: {
+				return (
+					<ShaderCode
+						value={newVertexShader}
+						onChange={value => {
+							globalDispatch(sourceActions.updateNewVertexShader(value))
+						}}/>
+				);
+			}
+			case ShaderType.GEOMETRY: {
+				return (
+					<ShaderCode
+						value={""}
+						onChange={value => {
+							console.log(value)
+						}}/>
+				);
+			}
+			case ShaderType.FRAGMENT: {
+				return (
+					<ShaderCode
+						value={newFragmentShader}
+						onChange={value => {
+							globalDispatch(sourceActions.updateNewFragmentShader(value))
+						}}/>
+				);
+			}
+		}
+	}
 
 	return (
 		<Modal
@@ -63,13 +94,7 @@ const EditShaderSourceModal: FC<EditShaderSourceModalProps> = (props) => {
 				selectedShader={selectedShaderType}
 				onSelectShaderTab={shader => globalDispatch(sourceActions.updateSelectedShaderType(shader))}
 				shaders={shaders}/>
-			<ShaderCode
-				vertexShader={shader ? shader.vertex_shader : ""}
-				geometryShader={""}
-				fragmentShader={shader ? shader.fragment_shader : ""}
-				onChange={value => {
-					globalDispatch(sourceActions.updateNewVertexShader(value))
-				}}/>
+			{renderShaderCodeEditor()}
 		</Modal>
 	);
 
