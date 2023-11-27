@@ -1,0 +1,9 @@
+.body_modal {
+
+}
+
+.shader_tabs {
+	background: var(--base-dark-pane-color);
+	align-items: flex-end;
+	padding: 10px 10px 0 10px;
+}

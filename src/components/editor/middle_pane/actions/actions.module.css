@@ -1,0 +1,23 @@
+.button {
+	margin: 0 10px;
+	width: 24px;
+	height: 24px;
+}
+
+.hierarchy_item {
+	margin-bottom: 10px;
+	padding-left: 20px;
+	align-items: center;
+	cursor: pointer;
+}
+
+.hierarchy_item:hover {
+	border-radius: 0 3px 0 0;
+	background: var(--base-hover-gradient-color);
+}
+
+.hierarchy_item_icon {
+	width: 23px;
+	height: 23px;
+	margin-right: 5px;
+}

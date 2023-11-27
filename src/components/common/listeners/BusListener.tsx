@@ -7,6 +7,8 @@ import BusStatus from "../../../core/enums/BusStatus";
 import {OK} from "../../../service_bus/microservices/consts/Statuses";
 import {releaseActions} from "../../../state/develop/release/ReleaseReducer";
 import {entityActions} from "../../../state/develop/entity/EntityReducer";
+import Common from "../../../core/Common";
+import {sourceActions} from "../../../state/develop/source/SourceReducer";
 
 interface BusListenerProps extends ReactComponentProps {
 	bus: BusClient
@@ -18,6 +20,8 @@ const BusListener: FC<BusListenerProps> = (props) => {
 	useEffect(() => {
 		props.bus.onConnected(() => {
 			globalDispatch(busActions.updateStatus(BusStatus.CONNECTED));
+
+			props.bus.getAuthenticate().identifyUser10(Common.getTokenInLocalStorage());
 		});
 
 		props.bus.onDisconnected(() => {
@@ -71,6 +75,26 @@ const BusListener: FC<BusListenerProps> = (props) => {
 		props.bus.getDeveloperService().processEventDeleteEntity10(event => {
 			if (event.status === OK) {
 				props.bus.getDeveloperService().getEntities10();
+			}
+		});
+
+		props.bus.getDeveloperService().processEventSaveModelSource10(event => {
+			console.log(event);
+		});
+
+		props.bus.getDeveloperService().processEventGetModelSource10(event => {
+			if (event.status === OK) {
+				globalDispatch(sourceActions.updateModel(event.body));
+			}
+		});
+
+		props.bus.getDeveloperService().processEventSaveShaderSource10(event => {
+			console.log(event);
+		});
+
+		props.bus.getDeveloperService().processEventGetShaderSource10(event => {
+			if (event.status === OK) {
+				globalDispatch(sourceActions.updateShader(event.body));
 			}
 		});
 	}, [props.bus, globalDispatch]);

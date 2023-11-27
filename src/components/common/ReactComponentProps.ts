@@ -1,6 +1,7 @@
 import React, {LegacyRef} from "react";
 
 interface ReactComponentProps {
+	id?: string;
 	className?: string;
 
 	style?: React.CSSProperties;
@@ -14,6 +15,9 @@ interface ReactComponentProps {
 	onDoubleClick?: () => void
 
 	onContextMenu?: (event: React.MouseEvent<HTMLDivElement>) => void;
+
+	onMouseEnter?: () => void;
+	onMouseLeave?: () => void;
 }
 
 export default ReactComponentProps;

@@ -5,6 +5,9 @@ const BlockWrapper: FC<ReactComponentProps> = (props) => {
 
 	return (
 		<div
+			id={props.id}
+			onMouseEnter={props.onMouseEnter}
+			onMouseLeave={props.onMouseLeave}
 			ref={props.innerRef}
 			style={props.style}
 			onContextMenu={props.onContextMenu}

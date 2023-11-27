@@ -10,7 +10,22 @@
 	display: block;
 }
 
+.base_icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: transparent;
+}
+
+.base_icon img {
+	display: block;
+}
+
 .base_button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
 	background: var(--base-action-color);
 	border-radius: 3px;
 	box-shadow: 0 1px 2px black;

@@ -5,7 +5,8 @@ import BlockWrapper from "../wrappers/BlockWrapper";
 const IconArrowUp: FC<ReactComponentProps> = (props) => {
 
 	return (
-		<BlockWrapper>
+		<BlockWrapper
+			onClick={props.onClick}>
 			<svg
 				className={props.className}
 				xmlns="http://www.w3.org/2000/svg"

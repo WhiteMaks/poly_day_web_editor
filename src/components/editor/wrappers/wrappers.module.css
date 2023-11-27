@@ -3,3 +3,24 @@
 	flex-direction: column;
 	height: 100vh;
 }
+
+.tab {
+	padding: 11px 19px 10px 19px;
+	cursor: pointer;
+	border-radius: 3px 3px 0 0;
+	margin-right: 5px;
+	transition: all 0.2s;
+}
+
+.not_active_tab {
+	background: var(--base-action-color);
+}
+
+.not_active_tab:hover {
+	background: linear-gradient(180deg, rgba(56, 56, 56, 0.00) 0%, var(--base-action-color) 34.99%, var(--base-action-color) 65.01%, rgba(56, 56, 56, 0.00) 100%);
+}
+
+.active_tab {
+	box-shadow: 0 -1px 0 0 var(--base-hover-color);
+	background: var(--base-background-color);
+}

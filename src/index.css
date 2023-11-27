@@ -10,12 +10,12 @@
 
 body {
 	margin: 0;
+	font-family: 'Inter', sans-serif;
+	user-select: none;
 }
 
 * {
 	color: white;
-	font-family: 'Inter', sans-serif;
-	user-select: none;
 }
 
 input {

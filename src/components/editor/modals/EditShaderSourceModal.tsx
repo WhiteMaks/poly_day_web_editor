@@ -1,0 +1,103 @@
+import {FC, useEffect} from "react";
+import {modalActions} from "../../../state/modal/ModalReducer";
+import CancelButton from "./actions/CancelButton";
+import Modal from "../../common/forms/modal/Modal";
+import {useGlobalDispatch, useGlobalSelector} from "../../../state/store";
+import BusClient from "../../../service_bus/BusClient";
+import SaveButton from "./actions/SaveButton";
+import {sourceActions} from "../../../state/develop/source/SourceReducer";
+import ShaderTabsContainer from "./containers/ShaderTabsContainer";
+import ShaderType from "../../../core/enums/ShaderType";
+import style from "./containers/containers.module.css";
+import ShaderCode from "./actions/ShaderCode";
+
+const shaders: ShaderType[] = [
+	ShaderType.VERTEX,
+	ShaderType.GEOMETRY,
+	ShaderType.FRAGMENT
+];
+
+interface EditShaderSourceModalProps {
+	bus: BusClient
+}
+
+const EditShaderSourceModal: FC<EditShaderSourceModalProps> = (props) => {
+	const globalDispatch = useGlobalDispatch();
+	const {
+		selectedEntity
+	} = useGlobalSelector(state => state.entityReducer)
+	const {
+		newVertexShader,
+		newFragmentShader,
+		selectedShaderType
+	} = useGlobalSelector(state => state.sourceReducer);
+
+	useEffect(() => {
+		props.bus.getDeveloperService()
+			.getShaderSource10(selectedEntity!.id);
+	}, [props.bus, selectedEntity]);
+
+	useEffect(() => () => {
+		globalDispatch(sourceActions.updateShader(null));
+		globalDispatch(sourceActions.updateNewVertexShader(""));
+		globalDispatch(sourceActions.updateNewFragmentShader(""));
+	}, [globalDispatch]);
+
+	const renderShaderCodeEditor = () => {
+		switch (selectedShaderType) {
+			case ShaderType.VERTEX: {
+				return (
+					<ShaderCode
+						value={newVertexShader}
+						onChange={value => {
+							globalDispatch(sourceActions.updateNewVertexShader(value))
+						}}/>
+				);
+			}
+			case ShaderType.GEOMETRY: {
+				return (
+					<ShaderCode
+						value={""}
+						onChange={value => {
+							console.log(value)
+						}}/>
+				);
+			}
+			case ShaderType.FRAGMENT: {
+				return (
+					<ShaderCode
+						value={newFragmentShader}
+						onChange={value => {
+							globalDispatch(sourceActions.updateNewFragmentShader(value))
+						}}/>
+				);
+			}
+		}
+	}
+
+	return (
+		<Modal
+			name={"Shader filling: " + selectedEntity!.name}
+			bodyClass={style.body_modal}
+			onClose={() => globalDispatch(modalActions.updateEditShaderSourceIsDisplayed(false))}
+			actions={[
+				<SaveButton
+					onClick={() => {
+						props.bus.getDeveloperService()
+							.saveShaderSource10(selectedEntity!.id, newVertexShader, newFragmentShader);
+						globalDispatch(modalActions.updateEditShaderSourceIsDisplayed(false));
+					}}/>,
+				<CancelButton
+					onClick={() => globalDispatch(modalActions.updateEditShaderSourceIsDisplayed(false))}/>
+			]}>
+			<ShaderTabsContainer
+				selectedShader={selectedShaderType}
+				onSelectShaderTab={shader => globalDispatch(sourceActions.updateSelectedShaderType(shader))}
+				shaders={shaders}/>
+			{renderShaderCodeEditor()}
+		</Modal>
+	);
+
+}
+
+export default EditShaderSourceModal;

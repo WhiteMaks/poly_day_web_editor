@@ -2,7 +2,7 @@ import {FC} from "react";
 import FlexboxWrapper from "../../common/wrappers/FlexboxWrapper";
 import style from "./midle_pane.module.css";
 import Hierarchy from "./Hierarchy";
-import Window from "./Window";
+import Window from "./window/Window";
 import ComponentSetup from "./ComponentSetup";
 
 const MiddlePaneComponent: FC = () => {

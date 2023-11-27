@@ -5,3 +5,7 @@ export const GET_RELEASES = "get-releases";
 export const CREATE_ENTITY = "create-entity";
 export const DELETE_ENTITY = "delete-entity";
 export const GET_ENTITY = "get-entities";
+export const SAVE_MODEL_SOURCE = "save-model-source";
+export const GET_MODEL_SOURCE = "get-model-source";
+export const SAVE_SHADER_SOURCE = "save-shader-source";
+export const GET_SHADER_SOURCE = "get-shader-source";

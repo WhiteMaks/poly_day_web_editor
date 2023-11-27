@@ -8,7 +8,11 @@ import {
 	DELETE_ENTITY,
 	DELETE_RELEASE,
 	GET_ENTITY,
-	GET_RELEASES
+	GET_MODEL_SOURCE,
+	GET_RELEASES,
+	GET_SHADER_SOURCE,
+	SAVE_MODEL_SOURCE,
+	SAVE_SHADER_SOURCE
 } from "../consts/Methods";
 import CreateRelease10BodyResponse from "./models/CreateRelease10BodyResponse";
 import GetReleases10Command from "./commands/GetReleases10Command";
@@ -22,6 +26,14 @@ import GetEntities10BodyResponse from "./models/GetEntities10BodyResponse";
 import EntityType from "../consts/EntityType";
 import DeleteEntity10Command from "./commands/DeleteEntity10Command";
 import DeleteEntity10BodyResponse from "./models/DeleteEntity10BodyResponse";
+import SaveModelSource10Command from "./commands/SaveModelSource10Command";
+import SaveModelSource10BodyResponse from "./models/SaveModelSource10BodyResponse";
+import GetModelSource10Command from "./commands/GetModelSource10Command";
+import GetModelSource10BodyResponse from "./models/GetModelSource10BodyResponse";
+import SaveShaderSource10Command from "./commands/SaveShaderSource10Command";
+import SaveShaderSource10BodyResponse from "./models/SaveShaderSource10BodyResponse";
+import GetShaderSource10Command from "./commands/GetShaderSource10Command";
+import GetShaderSource10BodyResponse from "./models/GetShaderSource10BodyResponse";
 
 class MicroserviceDeveloperService extends BaseMicroservice {
 
@@ -87,6 +99,49 @@ class MicroserviceDeveloperService extends BaseMicroservice {
 
 	public processEventDeleteEntity10(callback: (event: Event<DeleteEntity10BodyResponse>) => void): void {
 		this.processEvent<DeleteEntity10BodyResponse>(DELETE_ENTITY, callback);
+	}
+
+	public saveModelSource10(entityId: number, sourceBase64: string): void {
+		const request = new SaveModelSource10Command();
+		request.getBody().entity_id = entityId;
+		request.getBody().source_base_64 = sourceBase64;
+		this.send(request.makeRequest());
+	}
+
+	public processEventSaveModelSource10(callback: (event: Event<SaveModelSource10BodyResponse>) => void): void {
+		this.processEvent<SaveModelSource10BodyResponse>(SAVE_MODEL_SOURCE, callback);
+	}
+
+	public getModelSource10(entityId: number): void {
+		const request = new GetModelSource10Command();
+		request.getBody().entity_id = entityId;
+		this.send(request.makeRequest());
+	}
+
+	public processEventGetModelSource10(callback: (event: Event<GetModelSource10BodyResponse>) => void): void {
+		this.processEvent<GetModelSource10BodyResponse>(GET_MODEL_SOURCE, callback);
+	}
+
+	public saveShaderSource10(entityId: number, vertexShader: string, fragmentShader: string): void {
+		const request = new SaveShaderSource10Command();
+		request.getBody().entity_id = entityId;
+		request.getBody().vertex_shader = vertexShader;
+		request.getBody().fragment_shader = fragmentShader;
+		this.send(request.makeRequest());
+	}
+
+	public processEventSaveShaderSource10(callback: (event: Event<SaveShaderSource10BodyResponse>) => void): void {
+		this.processEvent<SaveShaderSource10BodyResponse>(SAVE_SHADER_SOURCE, callback);
+	}
+
+	public getShaderSource10(entityId: number): void {
+		const request = new GetShaderSource10Command();
+		request.getBody().entity_id = entityId;
+		this.send(request.makeRequest());
+	}
+
+	public processEventGetShaderSource10(callback: (event: Event<GetShaderSource10BodyResponse>) => void): void {
+		this.processEvent<GetShaderSource10BodyResponse>(GET_SHADER_SOURCE, callback);
 	}
 }
 

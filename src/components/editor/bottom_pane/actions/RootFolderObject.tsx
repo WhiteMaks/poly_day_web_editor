@@ -29,9 +29,9 @@ const RootFolderObject: FC<RootFolderObjectProps> = (props) => {
 					setIsActive(true);
 					props.onDoubleClick(null);
 				}}
-				onClick={() => setIsActive(!isActive)}
 				className={style.folder_object}>
 				<IconArrow
+					onClick={() => setIsActive(!isActive)}
 					isActive={isActive}/>
 				<IconFolderForHierarchy
 					className={isActive ? style.folder_object_folder_icon_active : style.folder_object_folder_icon}/>

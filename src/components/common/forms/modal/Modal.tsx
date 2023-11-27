@@ -12,6 +12,7 @@ interface ModalProps extends ReactComponentProps {
 	name: string;
 	onClose: () => void;
 	actions: React.ReactNode[];
+	bodyClass?: string;
 }
 
 const Modal: FC<ModalProps> = (props) => {
@@ -24,7 +25,10 @@ const Modal: FC<ModalProps> = (props) => {
 					<Header
 						title={props.name}
 						onClose={props.onClose}/>
-					<Body>{props.children}</Body>
+					<Body
+						className={props.bodyClass}>
+						{props.children}
+					</Body>
 					<ActionsContainer
 						actions={props.actions}/>
 				</BlockWrapper>
