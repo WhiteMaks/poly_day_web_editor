@@ -9,3 +9,6 @@ export const SAVE_MODEL_SOURCE = "save-model-source";
 export const GET_MODEL_SOURCE = "get-model-source";
 export const SAVE_SHADER_SOURCE = "save-shader-source";
 export const GET_SHADER_SOURCE = "get-shader-source";
+export const GET_SHADER_PROGRAMS = "get-shader-programs";
+export const CREATE_SHADER_PROGRAM = "create-shader-program";
+export const DELETE_SHADER_PROGRAM = "delete-shader-program";

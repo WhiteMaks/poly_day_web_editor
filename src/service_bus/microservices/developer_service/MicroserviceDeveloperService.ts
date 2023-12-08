@@ -1,10 +1,10 @@
 import BaseMicroservice from "../BaseMicroservice";
 import MicroserviceGateway from "../gateway/MicroserviceGateway";
-import CreateRelease10Command from "./commands/CreateRelease10Command";
+import CreateRelease10Command from "./commands/release/CreateRelease10Command";
 import Event from "../../Event";
 import {
 	CREATE_ENTITY,
-	CREATE_RELEASE,
+	CREATE_RELEASE, CREATE_SHADER_PROGRAM,
 	DELETE_ENTITY,
 	DELETE_RELEASE,
 	GET_ENTITY,
@@ -14,26 +14,28 @@ import {
 	SAVE_MODEL_SOURCE,
 	SAVE_SHADER_SOURCE
 } from "../consts/Methods";
-import CreateRelease10BodyResponse from "./models/CreateRelease10BodyResponse";
-import GetReleases10Command from "./commands/GetReleases10Command";
-import GetReleases10BodyResponse from "./models/GetReleases10BodyResponse";
-import DeleteRelease10Command from "./commands/DeleteRelease10Command";
-import DeleteRelease10BodyResponse from "./models/DeleteRelease10BodyResponse";
-import CreateEntity10Command from "./commands/CreateEntity10Command";
-import CreateEntity10BodyResponse from "./models/CreateEntity10BodyResponse";
-import GetEntities10Command from "./commands/GetEntities10Command";
-import GetEntities10BodyResponse from "./models/GetEntities10BodyResponse";
+import CreateRelease10BodyResponse from "./models/release/CreateRelease10BodyResponse";
+import GetReleases10Command from "./commands/release/GetReleases10Command";
+import GetReleases10BodyResponse from "./models/release/GetReleases10BodyResponse";
+import DeleteRelease10Command from "./commands/release/DeleteRelease10Command";
+import DeleteRelease10BodyResponse from "./models/release/DeleteRelease10BodyResponse";
+import CreateEntity10Command from "./commands/entity/CreateEntity10Command";
+import CreateEntity10BodyResponse from "./models/entity/CreateEntity10BodyResponse";
+import GetEntities10Command from "./commands/entity/GetEntities10Command";
+import GetEntities10BodyResponse from "./models/entity/GetEntities10BodyResponse";
 import EntityType from "../consts/EntityType";
-import DeleteEntity10Command from "./commands/DeleteEntity10Command";
-import DeleteEntity10BodyResponse from "./models/DeleteEntity10BodyResponse";
-import SaveModelSource10Command from "./commands/SaveModelSource10Command";
-import SaveModelSource10BodyResponse from "./models/SaveModelSource10BodyResponse";
-import GetModelSource10Command from "./commands/GetModelSource10Command";
-import GetModelSource10BodyResponse from "./models/GetModelSource10BodyResponse";
-import SaveShaderSource10Command from "./commands/SaveShaderSource10Command";
-import SaveShaderSource10BodyResponse from "./models/SaveShaderSource10BodyResponse";
-import GetShaderSource10Command from "./commands/GetShaderSource10Command";
-import GetShaderSource10BodyResponse from "./models/GetShaderSource10BodyResponse";
+import DeleteEntity10Command from "./commands/entity/DeleteEntity10Command";
+import DeleteEntity10BodyResponse from "./models/entity/DeleteEntity10BodyResponse";
+import SaveModelSource10Command from "./commands/source/SaveModelSource10Command";
+import SaveModelSource10BodyResponse from "./models/source/SaveModelSource10BodyResponse";
+import GetModelSource10Command from "./commands/source/GetModelSource10Command";
+import GetModelSource10BodyResponse from "./models/source/GetModelSource10BodyResponse";
+import SaveShaderSource10Command from "./commands/source/SaveShaderSource10Command";
+import SaveShaderSource10BodyResponse from "./models/source/SaveShaderSource10BodyResponse";
+import GetShaderSource10Command from "./commands/source/GetShaderSource10Command";
+import GetShaderSource10BodyResponse from "./models/source/GetShaderSource10BodyResponse";
+import CreateShaderProgram10Command from "./commands/shader_program/CreateShaderProgram10Command";
+import CreateShaderProgram10BodyResponse from "./models/shader_program/CreateShaderProgram10BodyResponse";
 
 class MicroserviceDeveloperService extends BaseMicroservice {
 
@@ -142,6 +144,18 @@ class MicroserviceDeveloperService extends BaseMicroservice {
 
 	public processEventGetShaderSource10(callback: (event: Event<GetShaderSource10BodyResponse>) => void): void {
 		this.processEvent<GetShaderSource10BodyResponse>(GET_SHADER_SOURCE, callback);
+	}
+
+	public createShaderProgram10(name: string, releaseId: number, shaderEntityId: number): void {
+		const request = new CreateShaderProgram10Command();
+		request.getBody().name = name;
+		request.getBody().release_id = releaseId;
+		request.getBody().shader_entity_id = shaderEntityId;
+		this.send(request.makeRequest());
+	}
+
+	public processEventCreateShaderProgram10(callback: (event: Event<CreateShaderProgram10BodyResponse>) => void): void {
+		this.processEvent<CreateShaderProgram10BodyResponse>(CREATE_SHADER_PROGRAM, callback);
 	}
 }
 

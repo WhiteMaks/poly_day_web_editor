@@ -1,8 +1,8 @@
-import Command from "../../Command";
-import {SAVE_SHADER_SOURCE} from "../../consts/Methods";
-import {DEVELOPER_SERVICE} from "../../consts/Microservices";
-import {VERSION_10} from "../../consts/Versions";
-import SaveShaderSource10BodyRequest from "../models/SaveShaderSource10BodyRequest";
+import Command from "../../../Command";
+import {SAVE_SHADER_SOURCE} from "../../../consts/Methods";
+import {DEVELOPER_SERVICE} from "../../../consts/Microservices";
+import {VERSION_10} from "../../../consts/Versions";
+import SaveShaderSource10BodyRequest from "../../models/source/SaveShaderSource10BodyRequest";
 
 class SaveShaderSource10Command extends Command<SaveShaderSource10BodyRequest> {
 

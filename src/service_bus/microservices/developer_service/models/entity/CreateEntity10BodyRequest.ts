@@ -1,4 +1,4 @@
-import EntityType from "../../consts/EntityType";
+import EntityType from "../../../consts/EntityType";
 
 interface CreateEntity10BodyRequest {
 	name: string

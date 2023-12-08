@@ -3,7 +3,7 @@ import FlexboxWrapper from "../../../common/wrappers/FlexboxWrapper";
 import {useGlobalDispatch, useGlobalSelector} from "../../../../state/store";
 import ReleaseTab from "../actions/ReleaseTab";
 import style from "./release_tabs_container.module.css";
-import {Release} from "../../../../service_bus/microservices/developer_service/models/GetReleases10BodyResponse";
+import {Release} from "../../../../service_bus/microservices/developer_service/models/release/GetReleases10BodyResponse";
 import {contextMenuActions} from "../../../../state/context_menu/ContextMenuReducer";
 
 interface ReleaseTabsContainerProps {

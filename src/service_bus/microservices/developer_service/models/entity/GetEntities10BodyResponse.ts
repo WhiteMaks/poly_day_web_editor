@@ -1,4 +1,4 @@
-import EntityType from "../../consts/EntityType";
+import EntityType from "../../../consts/EntityType";
 
 interface GetEntities10BodyResponse {
 	entities: Entity[]
@@ -12,15 +12,14 @@ export interface Entity {
 }
 
 export const compareByName = (first: Entity, second: Entity) => {
-	if (first.name < second.name) {
-		return -1;
-	}
-
-	if (first.name > second.name) {
-		return 1;
-	}
-
-	return 0;
+	return first.name.localeCompare(
+		second.name,
+		undefined,
+		{
+			numeric: true,
+			sensitivity: "base"
+		}
+	);
 }
 
 export const compareByTypeFolder = (first: Entity, second: Entity) => {

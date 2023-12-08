@@ -2,7 +2,7 @@ import {
 	Entity,
 	findEntityById,
 	sortEntities
-} from "../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
+} from "../../../service_bus/microservices/developer_service/models/entity/GetEntities10BodyResponse";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import EntityType from "../../../service_bus/microservices/consts/EntityType";
 

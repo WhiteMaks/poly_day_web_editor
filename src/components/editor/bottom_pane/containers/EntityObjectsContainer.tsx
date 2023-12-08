@@ -2,7 +2,7 @@ import {FC} from "react";
 import FlexboxWrapper from "../../../common/wrappers/FlexboxWrapper";
 import {useGlobalDispatch, useGlobalSelector} from "../../../../state/store";
 import EntityObject from "../actions/EntityObject";
-import {Entity} from "../../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
+import {Entity} from "../../../../service_bus/microservices/developer_service/models/entity/GetEntities10BodyResponse";
 import style from "./entity_objects_container.module.css";
 import {contextMenuActions} from "../../../../state/context_menu/ContextMenuReducer";
 

@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import GetModelSource10BodyResponse
-	from "../../../service_bus/microservices/developer_service/models/GetModelSource10BodyResponse";
+	from "../../../service_bus/microservices/developer_service/models/source/GetModelSource10BodyResponse";
 import GetShaderSource10BodyResponse
-	from "../../../service_bus/microservices/developer_service/models/GetShaderSource10BodyResponse";
+	from "../../../service_bus/microservices/developer_service/models/source/GetShaderSource10BodyResponse";
 import ShaderType from "../../../core/enums/ShaderType";
 
 interface SourceState {
