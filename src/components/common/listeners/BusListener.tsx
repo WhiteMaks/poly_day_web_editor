@@ -1,7 +1,7 @@
 import {FC, useEffect} from "react";
 import BusClient from "../../../service_bus/BusClient";
 import ReactComponentProps from "../ReactComponentProps";
-import {useGlobalDispatch} from "../../../state/store";
+import {useGlobalDispatch, useGlobalSelector} from "../../../state/store";
 import {busActions} from "../../../state/bus/BusReducer";
 import BusStatus from "../../../core/enums/BusStatus";
 import {OK} from "../../../service_bus/microservices/consts/Statuses";
@@ -9,6 +9,7 @@ import {releaseActions} from "../../../state/develop/release/ReleaseReducer";
 import {entityActions} from "../../../state/develop/entity/EntityReducer";
 import Common from "../../../core/Common";
 import {sourceActions} from "../../../state/develop/source/SourceReducer";
+import {shaderProgramActions} from "../../../state/develop/shader_program/ShaderProgramReducer";
 
 interface BusListenerProps extends ReactComponentProps {
 	bus: BusClient
@@ -16,6 +17,9 @@ interface BusListenerProps extends ReactComponentProps {
 
 const BusListener: FC<BusListenerProps> = (props) => {
 	const globalDispatch = useGlobalDispatch();
+	const {
+		selectedRelease
+	} = useGlobalSelector(state => state.releaseReducer);
 
 	useEffect(() => {
 		props.bus.onConnected(() => {
@@ -98,10 +102,18 @@ const BusListener: FC<BusListenerProps> = (props) => {
 			}
 		});
 
-		props.bus.getDeveloperService().processEventCreateShaderProgram10(event => {
-			console.log(event);
-		})
+		props.bus.getDeveloperService().processEventGetShaderPrograms10(event => {
+			globalDispatch(shaderProgramActions.updateShaderPrograms(event.body.shader_programs));
+		});
 	}, [props.bus, globalDispatch]);
+
+	useEffect(() => {
+		props.bus.getDeveloperService().processEventCreateShaderProgram10(event => {
+			if (event.status === OK && selectedRelease) {
+				props.bus.getDeveloperService().getShaderPrograms10(selectedRelease.id);
+			}
+		});
+	}, [props.bus, selectedRelease]);
 
 	return null;
 

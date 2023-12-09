@@ -9,7 +9,7 @@ import {
 	DELETE_RELEASE,
 	GET_ENTITY,
 	GET_MODEL_SOURCE,
-	GET_RELEASES,
+	GET_RELEASES, GET_SHADER_PROGRAMS,
 	GET_SHADER_SOURCE,
 	SAVE_MODEL_SOURCE,
 	SAVE_SHADER_SOURCE
@@ -36,6 +36,8 @@ import GetShaderSource10Command from "./commands/source/GetShaderSource10Command
 import GetShaderSource10BodyResponse from "./models/source/GetShaderSource10BodyResponse";
 import CreateShaderProgram10Command from "./commands/shader_program/CreateShaderProgram10Command";
 import CreateShaderProgram10BodyResponse from "./models/shader_program/CreateShaderProgram10BodyResponse";
+import GetShaderPrograms10Command from "./commands/shader_program/GetShaderPrograms10Command";
+import GetShaderPrograms10BodyResponse from "./models/shader_program/GetShaderPrograms10BodyResponse";
 
 class MicroserviceDeveloperService extends BaseMicroservice {
 
@@ -144,6 +146,16 @@ class MicroserviceDeveloperService extends BaseMicroservice {
 
 	public processEventGetShaderSource10(callback: (event: Event<GetShaderSource10BodyResponse>) => void): void {
 		this.processEvent<GetShaderSource10BodyResponse>(GET_SHADER_SOURCE, callback);
+	}
+
+	public getShaderPrograms10(releaseId: number): void {
+		const request = new GetShaderPrograms10Command();
+		request.getBody().release_id = releaseId;
+		this.send(request.makeRequest());
+	}
+
+	public processEventGetShaderPrograms10(callback: (event: Event<GetShaderPrograms10BodyResponse>) => void): void {
+		this.processEvent<GetShaderPrograms10BodyResponse>(GET_SHADER_PROGRAMS, callback);
 	}
 
 	public createShaderProgram10(name: string, releaseId: number, shaderEntityId: number): void {

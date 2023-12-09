@@ -5,9 +5,10 @@ import iconCamera from "../../../resources/icons/camera.svg";
 import iconLightSource from "../../../resources/icons/light_source.svg";
 import ShaderProgramsHierarchyItem from "./actions/ShaderProgramsHierarchyItem";
 import {useGlobalSelector} from "../../../state/store";
+import BusClient from "../../../service_bus/BusClient";
 
 interface HierarchyProps {
-
+	bus: BusClient
 }
 
 const Hierarchy: FC<HierarchyProps> = (props) => {
@@ -20,18 +21,23 @@ const Hierarchy: FC<HierarchyProps> = (props) => {
 			return null;
 		}
 
+		props.bus.getDeveloperService().getShaderPrograms10(selectedRelease.id);
+
 		return [
 			<HierarchyItem
+				key={1}
 				onDropEntity={() => console.log("drop on camera")}
 				isSelected={false}
 				name={"Camera"}
 				icon={iconCamera}/>,
 			<HierarchyItem
+				key={2}
 				onDropEntity={() => console.log("drop on light sources")}
 				isSelected={false}
 				name={"Light Sources"}
 				icon={iconLightSource}/>,
-			<ShaderProgramsHierarchyItem/>
+			<ShaderProgramsHierarchyItem
+				key={3}/>
 		];
 	}
 

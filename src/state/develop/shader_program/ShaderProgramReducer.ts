@@ -1,11 +1,15 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Entity} from "../../../service_bus/microservices/developer_service/models/entity/GetEntities10BodyResponse";
 import EntityType from "../../../service_bus/microservices/consts/EntityType";
+import {
+	ShaderProgram
+} from "../../../service_bus/microservices/developer_service/models/shader_program/GetShaderPrograms10BodyResponse";
 
 interface ShaderProgramState {
 	releaseId: number;
 	shaderEntity: Entity;
 	newShaderProgramName: string;
+	shaderPrograms: ShaderProgram[]
 }
 
 const initialState: ShaderProgramState = {
@@ -16,7 +20,8 @@ const initialState: ShaderProgramState = {
 		entities: [],
 		type: EntityType.SHADER
 	},
-	newShaderProgramName: ""
+	newShaderProgramName: "",
+	shaderPrograms: []
 }
 
 export const ShaderProgramSlice = createSlice({
@@ -31,6 +36,9 @@ export const ShaderProgramSlice = createSlice({
 		},
 		updateNewShaderProgramName: (state, action: PayloadAction<string>) => {
 			state.newShaderProgramName = action.payload;
+		},
+		updateShaderPrograms: (state, action: PayloadAction<ShaderProgram[]>) => {
+			state.shaderPrograms = action.payload;
 		}
 	}
 });

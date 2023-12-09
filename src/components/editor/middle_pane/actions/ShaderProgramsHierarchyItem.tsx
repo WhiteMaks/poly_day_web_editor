@@ -6,6 +6,7 @@ import {hierarchyActions} from "../../../../state/develop/hierarchy/HierarchyRed
 import EntityType from "../../../../service_bus/microservices/consts/EntityType";
 import {modalActions} from "../../../../state/modal/ModalReducer";
 import {shaderProgramActions} from "../../../../state/develop/shader_program/ShaderProgramReducer";
+import ShaderProgramItem from "./ShaderProgramItem";
 
 const ShaderProgramsHierarchyItem: FC = () => {
 	const globalDispatch = useGlobalDispatch();
@@ -15,6 +16,9 @@ const ShaderProgramsHierarchyItem: FC = () => {
 	const {
 		selectedRelease
 	} = useGlobalSelector(state => state.releaseReducer);
+	const {
+		shaderPrograms
+	} = useGlobalSelector(state => state.shaderProgramReducer);
 
 	return (
 		<HierarchyItem
@@ -31,6 +35,11 @@ const ShaderProgramsHierarchyItem: FC = () => {
 			isSelected={shaderProgramsIsVisible}
 			name={"Shader programs"}
 			icon={iconShaderProgram}>
+			{shaderPrograms.map(
+				shaderProgram =>
+					<ShaderProgramItem
+						key={shaderProgram.id}
+						shaderProgram={shaderProgram}/>)}
 		</HierarchyItem>
 	);
 }
