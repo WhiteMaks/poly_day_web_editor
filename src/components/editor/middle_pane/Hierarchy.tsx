@@ -3,7 +3,7 @@ import SidePane from "./side_pane/SidePane";
 import HierarchyItem from "./actions/HierarchyItem";
 import iconCamera from "../../../resources/icons/camera.svg";
 import iconLightSource from "../../../resources/icons/light_source.svg";
-import iconShaderProgram from "../../../resources/icons/shader_program.svg";
+import ShaderProgramsHierarchyItem from "./actions/ShaderProgramsHierarchyItem";
 
 interface HierarchyProps {
 
@@ -15,14 +15,14 @@ const Hierarchy: FC<HierarchyProps> = (props) => {
 		<SidePane
 			title={"Hierarchy"}>
 			<HierarchyItem
+				isSelected={false}
 				name={"Camera"}
 				icon={iconCamera}/>
 			<HierarchyItem
+				isSelected={false}
 				name={"Light Sources"}
 				icon={iconLightSource}/>
-			<HierarchyItem
-				name={"Shader Programs"}
-				icon={iconShaderProgram}/>
+			<ShaderProgramsHierarchyItem/>
 		</SidePane>
 	);
 
