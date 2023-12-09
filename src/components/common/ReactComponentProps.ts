@@ -18,6 +18,11 @@ interface ReactComponentProps {
 
 	onMouseEnter?: () => void;
 	onMouseLeave?: () => void;
+
+	draggable?: boolean;
+	onDrop?: (event: React.DragEvent<HTMLDivElement>) => void
+	onDragOver?: (event: React.DragEvent<HTMLDivElement>) => void
+	onDragStart?: (event: React.DragEvent<HTMLDivElement>) => void
 }
 
 export default ReactComponentProps;

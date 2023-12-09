@@ -9,6 +9,7 @@ import contextMenuReducer from "./context_menu/ContextMenuReducer";
 import entityReducer from "./develop/entity/EntityReducer";
 import sourceReducer from "./develop/source/SourceReducer";
 import hierarchyReducer from "./develop/hierarchy/HierarchyReducer";
+import shaderProgramReducer from "./develop/shader_program/ShaderProgramReducer";
 
 const globalReducer = combineReducers({
 	checkUserReducer,
@@ -20,6 +21,7 @@ const globalReducer = combineReducers({
 	entityReducer,
 	sourceReducer,
 	hierarchyReducer,
+	shaderProgramReducer,
 });
 
 export const initGlobalStore = () => {

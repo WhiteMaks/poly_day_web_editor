@@ -13,6 +13,10 @@
 	transition: all 0.3s;
 }
 
+.entity_object:active {
+	cursor: grabbing;
+}
+
 .entity_object:hover .entity_object_name {
 	color: rgba(80, 239, 163, 0.50);
 }

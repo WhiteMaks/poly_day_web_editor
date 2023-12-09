@@ -13,6 +13,10 @@ const BlockWrapper: FC<ReactComponentProps> = (props) => {
 			onContextMenu={props.onContextMenu}
 			onDoubleClick={props.onDoubleClick}
 			onClick={props.onClick}
+			draggable={props.draggable}
+			onDragStart={props.onDragStart}
+			onDragOver={props.onDragOver}
+			onDrop={props.onDrop}
 			className={props.className}>
 			{props.children}
 		</div>

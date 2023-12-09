@@ -63,12 +63,12 @@ const EntityObject: FC<EntityObjectProps> = (props) => {
 				);
 			}
 		}
-
-		return null;
 	}
 
 	return (
 		<BlockWrapper
+			draggable={true}
+			onDragStart={event => event.dataTransfer.setData("json", JSON.stringify(props.entity))}
 			onContextMenu={event => {
 				event.preventDefault();
 

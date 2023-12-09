@@ -97,6 +97,10 @@ const BusListener: FC<BusListenerProps> = (props) => {
 				globalDispatch(sourceActions.updateShader(event.body));
 			}
 		});
+
+		props.bus.getDeveloperService().processEventCreateShaderProgram10(event => {
+			console.log(event);
+		})
 	}, [props.bus, globalDispatch]);
 
 	return null;
