@@ -3,7 +3,7 @@ import {
 	ShaderProgram
 } from "../../../../service_bus/microservices/developer_service/models/shader_program/GetShaderPrograms10BodyResponse";
 import HierarchyChild from "./HierarchyChild";
-import iconShaderProgram from "../../../../resources/icons/shader_program.svg";
+import iconShaderProgram from "../../../../resources/icons/gpu.svg";
 
 interface ShaderProgramItemProps {
 	shaderProgram: ShaderProgram
