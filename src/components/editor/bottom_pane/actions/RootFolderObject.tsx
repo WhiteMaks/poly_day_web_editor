@@ -7,7 +7,7 @@ import BlockWrapper from "../../../common/wrappers/BlockWrapper";
 import {
 	Entity,
 	getOnlyFolders
-} from "../../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
+} from "../../../../service_bus/microservices/developer_service/models/entity/GetEntities10BodyResponse";
 import IconArrow from "./IconArrow";
 import FolderObject from "./FolderObject";
 

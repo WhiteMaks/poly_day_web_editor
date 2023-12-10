@@ -1,4 +1,4 @@
-import {Release} from "../../../service_bus/microservices/developer_service/models/GetReleases10BodyResponse";
+import {Release} from "../../../service_bus/microservices/developer_service/models/release/GetReleases10BodyResponse";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 interface ReleaseState {

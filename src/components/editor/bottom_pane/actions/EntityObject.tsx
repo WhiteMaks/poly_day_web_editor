@@ -1,6 +1,6 @@
 import {FC} from "react";
 import BlockWrapper from "../../../common/wrappers/BlockWrapper";
-import {Entity} from "../../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
+import {Entity} from "../../../../service_bus/microservices/developer_service/models/entity/GetEntities10BodyResponse";
 import style from "./actions.module.css";
 import IconFolderForExplorer from "../../../common/icons/IconFolderForExplorer";
 import EntityType from "../../../../service_bus/microservices/consts/EntityType";
@@ -63,12 +63,12 @@ const EntityObject: FC<EntityObjectProps> = (props) => {
 				);
 			}
 		}
-
-		return null;
 	}
 
 	return (
 		<BlockWrapper
+			draggable={true}
+			onDragStart={event => event.dataTransfer.setData("json", JSON.stringify(props.entity))}
 			onContextMenu={event => {
 				event.preventDefault();
 

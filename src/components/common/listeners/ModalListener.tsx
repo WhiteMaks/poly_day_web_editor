@@ -5,6 +5,7 @@ import BusClient from "../../../service_bus/BusClient";
 import CreateEntityModal from "../../editor/modals/CreateEntityModal";
 import EditModelSourceModal from "../../editor/modals/EditModelSourceModal";
 import EditShaderSourceModal from "../../editor/modals/EditShaderSourceModal";
+import CreateShaderProgramModal from "../../editor/modals/CreateShaderProgramModal";
 
 interface ModalListenerProps {
 	bus: BusClient
@@ -15,7 +16,8 @@ const ModalListener: FC<ModalListenerProps> = (props) => {
 		createReleaseIsDisplayed,
 		createEntityIsDisplayed,
 		editModelSourceIsDisplayed,
-		editShaderSourceIsDisplayed
+		editShaderSourceIsDisplayed,
+		createShaderProgramIsDisplayed
 	} = useGlobalSelector(state => state.modalReducer);
 
 	if (createReleaseIsDisplayed) {
@@ -42,6 +44,13 @@ const ModalListener: FC<ModalListenerProps> = (props) => {
 	if (editShaderSourceIsDisplayed) {
 		return (
 			<EditShaderSourceModal
+				bus={props.bus}/>
+		);
+	}
+
+	if (createShaderProgramIsDisplayed) {
+		return (
+			<CreateShaderProgramModal
 				bus={props.bus}/>
 		);
 	}

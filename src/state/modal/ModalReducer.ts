@@ -5,13 +5,15 @@ interface ModalState {
 	createEntityIsDisplayed: boolean;
 	editModelSourceIsDisplayed: boolean;
 	editShaderSourceIsDisplayed: boolean;
+	createShaderProgramIsDisplayed: boolean;
 }
 
 const initialState: ModalState = {
 	createReleaseIsDisplayed: false,
 	createEntityIsDisplayed: false,
 	editModelSourceIsDisplayed: false,
-	editShaderSourceIsDisplayed: false
+	editShaderSourceIsDisplayed: false,
+	createShaderProgramIsDisplayed: false
 }
 
 export const ModalSlice = createSlice({
@@ -29,7 +31,10 @@ export const ModalSlice = createSlice({
 		},
 		updateEditShaderSourceIsDisplayed: (state, action: PayloadAction<boolean>) => {
 			state.editShaderSourceIsDisplayed = action.payload;
-		}
+		},
+		updateCreateShaderProgramIsDisplayed: (state, action: PayloadAction<boolean>) => {
+			state.createShaderProgramIsDisplayed = action.payload;
+		},
 	}
 });
 

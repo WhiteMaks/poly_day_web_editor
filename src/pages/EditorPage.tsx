@@ -14,7 +14,8 @@ const EditorPage: FC = () => {
 	return (
 		<EditorWrapper>
 			<TopPaneComponent/>
-			<MiddlePaneComponent/>
+			<MiddlePaneComponent
+				bus={bus}/>
 			<BottomPaneComponent/>
 			<BusListener
 				bus={bus}/>

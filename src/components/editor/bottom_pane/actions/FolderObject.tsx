@@ -3,7 +3,7 @@ import FlexboxWrapper from "../../../common/wrappers/FlexboxWrapper";
 import {
 	Entity,
 	getOnlyFolders
-} from "../../../../service_bus/microservices/developer_service/models/GetEntities10BodyResponse";
+} from "../../../../service_bus/microservices/developer_service/models/entity/GetEntities10BodyResponse";
 import style from "./actions.module.css";
 import IconFolderForHierarchy from "../../../common/icons/IconFolderForHierarchy";
 import BlockWrapper from "../../../common/wrappers/BlockWrapper";

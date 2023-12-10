@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {Release} from "../../../../service_bus/microservices/developer_service/models/GetReleases10BodyResponse";
+import {Release} from "../../../../service_bus/microservices/developer_service/models/release/GetReleases10BodyResponse";
 import {useGlobalSelector} from "../../../../state/store";
 import TabWrapper from "../../wrappers/TabWrapper";
 

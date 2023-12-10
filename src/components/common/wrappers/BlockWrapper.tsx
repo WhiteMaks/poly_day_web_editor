@@ -11,22 +11,12 @@ const BlockWrapper: FC<ReactComponentProps> = (props) => {
 			ref={props.innerRef}
 			style={props.style}
 			onContextMenu={props.onContextMenu}
-			onClick={event => {
-				switch (event.detail) {
-					case 2: {
-						if (props.onDoubleClick) {
-							props.onDoubleClick();
-						}
-						break
-					}
-					case 1: {
-						if (props.onClick) {
-							props.onClick();
-						}
-						break
-					}
-				}
-			}}
+			onDoubleClick={props.onDoubleClick}
+			onClick={props.onClick}
+			draggable={props.draggable}
+			onDragStart={props.onDragStart}
+			onDragOver={props.onDragOver}
+			onDrop={props.onDrop}
 			className={props.className}>
 			{props.children}
 		</div>
