@@ -8,7 +8,6 @@ import iconShaderProgram from "../../../../resources/icons/gpu.svg";
 interface ShaderProgramItemProps {
 	shaderProgram: ShaderProgram
 	onContext: (clientX: number, clientY: number, shaderProgram: ShaderProgram) => void;
-
 }
 
 const ShaderProgramItem: FC<ShaderProgramItemProps> = (props) => {
