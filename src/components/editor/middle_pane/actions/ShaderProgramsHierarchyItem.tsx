@@ -7,6 +7,7 @@ import EntityType from "../../../../service_bus/microservices/consts/EntityType"
 import {modalActions} from "../../../../state/modal/ModalReducer";
 import {shaderProgramActions} from "../../../../state/develop/shader_program/ShaderProgramReducer";
 import ShaderProgramItem from "./ShaderProgramItem";
+import {contextMenuActions} from "../../../../state/context_menu/ContextMenuReducer";
 
 const ShaderProgramsHierarchyItem: FC = () => {
 	const globalDispatch = useGlobalDispatch();
@@ -38,6 +39,12 @@ const ShaderProgramsHierarchyItem: FC = () => {
 			{shaderPrograms.map(
 				shaderProgram =>
 					<ShaderProgramItem
+						onContext={(x, y, shaderProgram) => {
+							globalDispatch(contextMenuActions.updateShaderProgramX(x));
+							globalDispatch(contextMenuActions.updateShaderProgramY(y));
+							globalDispatch(contextMenuActions.updateSelectedShaderProgram(shaderProgram));
+							globalDispatch(contextMenuActions.updateShaderProgramIsDisplayed(true));
+						}}
 						key={shaderProgram.id}
 						shaderProgram={shaderProgram}/>)}
 		</HierarchyItem>

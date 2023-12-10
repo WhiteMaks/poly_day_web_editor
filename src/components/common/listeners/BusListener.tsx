@@ -113,6 +113,12 @@ const BusListener: FC<BusListenerProps> = (props) => {
 				props.bus.getDeveloperService().getShaderPrograms10(selectedRelease.id);
 			}
 		});
+
+		props.bus.getDeveloperService().processEventDeleteShaderProgram10(event => {
+			if (event.status === OK && selectedRelease) {
+				props.bus.getDeveloperService().getShaderPrograms10(selectedRelease.id);
+			}
+		});
 	}, [props.bus, selectedRelease]);
 
 	return null;

@@ -42,3 +42,25 @@
 
 	margin-bottom: 10px;
 }
+
+.hierarchy_child {
+	margin-bottom: 10px;
+	padding-left: 40px;
+	align-items: center;
+	cursor: pointer;
+}
+
+.hierarchy_child:last-child {
+	margin-bottom: 0;
+}
+
+.hierarchy_child:hover {
+	border-radius: 0 3px 0 0;
+	background: var(--base-hover-gradient-color);
+}
+
+.hierarchy_child_icon {
+	width: 23px;
+	height: 23px;
+	margin-right: 5px;
+}
