@@ -12,3 +12,5 @@ export const GET_SHADER_SOURCE = "get-shader-source";
 export const GET_SHADER_PROGRAMS = "get-shader-programs";
 export const CREATE_SHADER_PROGRAM = "create-shader-program";
 export const DELETE_SHADER_PROGRAM = "delete-shader-program";
+export const CREATE_SHADER_PROGRAM_OBJECT = "create-shader-program-object";
+export const DELETE_SHADER_PROGRAM_OBJECT = "delete-shader-program-object";

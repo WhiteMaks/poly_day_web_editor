@@ -62,6 +62,8 @@ const Hierarchy: FC<HierarchyProps> = (props) => {
 						if (entity.type !== EntityType.MODEL) {
 							return;
 						}
+
+						props.bus.getDeveloperService().createShaderProgramObject10(selectedShaderProgram.id, entity.id);
 					}}>
 
 				</ObjectsPane>
