@@ -1,5 +1,5 @@
 import {FC} from "react";
-import SidePane from "./side_pane/SidePane";
+import SidePane from "./support/side_pane/SidePane";
 
 interface ComponentSetupProps {
 

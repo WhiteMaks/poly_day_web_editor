@@ -1,12 +1,12 @@
 import {FC} from "react";
-import BlockWrapper from "../../../common/wrappers/BlockWrapper";
+import BlockWrapper from "../../../../common/wrappers/BlockWrapper";
 import style from "./window.module.css";
-import IconButton from "../../../common/actions/IconButton";
-import greenIcon from "../../../../resources/icons/indicator_green.svg";
-import yellowIcon from "../../../../resources/icons/indicator_yellow.svg";
-import redIcon from "../../../../resources/icons/indicator_red.svg";
-import {useGlobalSelector} from "../../../../state/store";
-import BusStatus from "../../../../core/enums/BusStatus";
+import IconButton from "../../../../common/actions/IconButton";
+import greenIcon from "../../../../../resources/icons/indicator_green.svg";
+import yellowIcon from "../../../../../resources/icons/indicator_yellow.svg";
+import redIcon from "../../../../../resources/icons/indicator_red.svg";
+import {useGlobalSelector} from "../../../../../state/store";
+import BusStatus from "../../../../../core/enums/BusStatus";
 
 const ConnectionIndicator: FC = () => {
 	const {

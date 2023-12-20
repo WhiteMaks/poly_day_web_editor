@@ -64,3 +64,21 @@
 	height: 23px;
 	margin-right: 5px;
 }
+
+.hierarchy_child_selected {
+	margin-bottom: 10px;
+	padding-left: 40px;
+	align-items: center;
+	cursor: pointer;
+
+	border-left: 2px solid var(--base-hover-color);
+	background: var(--base-dark-pane-color);
+}
+
+.hierarchy_child_selected:last-child {
+	margin-bottom: 0;
+}
+
+.hierarchy_child_selected:hover {
+	background: var(--base-hover-on-selected-gradient-color);
+}

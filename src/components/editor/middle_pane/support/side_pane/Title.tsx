@@ -1,5 +1,5 @@
 import {FC} from "react";
-import BlockWrapper from "../../../common/wrappers/BlockWrapper";
+import BlockWrapper from "../../../../common/wrappers/BlockWrapper";
 import style from "./side_pane.module.css";
 
 interface TitleProps {

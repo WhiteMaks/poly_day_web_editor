@@ -7,14 +7,16 @@ import BlockWrapper from "../../../common/wrappers/BlockWrapper";
 interface HierarchyChildProps {
 	name: string;
 	icon: string;
-	// isSelected: boolean;
-	onContext?: (clientX: number, clientY: number) => void;
+	isSelected: boolean;
+	onContext: (clientX: number, clientY: number) => void;
+	onClick: () => void;
 }
 
 const HierarchyChild: FC<HierarchyChildProps> = (props) => {
 
 	return (
 		<FlexboxWrapper
+			onClick={props.onClick}
 			onContextMenu={event => {
 				event.preventDefault();
 
@@ -22,7 +24,7 @@ const HierarchyChild: FC<HierarchyChildProps> = (props) => {
 					props.onContext(event.clientX, event.clientY);
 				}
 			}}
-			className={style.hierarchy_child}>
+			className={props.isSelected ? style.hierarchy_child_selected : style.hierarchy_child}>
 			<BaseIcon
 				className={style.hierarchy_child_icon}
 				description={props.name}

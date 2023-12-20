@@ -1,8 +1,8 @@
 import {FC} from "react";
-import BlockWrapper from "../../../common/wrappers/BlockWrapper";
+import BlockWrapper from "../../../../common/wrappers/BlockWrapper";
 import style from "./side_pane.module.css";
 import Title from "./Title";
-import ReactComponentProps from "../../../common/ReactComponentProps";
+import ReactComponentProps from "../../../../common/ReactComponentProps";
 
 interface SidePaneProps extends ReactComponentProps {
 	title: string;

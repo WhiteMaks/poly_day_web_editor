@@ -8,8 +8,16 @@ import {modalActions} from "../../../../state/modal/ModalReducer";
 import {shaderProgramActions} from "../../../../state/develop/shader_program/ShaderProgramReducer";
 import ShaderProgramItem from "./ShaderProgramItem";
 import {contextMenuActions} from "../../../../state/context_menu/ContextMenuReducer";
+import {
+	ShaderProgram
+} from "../../../../service_bus/microservices/developer_service/models/shader_program/GetShaderPrograms10BodyResponse";
 
-const ShaderProgramsHierarchyItem: FC = () => {
+interface ShaderProgramsHierarchyItemProps {
+	shaderPrograms: ShaderProgram[];
+	selectedShaderProgram: ShaderProgram | null;
+}
+
+const ShaderProgramsHierarchyItem: FC<ShaderProgramsHierarchyItemProps> = (props) => {
 	const globalDispatch = useGlobalDispatch();
 	const {
 		shaderProgramsIsVisible
@@ -17,9 +25,6 @@ const ShaderProgramsHierarchyItem: FC = () => {
 	const {
 		selectedRelease
 	} = useGlobalSelector(state => state.releaseReducer);
-	const {
-		shaderPrograms
-	} = useGlobalSelector(state => state.shaderProgramReducer);
 
 	return (
 		<HierarchyItem
@@ -32,18 +37,24 @@ const ShaderProgramsHierarchyItem: FC = () => {
 				globalDispatch(shaderProgramActions.updateShaderEntity(entity));
 				globalDispatch(modalActions.updateCreateShaderProgramIsDisplayed(true));
 			}}
-			onClick={() => globalDispatch(hierarchyActions.updateShaderProgramsIsVisible(!shaderProgramsIsVisible))}
+			onClick={() => {
+				globalDispatch(hierarchyActions.updateShaderProgramsIsVisible(!shaderProgramsIsVisible));
+				globalDispatch(shaderProgramActions.updateSelectedShaderProgram(null));
+			}}
 			isSelected={shaderProgramsIsVisible}
 			name={"Shader programs"}
 			icon={iconShaderProgram}>
-			{shaderPrograms.map(
+			{props.shaderPrograms.map(
 				shaderProgram =>
 					<ShaderProgramItem
+						isSelected={props.selectedShaderProgram?.id === shaderProgram.id}
+						onClick={shaderProgram => globalDispatch(shaderProgramActions.updateSelectedShaderProgram(shaderProgram))}
 						onContext={(x, y, shaderProgram) => {
 							globalDispatch(contextMenuActions.updateShaderProgramX(x));
 							globalDispatch(contextMenuActions.updateShaderProgramY(y));
 							globalDispatch(contextMenuActions.updateSelectedShaderProgram(shaderProgram));
 							globalDispatch(contextMenuActions.updateShaderProgramIsDisplayed(true));
+							globalDispatch(shaderProgramActions.updateSelectedShaderProgram(null));
 						}}
 						key={shaderProgram.id}
 						shaderProgram={shaderProgram}/>)}

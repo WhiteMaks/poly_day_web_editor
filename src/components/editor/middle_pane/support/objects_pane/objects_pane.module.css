@@ -1,0 +1,13 @@
+.wrapper {
+	position: absolute;
+	width: 50%;
+	height: calc(100% - 55px);
+	top: 55px;
+	right: 0;
+
+	border-radius: 3px 3px 0 3px;
+	background: var(--base-dark-pane-color);
+	box-shadow: -3px 0 4px 0 var(--base-dark-pane-color);
+
+	overflow: auto;
+}
