@@ -65,7 +65,7 @@ const Hierarchy: FC<HierarchyProps> = (props) => {
 
 						props.bus.getDeveloperService().createShaderProgramObject10(selectedShaderProgram.id, entity.id);
 					}}>
-
+					{selectedShaderProgram.objects.map(object => object.name)}
 				</ObjectsPane>
 			);
 		}

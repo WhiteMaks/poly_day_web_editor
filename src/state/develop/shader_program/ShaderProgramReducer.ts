@@ -41,6 +41,13 @@ export const ShaderProgramSlice = createSlice({
 		},
 		updateShaderPrograms: (state, action: PayloadAction<ShaderProgram[]>) => {
 			state.shaderPrograms = action.payload;
+
+			if (state.selectedShaderProgram) {
+				const newSelectedShaderProgram = action.payload.find(shaderProgram => shaderProgram.id === state.selectedShaderProgram?.id);
+				if (newSelectedShaderProgram) {
+					state.selectedShaderProgram = newSelectedShaderProgram;
+				}
+			}
 		},
 		updateSelectedShaderProgram: (state, action: PayloadAction<ShaderProgram | null>) => {
 			if (state.selectedShaderProgram && state.selectedShaderProgram.id === action.payload?.id ) {

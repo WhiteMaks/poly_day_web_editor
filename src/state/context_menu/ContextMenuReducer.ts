@@ -56,7 +56,13 @@ const initialState: ContextMenuState = {
 	selectedShaderProgram: {
 		name: "",
 		id: 0,
-		shader_entity_id: 0
+		code: {
+			id: 0,
+			vertex_shader: "",
+			geometry_shader: "",
+			fragment_shader: ""
+		},
+		objects: []
 	}
 }
 
