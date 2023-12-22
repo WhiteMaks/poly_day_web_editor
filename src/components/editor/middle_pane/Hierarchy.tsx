@@ -8,6 +8,7 @@ import {useGlobalSelector} from "../../../state/store";
 import BusClient from "../../../service_bus/BusClient";
 import ObjectsPane from "./support/objects_pane/ObjectsPane";
 import EntityType from "../../../service_bus/microservices/consts/EntityType";
+import ShaderProgramObjectItem from "./actions/ShaderProgramObjectItem";
 
 interface HierarchyProps {
 	bus: BusClient
@@ -65,7 +66,11 @@ const Hierarchy: FC<HierarchyProps> = (props) => {
 
 						props.bus.getDeveloperService().createShaderProgramObject10(selectedShaderProgram.id, entity.id);
 					}}>
-					{selectedShaderProgram.objects.map(object => object.name)}
+					{selectedShaderProgram.objects.map(
+						object =>
+							<ShaderProgramObjectItem
+								key={object.id}
+								object={object}/>)}
 				</ObjectsPane>
 			);
 		}
