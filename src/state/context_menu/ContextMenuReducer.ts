@@ -3,7 +3,8 @@ import {Release} from "../../service_bus/microservices/developer_service/models/
 import {Entity} from "../../service_bus/microservices/developer_service/models/entity/GetEntities10BodyResponse";
 import EntityType from "../../service_bus/microservices/consts/EntityType";
 import {
-	ShaderProgram
+	ShaderProgram,
+	ShaderProgramObject
 } from "../../service_bus/microservices/developer_service/models/shader_program/GetShaderPrograms10BodyResponse";
 
 interface ContextMenuState {
@@ -25,6 +26,11 @@ interface ContextMenuState {
 	shaderProgramX: number
 	shaderProgramY: number
 	selectedShaderProgram: ShaderProgram
+
+	shaderProgramObjectIsDisplayed: boolean
+	shaderProgramObjectX: number
+	shaderProgramObjectY: number
+	selectedShaderProgramObject: ShaderProgramObject
 }
 
 const initialState: ContextMenuState = {
@@ -63,6 +69,15 @@ const initialState: ContextMenuState = {
 			fragment_shader: ""
 		},
 		objects: []
+	},
+
+	shaderProgramObjectIsDisplayed: false,
+	shaderProgramObjectX: 0,
+	shaderProgramObjectY: 0,
+	selectedShaderProgramObject: {
+		id: 0,
+		name: "",
+		model_entity_id: 0
 	}
 }
 
@@ -117,6 +132,19 @@ export const ContextMenuSlice = createSlice({
 		},
 		updateSelectedShaderProgram: (state, action: PayloadAction<ShaderProgram>) => {
 			state.selectedShaderProgram = action.payload;
+		},
+
+		updateShaderProgramObjectIsDisplayed: (state, action: PayloadAction<boolean>) => {
+			state.shaderProgramObjectIsDisplayed = action.payload;
+		},
+		updateShaderProgramObjectX: (state, action: PayloadAction<number>) => {
+			state.shaderProgramObjectX = action.payload;
+		},
+		updateShaderProgramObjectY: (state, action: PayloadAction<number>) => {
+			state.shaderProgramObjectY = action.payload;
+		},
+		updateSelectedShaderProgramObject: (state, action: PayloadAction<ShaderProgramObject>) => {
+			state.selectedShaderProgramObject = action.payload;
 		},
 	}
 });

@@ -5,6 +5,7 @@ import ReleaseTabContextMenu from "../../editor/context_menus/ReleaseTabContextM
 import CreateEntityContextMenu from "../../editor/context_menus/CreateEntityContextMenu";
 import EntityObjectContextMenu from "../../editor/context_menus/EntityObjectContextMenu";
 import ShaderProgramContextMenu from "../../editor/context_menus/ShaderProgramContextMenu";
+import ShaderProgramObjectContextMenu from "../../editor/context_menus/ShaderProgramObjectContextMenu";
 
 interface ContextMenuListenerProps {
 	bus: BusClient
@@ -15,7 +16,8 @@ const ContextMenuListener: FC<ContextMenuListenerProps> = (props) => {
 		releaseTabIsDisplayed,
 		createEntityIsDisplayed,
 		entityObjectIsDisplayed,
-		shaderProgramIsDisplayed
+		shaderProgramIsDisplayed,
+		shaderProgramObjectIsDisplayed,
 	} = useGlobalSelector(state => state.contextMenuReducer);
 
 	if (releaseTabIsDisplayed) {
@@ -42,6 +44,13 @@ const ContextMenuListener: FC<ContextMenuListenerProps> = (props) => {
 	if (shaderProgramIsDisplayed) {
 		return (
 			<ShaderProgramContextMenu
+				bus={props.bus}/>
+		);
+	}
+
+	if (shaderProgramObjectIsDisplayed) {
+		return (
+			<ShaderProgramObjectContextMenu
 				bus={props.bus}/>
 		);
 	}

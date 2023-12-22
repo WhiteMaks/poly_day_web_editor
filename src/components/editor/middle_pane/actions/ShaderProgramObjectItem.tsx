@@ -10,12 +10,20 @@ import BlockWrapper from "../../../common/wrappers/BlockWrapper";
 
 interface ShaderProgramObjectItemProps {
 	object: ShaderProgramObject;
+	onContext: (clientX: number, clientY: number, shaderProgramObject: ShaderProgramObject) => void;
 }
 
 const ShaderProgramObjectItem: FC<ShaderProgramObjectItemProps> = (props) => {
 
 	return (
 		<FlexboxWrapper
+			onContextMenu={event => {
+				event.preventDefault();
+
+				if (props.onContext) {
+					props.onContext(event.clientX, event.clientY, props.object);
+				}
+			}}
 			className={style.hierarchy_item_object}>
 			<BaseIcon
 				className={style.hierarchy_item_object_icon}

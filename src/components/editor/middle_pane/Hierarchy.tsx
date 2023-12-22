@@ -4,17 +4,19 @@ import HierarchyItem from "./actions/HierarchyItem";
 import iconCamera from "../../../resources/icons/camera.svg";
 import iconLightSource from "../../../resources/icons/light_source.svg";
 import ShaderProgramsHierarchyItem from "./actions/ShaderProgramsHierarchyItem";
-import {useGlobalSelector} from "../../../state/store";
+import {useGlobalDispatch, useGlobalSelector} from "../../../state/store";
 import BusClient from "../../../service_bus/BusClient";
 import ObjectsPane from "./support/objects_pane/ObjectsPane";
 import EntityType from "../../../service_bus/microservices/consts/EntityType";
 import ShaderProgramObjectItem from "./actions/ShaderProgramObjectItem";
+import {contextMenuActions} from "../../../state/context_menu/ContextMenuReducer";
 
 interface HierarchyProps {
 	bus: BusClient
 }
 
 const Hierarchy: FC<HierarchyProps> = (props) => {
+	const globalDispatch = useGlobalDispatch();
 	const {
 		selectedRelease
 	} = useGlobalSelector(state => state.releaseReducer);
@@ -69,6 +71,12 @@ const Hierarchy: FC<HierarchyProps> = (props) => {
 					{selectedShaderProgram.objects.map(
 						object =>
 							<ShaderProgramObjectItem
+								onContext={(x, y, shaderProgramObject) => {
+									globalDispatch(contextMenuActions.updateShaderProgramObjectX(x));
+									globalDispatch(contextMenuActions.updateShaderProgramObjectY(y));
+									globalDispatch(contextMenuActions.updateSelectedShaderProgramObject(shaderProgramObject));
+									globalDispatch(contextMenuActions.updateShaderProgramObjectIsDisplayed(true));
+								}}
 								key={object.id}
 								object={object}/>)}
 				</ObjectsPane>
