@@ -83,7 +83,7 @@ const BusListener: FC<BusListenerProps> = (props) => {
 		});
 
 		props.bus.getDeveloperService().processEventSaveModelSource10(event => {
-			console.log(event);
+			console.log(event); //todo remove
 		});
 
 		props.bus.getDeveloperService().processEventGetModelSource10(event => {
@@ -93,7 +93,7 @@ const BusListener: FC<BusListenerProps> = (props) => {
 		});
 
 		props.bus.getDeveloperService().processEventSaveShaderSource10(event => {
-			console.log(event);
+			console.log(event); //todo remove
 		});
 
 		props.bus.getDeveloperService().processEventGetShaderSource10(event => {
