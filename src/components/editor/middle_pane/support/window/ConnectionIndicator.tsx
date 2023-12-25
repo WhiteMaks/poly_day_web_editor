@@ -6,7 +6,7 @@ import greenIcon from "../../../../../resources/icons/indicator_green.svg";
 import yellowIcon from "../../../../../resources/icons/indicator_yellow.svg";
 import redIcon from "../../../../../resources/icons/indicator_red.svg";
 import {useGlobalSelector} from "../../../../../state/store";
-import BusStatus from "../../../../../core/enums/BusStatus";
+import BusStatus from "../../../../../support/enums/BusStatus";
 
 const ConnectionIndicator: FC = () => {
 	const {

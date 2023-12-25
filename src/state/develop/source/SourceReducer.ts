@@ -3,7 +3,7 @@ import GetModelSource10BodyResponse
 	from "../../../service_bus/microservices/developer_service/models/source/GetModelSource10BodyResponse";
 import GetShaderSource10BodyResponse
 	from "../../../service_bus/microservices/developer_service/models/source/GetShaderSource10BodyResponse";
-import ShaderType from "../../../core/enums/ShaderType";
+import ShaderType from "../../../support/enums/ShaderType";
 
 interface SourceState {
 	model: GetModelSource10BodyResponse | null,

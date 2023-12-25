@@ -6,7 +6,7 @@ import addIcon from "../../../../resources/icons/add.svg";
 import modelIcon from "../../../../resources/icons/model.svg";
 import trashIcon from "../../../../resources/icons/trash.svg";
 import downloadIcon from "../../../../resources/icons/download.svg";
-import Encoder from "../../../../core/Encoder";
+import Encoder from "../../../../support/Encoder";
 import FlexboxWrapper from "../../../common/wrappers/FlexboxWrapper";
 
 interface UploadFileProps {

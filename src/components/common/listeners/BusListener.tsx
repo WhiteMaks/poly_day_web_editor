@@ -3,11 +3,11 @@ import BusClient from "../../../service_bus/BusClient";
 import ReactComponentProps from "../ReactComponentProps";
 import {useGlobalDispatch, useGlobalSelector} from "../../../state/store";
 import {busActions} from "../../../state/bus/BusReducer";
-import BusStatus from "../../../core/enums/BusStatus";
+import BusStatus from "../../../support/enums/BusStatus";
 import {OK} from "../../../service_bus/microservices/consts/Statuses";
 import {releaseActions} from "../../../state/develop/release/ReleaseReducer";
 import {entityActions} from "../../../state/develop/entity/EntityReducer";
-import Common from "../../../core/Common";
+import Common from "../../../support/Common";
 import {sourceActions} from "../../../state/develop/source/SourceReducer";
 import {shaderProgramActions} from "../../../state/develop/shader_program/ShaderProgramReducer";
 

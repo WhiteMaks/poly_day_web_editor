@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import BusStatus from "../../core/enums/BusStatus";
+import BusStatus from "../../support/enums/BusStatus";
 
 interface BusState {
 	status: BusStatus
