@@ -1,3 +1,0 @@
-[submodule "src/libs/engine"]
-	path = src/libs/engine
-	url = https://github.com/WhiteMaks/poly_day_web_engine.git
