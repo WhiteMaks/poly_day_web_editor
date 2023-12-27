@@ -64,3 +64,42 @@
 	height: 23px;
 	margin-right: 5px;
 }
+
+.hierarchy_child_selected {
+	margin-bottom: 10px;
+	padding-left: 40px;
+	align-items: center;
+	cursor: pointer;
+
+	border-left: 2px solid var(--base-hover-color);
+	background: var(--base-dark-pane-color);
+}
+
+.hierarchy_child_selected:last-child {
+	margin-bottom: 0;
+}
+
+.hierarchy_child_selected:hover {
+	background: var(--base-hover-on-selected-gradient-color);
+}
+
+.hierarchy_item_object {
+	align-items: center;
+	cursor: pointer;
+	padding: 1px 7px 1px 4px;
+	margin-top: 7px;
+}
+
+.hierarchy_item_object:hover .hierarchy_item_object_name {
+	color: var(--base-hover-color);
+}
+
+.hierarchy_item_object_icon {
+	width: 23px;
+	height: 23px;
+	margin-right: 10px;
+}
+
+.hierarchy_item_object_name {
+	transition: all 0.3s;
+}

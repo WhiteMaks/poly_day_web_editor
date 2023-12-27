@@ -11,6 +11,7 @@ const IconButton: FC<IconButtonProps> = (props) => {
 
 	return (
 		<button
+			title={props.description}
 			className={`${props.className} ${style.icon_button}`}
 			onClick={props.onClick}>
 			<img

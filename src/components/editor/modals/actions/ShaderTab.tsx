@@ -1,6 +1,6 @@
 import {FC} from "react";
 import TabWrapper from "../../wrappers/TabWrapper";
-import ShaderType from "../../../../core/enums/ShaderType";
+import ShaderType from "../../../../support/enums/ShaderType";
 
 interface ShaderTabProps {
 	shader: ShaderType;

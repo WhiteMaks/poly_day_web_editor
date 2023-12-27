@@ -3,11 +3,11 @@ import BusClient from "../../../service_bus/BusClient";
 import ReactComponentProps from "../ReactComponentProps";
 import {useGlobalDispatch, useGlobalSelector} from "../../../state/store";
 import {busActions} from "../../../state/bus/BusReducer";
-import BusStatus from "../../../core/enums/BusStatus";
+import BusStatus from "../../../support/enums/BusStatus";
 import {OK} from "../../../service_bus/microservices/consts/Statuses";
 import {releaseActions} from "../../../state/develop/release/ReleaseReducer";
 import {entityActions} from "../../../state/develop/entity/EntityReducer";
-import Common from "../../../core/Common";
+import Common from "../../../support/Common";
 import {sourceActions} from "../../../state/develop/source/SourceReducer";
 import {shaderProgramActions} from "../../../state/develop/shader_program/ShaderProgramReducer";
 
@@ -83,7 +83,7 @@ const BusListener: FC<BusListenerProps> = (props) => {
 		});
 
 		props.bus.getDeveloperService().processEventSaveModelSource10(event => {
-			console.log(event);
+			console.log(event); //todo remove
 		});
 
 		props.bus.getDeveloperService().processEventGetModelSource10(event => {
@@ -93,7 +93,7 @@ const BusListener: FC<BusListenerProps> = (props) => {
 		});
 
 		props.bus.getDeveloperService().processEventSaveShaderSource10(event => {
-			console.log(event);
+			console.log(event); //todo remove
 		});
 
 		props.bus.getDeveloperService().processEventGetShaderSource10(event => {
@@ -115,6 +115,18 @@ const BusListener: FC<BusListenerProps> = (props) => {
 		});
 
 		props.bus.getDeveloperService().processEventDeleteShaderProgram10(event => {
+			if (event.status === OK && selectedRelease) {
+				props.bus.getDeveloperService().getShaderPrograms10(selectedRelease.id);
+			}
+		});
+
+		props.bus.getDeveloperService().processEventCreateShaderProgramObject10(event => {
+			if (event.status === OK && selectedRelease) {
+				props.bus.getDeveloperService().getShaderPrograms10(selectedRelease.id);
+			}
+		});
+
+		props.bus.getDeveloperService().processEventDeleteShaderProgramObject10(event => {
 			if (event.status === OK && selectedRelease) {
 				props.bus.getDeveloperService().getShaderPrograms10(selectedRelease.id);
 			}

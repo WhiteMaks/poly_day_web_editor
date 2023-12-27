@@ -1,4 +1,4 @@
-import Common from "./Common";
+import Common from "../support/Common";
 import RestApi from "./wrappers/RestApi";
 import ExtFetch from "./wrappers/impl/ExtFetch";
 

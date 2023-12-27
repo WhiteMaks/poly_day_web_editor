@@ -1,7 +1,7 @@
 import {FC} from "react";
 import FlexboxWrapper from "../../../common/wrappers/FlexboxWrapper";
 import style from "./containers.module.css";
-import ShaderType from "../../../../core/enums/ShaderType";
+import ShaderType from "../../../../support/enums/ShaderType";
 import ShaderTab from "../actions/ShaderTab";
 
 interface ShaderTabsContainerProps {

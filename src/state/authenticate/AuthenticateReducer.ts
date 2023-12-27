@@ -1,9 +1,9 @@
-import AuthenticateType from "../../core/enums/AuthenticateType";
+import AuthenticateType from "../../support/enums/AuthenticateType";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import AuthenticateApi from "../../api/AuthenticateApi";
 import LoginUserResponse from "../../api/models/LoginUserResponse";
 import {serviceConnectionError} from "../../index";
-import Common from "../../core/Common";
+import Common from "../../support/Common";
 import CreateUserResponse from "../../api/models/CreateUserResponse";
 
 interface AuthenticateState {

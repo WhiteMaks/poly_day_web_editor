@@ -1,0 +1,5 @@
+interface DeleteShaderProgramObject10BodyResponse {
+
+}
+
+export default DeleteShaderProgramObject10BodyResponse;

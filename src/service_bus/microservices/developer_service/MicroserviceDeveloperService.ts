@@ -4,9 +4,9 @@ import CreateRelease10Command from "./commands/release/CreateRelease10Command";
 import Event from "../../Event";
 import {
 	CREATE_ENTITY,
-	CREATE_RELEASE, CREATE_SHADER_PROGRAM,
+	CREATE_RELEASE, CREATE_SHADER_PROGRAM, CREATE_SHADER_PROGRAM_OBJECT,
 	DELETE_ENTITY,
-	DELETE_RELEASE, DELETE_SHADER_PROGRAM,
+	DELETE_RELEASE, DELETE_SHADER_PROGRAM, DELETE_SHADER_PROGRAM_OBJECT,
 	GET_ENTITY,
 	GET_MODEL_SOURCE,
 	GET_RELEASES, GET_SHADER_PROGRAMS,
@@ -40,6 +40,12 @@ import GetShaderPrograms10Command from "./commands/shader_program/GetShaderProgr
 import GetShaderPrograms10BodyResponse from "./models/shader_program/GetShaderPrograms10BodyResponse";
 import DeleteShaderProgram10Command from "./commands/shader_program/DeleteShaderProgram10Command";
 import DeleteShaderProgram10BodyResponse from "./models/shader_program/DeleteShaderProgram10BodyResponse";
+import CreateShaderProgramObject10Command from "./commands/shader_program_object/CreateShaderProgramObject10Command";
+import CreateShaderProgramObject10BodyResponse
+	from "./models/shader_program_object/CreateShaderProgramObject10BodyResponse";
+import DeleteShaderProgramObject10Command from "./commands/shader_program_object/DeleteShaderProgramObject10Command";
+import DeleteShaderProgramObject10BodyResponse
+	from "./models/shader_program_object/DeleteShaderProgramObject10BodyResponse";
 
 class MicroserviceDeveloperService extends BaseMicroservice {
 
@@ -180,6 +186,27 @@ class MicroserviceDeveloperService extends BaseMicroservice {
 
 	public processEventDeleteShaderProgram10(callback: (event: Event<DeleteShaderProgram10BodyResponse>) => void): void {
 		this.processEvent<DeleteShaderProgram10BodyResponse>(DELETE_SHADER_PROGRAM, callback);
+	}
+
+	public createShaderProgramObject10(shaderProgramId: number, modelEntityId: number): void {
+		const request = new CreateShaderProgramObject10Command();
+		request.getBody().shader_program_id = shaderProgramId;
+		request.getBody().model_entity_id = modelEntityId;
+		this.send(request.makeRequest());
+	}
+
+	public processEventCreateShaderProgramObject10(callback: (event: Event<CreateShaderProgramObject10BodyResponse>) => void): void {
+		this.processEvent<CreateShaderProgramObject10BodyResponse>(CREATE_SHADER_PROGRAM_OBJECT, callback);
+	}
+
+	public deleteShaderProgramObject10(id: number): void {
+		const request = new DeleteShaderProgramObject10Command();
+		request.getBody().id = id;
+		this.send(request.makeRequest());
+	}
+
+	public processEventDeleteShaderProgramObject10(callback: (event: Event<DeleteShaderProgramObject10BodyResponse>) => void): void {
+		this.processEvent<DeleteShaderProgramObject10BodyResponse>(DELETE_SHADER_PROGRAM_OBJECT, callback);
 	}
 }
 

@@ -22,3 +22,20 @@ body {
 input {
 	color: black;
 }
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background: var(--base-light-pane-color);
+	box-shadow: 0 0 1px 1px var(--base-light-pane-color), inset 0 0 4px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: var(--base-hover-gradient-color);
+	box-shadow: inset 0 0 1px 1px var(--base-hover-color);
+}

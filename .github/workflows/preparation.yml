@@ -16,6 +16,7 @@ jobs:
       - name: Preparing git branch
         uses: actions/checkout@v3
         with:
+          token: ${{ secrets.PRIVATE_TOKEN }}
           submodules: 'recursive'
 
       - name: Install NodeJS

@@ -16,6 +16,7 @@ jobs:
       - name: Preparing git branch
         uses: actions/checkout@v3
         with:
+          token: ${{ secrets.PRIVATE_TOKEN }}
           submodules: 'recursive'
 
       - name: Install NodeJS
@@ -40,3 +41,19 @@ jobs:
 
       - name: Push docker tag
         run: docker push ${{secrets.DOCKER_USERNAME}}/poly_day_web_editor:${{github.ref_name}}
+
+      - name: Success result
+        if: ${{ success() }}
+        run: |
+          curl \
+            -X POST https://api.telegram.org/bot${{secrets.TELEGRAM_BOT_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT_ID}} \
+            --header "Content-Type:application/json" \
+            --data '{"text":"Project: web-editor\nVersion: ${{github.ref_name}}\nRelease: Success ✅\nTriggered by: ${{github.event.pusher.email}}\nMessage: ${{github.event.head_commit.message}}"}'
+
+      - name: Failure result
+        if: ${{ failure() }}
+        run: |
+          curl \
+            -X POST https://api.telegram.org/bot${{secrets.TELEGRAM_BOT_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT_ID}} \
+            --header "Content-Type:application/json" \
+            --data '{"text":"Project: web-editor\nVersion: ${{github.ref_name}}\nRelease: Failed ❌\nTriggered by: ${{github.event.pusher.email}}\nMessage: ${{github.event.head_commit.message}}"}'

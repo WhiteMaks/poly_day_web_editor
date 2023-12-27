@@ -1,6 +1,6 @@
 import CreateUserResponse from "./models/CreateUserResponse";
 import CheckUserResponse from "./models/CheckUserResponse";
-import Common from "../core/Common";
+import Common from "../support/Common";
 import BaseRestApi from "../core/BaseRestApi";
 import LoginUserResponse from "./models/LoginUserResponse";
 

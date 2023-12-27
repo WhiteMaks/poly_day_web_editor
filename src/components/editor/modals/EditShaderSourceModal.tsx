@@ -7,7 +7,7 @@ import BusClient from "../../../service_bus/BusClient";
 import SaveButton from "./actions/SaveButton";
 import {sourceActions} from "../../../state/develop/source/SourceReducer";
 import ShaderTabsContainer from "./containers/ShaderTabsContainer";
-import ShaderType from "../../../core/enums/ShaderType";
+import ShaderType from "../../../support/enums/ShaderType";
 import style from "./containers/containers.module.css";
 import ShaderCode from "./actions/ShaderCode";
 

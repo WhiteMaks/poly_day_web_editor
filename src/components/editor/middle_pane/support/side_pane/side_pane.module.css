@@ -2,6 +2,8 @@
 	flex-grow: 1;
 	background: var(--base-light-pane-color);
 	min-width: 438px;
+
+	position: relative;
 }
 
 .title {

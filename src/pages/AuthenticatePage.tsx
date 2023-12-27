@@ -1,6 +1,6 @@
 import {ChangeEvent, FC, useCallback} from "react";
 import {useGlobalDispatch, useGlobalSelector} from "../state/store";
-import AuthenticateType from "../core/enums/AuthenticateType";
+import AuthenticateType from "../support/enums/AuthenticateType";
 import LoginUserComponent from "../components/authenticate/login_user/LoginUserComponent";
 import AbsoluteCenterWrapper from "../components/common/wrappers/AbsoluteCenterWrapper";
 import {authenticateActions, fetchCreateUser, fetchLoginUser} from "../state/authenticate/AuthenticateReducer";
