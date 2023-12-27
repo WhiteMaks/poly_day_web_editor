@@ -1,0 +1,3 @@
+[submodule "src/libs/graphics_engine"]
+	path = src/libs/graphics_engine
+	url = https://github.com/WhiteMaks/ts_graphics_engine.git
