@@ -38,10 +38,10 @@ class PerspectiveCameraController extends BasePerspectiveCameraController<MouseE
 		if (this.keyboard.keyIsPressed(Key.S)) {
 			cameraPosition.setZ(cameraPosition.getZ() + currentCameraMoveSpeed);
 		}
-		if (this.keyboard.keyIsPressed(Key.SPACE)) {
+		if (this.keyboard.keyIsPressed(Key.LEFT_SHIFT)) {
 			cameraPosition.setY(cameraPosition.getY() + currentCameraMoveSpeed);
 		}
-		if (this.keyboard.keyIsPressed(Key.LEFT_CTR)) {
+		if (this.keyboard.keyIsPressed(Key.Z)) {
 			cameraPosition.setY(cameraPosition.getY() - currentCameraMoveSpeed);
 		}
 	}

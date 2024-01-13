@@ -22,7 +22,7 @@ import GraphicsElement from "../../libs/graphics_engine/src/graphics/GraphicsEle
 import EditorLogic from "../EditorLogic";
 import CameraController from "../../libs/graphics_engine/src/camera/controller/CameraController";
 import OrthographicCameraController from "../controllers/OrthographicCameraController";
-import {testFragmentShaderCode, testVertexShaderCode} from "../shaders/TestShader";
+import {textureFragmentShaderCode, textureVertexShaderCode} from "../shaders/TextureShader";
 
 class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	private readonly cameraController: CameraController<MouseEvent, KeyboardEvent>;
@@ -76,7 +76,7 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		vertexBuffer.unbind();
 		indexBuffer.unbind();
 
-		this.shaderProgram = ShaderProgramFactory.createProgram(this.context, "First shader program", testVertexShaderCode, testFragmentShaderCode);
+		this.shaderProgram = ShaderProgramFactory.createProgram(this.context, "First shader program", textureVertexShaderCode, textureFragmentShaderCode);
 		this.shaderProgram.bind();
 		EditorLogic.shaderProgramLibrary.add(this.shaderProgram);
 

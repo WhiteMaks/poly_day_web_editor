@@ -1,4 +1,4 @@
-export const testVertexShaderCode =
+export const textureVertexShaderCode =
 	"#version 300 es\n" +
 	"\n" +
 	"layout (location = 0) in vec4 position;\n" +
@@ -15,7 +15,7 @@ export const testVertexShaderCode =
 	"}"
 ;
 
-export const testFragmentShaderCode =
+export const textureFragmentShaderCode =
 	"#version 300 es\n" +
 	"\n" +
 	"precision lowp float; //модификатор точности для фрагментного шейдера\n" +
