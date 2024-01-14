@@ -90,7 +90,7 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		this.texture2 = ResourceFactory.create2DTexture(this.context, image2, 4);
 		const textSlot2 = 0;
 		this.texture2.bind(textSlot2);
-		this.shaderProgram.setUniform1i("u_Texture", textSlot);
+		this.shaderProgram.setValue1i("u_Texture", textSlot);
 
 		this.shaderProgram.unbind();
 	}
@@ -108,13 +108,8 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 
 	public render(): void {
 		EditorLogic.renderer.begin(this.cameraController.getCamera());
-
-		this.texture!.bind(0);
-		EditorLogic.renderer.drawTriangles(this.shaderProgram!, this.vertexArray!, Transformation.getWorldMatrix(new Vector3(0, 0, -0.5), new Vector3(0, 0, 0), 1, 1, 1));
-
-		this.texture2!.bind(0);
-		EditorLogic.renderer.drawTriangles(this.shaderProgram!, this.vertexArray!, Transformation.getWorldMatrix(new Vector3(0, 0, 0), new Vector3(0, 0, 0), 1, 1, 1));
-
+		EditorLogic.renderer.drawTrianglesWithTexture(this.shaderProgram!, this.vertexArray!, Transformation.getWorldMatrix(new Vector3(0, 0, -0.5), new Vector3(0, 0, 0), new Vector3(1, 1, 1)), this.texture!);
+		EditorLogic.renderer.drawTrianglesWithTexture(this.shaderProgram!, this.vertexArray!, Transformation.getWorldMatrix(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1)), this.texture2!);
 		EditorLogic.renderer.end();
 	}
 
