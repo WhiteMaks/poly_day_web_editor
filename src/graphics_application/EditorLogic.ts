@@ -40,7 +40,7 @@ class EditorLogic implements IGraphicsLogic {
 	public init(graphicsElement: GraphicsElement): void {
 		const context = graphicsElement.getGraphicsContext();
 		EditorLogic.renderer = RendererFactory.create(context);
-		EditorLogic.renderer.init();
+		EditorLogic.renderer.init(context);
 
 		const debugLayer = new DebugLayer(graphicsElement);
 		// debugLayer.setFpsIsPrinted(true);

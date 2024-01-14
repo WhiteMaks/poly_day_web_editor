@@ -23,11 +23,12 @@ export const textureFragmentShaderCode =
 	"in vec2 v_TexCoord;\n" +
 	"\n" +
 	"uniform sampler2D u_Texture;\n" +
+	"uniform vec4 u_Color;\n" +
 	"\n" +
 	"out vec4 fragColor; //выходная переменная итогового цвета\n" +
 	"\n" +
 	"void main() {\n" +
-	"    vec4 textColor = texture(u_Texture, v_TexCoord);\n" +
+	"    vec4 textColor = texture(u_Texture, v_TexCoord) * u_Color;\n" +
 	"    fragColor = textColor;\n" +
 	"}"
 ;

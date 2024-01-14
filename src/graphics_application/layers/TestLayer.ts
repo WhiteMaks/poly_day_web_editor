@@ -23,13 +23,15 @@ import EditorLogic from "../EditorLogic";
 import CameraController from "../../libs/graphics_engine/src/camera/controller/CameraController";
 import OrthographicCameraController from "../controllers/OrthographicCameraController";
 import {textureFragmentShaderCode, textureVertexShaderCode} from "../shaders/TextureShader";
+import Vector4 from "../../libs/graphics_engine/src/maths/impl/Vector4";
 
 class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	private readonly cameraController: CameraController<MouseEvent, KeyboardEvent>;
 	private readonly context: IGraphicsContext;
 	private readonly mouse: Mouse;
-
 	private readonly keyboard: Keyboard;
+	private readonly color: Vector4;
+
 	private vertexArray: IArrayBuffer | undefined;
 	private shaderProgram: IShaderProgram | undefined;
 	private texture: ITexture | undefined;
@@ -41,6 +43,7 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		this.context = graphicsElement.getGraphicsContext();
 		this.mouse = mouse;
 		this.keyboard = keyboard;
+		this.color = new Vector4(1.0, 0.0, 1.0, 1.0);
 		this.cameraController = new OrthographicCameraController(graphicsElement, this.mouse, this.keyboard, 0.001);
 		// this.cameraController = new PerspectiveCameraController(graphicsElement, this.mouse, this.keyboard, 0.001, 60, 0.01, 1000);
 	}
@@ -91,6 +94,7 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		const textSlot2 = 0;
 		this.texture2.bind(textSlot2);
 		this.shaderProgram.setValue1i("u_Texture", textSlot);
+		this.shaderProgram.setVector4f("u_Color", this.color);
 
 		this.shaderProgram.unbind();
 	}
@@ -108,13 +112,19 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 
 	public render(): void {
 		EditorLogic.renderer.begin(this.cameraController.getCamera());
-		EditorLogic.renderer.drawTrianglesWithTexture(this.shaderProgram!, this.vertexArray!, Transformation.getWorldMatrix(new Vector3(0, 0, -0.5), new Vector3(0, 0, 0), new Vector3(1, 1, 1)), this.texture!);
-		EditorLogic.renderer.drawTrianglesWithTexture(this.shaderProgram!, this.vertexArray!, Transformation.getWorldMatrix(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1)), this.texture2!);
+		EditorLogic.renderer.drawTrianglesWithTexture(this.shaderProgram!, this.vertexArray!, Transformation.getWorldMatrix(new Vector3(0, 0, -0.5), new Vector3(0, 0, 0), new Vector3(2, 2, 1)), this.texture!);
+
+		this.shaderProgram!.bind();
+		this.shaderProgram!.setVector4f("u_Color", this.color);
+
+		// EditorLogic.renderer.drawTrianglesWithTexture(this.shaderProgram!, this.vertexArray!, Transformation.getWorldMatrix(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1)), this.texture2!);
+		EditorLogic.renderer.drawTriangles(this.shaderProgram!, this.vertexArray!, Transformation.getWorldMatrix(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1)));
 		EditorLogic.renderer.end();
 	}
 
 	public update(time: Time): void {
 		this.cameraController.update(time);
+		this.color.setX(Math.abs(Math.cos(time.getTimestamp() * time.getDeltaTime() * 0.0002)));
 	}
 
 	public clean(): void {
