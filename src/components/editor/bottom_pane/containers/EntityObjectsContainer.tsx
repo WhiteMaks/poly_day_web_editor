@@ -17,12 +17,12 @@ const EntityObjectsContainer: FC<EntityObjectsContainerProps> = (props) => {
 		parentEntity
 	} = useGlobalSelector(state => state.entityReducer);
 
-	const entitiesForeRender = parentEntity ? parentEntity.entities : entities;
+	const entitiesForRender = parentEntity ? parentEntity.entities : entities;
 
 	return (
 		<FlexboxWrapper
 			className={style.wrapper}>
-			{entitiesForeRender.map(
+			{entitiesForRender.map(
 				entity =>
 					<EntityObject
 						onContext={(x, y, entity) => {

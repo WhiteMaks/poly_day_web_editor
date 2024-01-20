@@ -19,13 +19,13 @@ const CreateEntityContextMenu: FC<CreateEntityContextMenuProps> = (props) => {
 		createEntityY
 	} = useGlobalSelector(state => state.contextMenuReducer);
 
-	const clickOnUotSide = () => {
+	const clickOnOutSide = () => {
 		globalDispatch(contextMenuActions.updateCreateEntityIsDisplayed(false));
 	}
 
 	return (
 		<BaseContextMenu
-			clickOnOutSide={clickOnUotSide}
+			clickOnOutSide={clickOnOutSide}
 			positionY={createEntityY}
 			positionX={createEntityX}>
 			<ContextMenuAction
@@ -33,42 +33,49 @@ const CreateEntityContextMenu: FC<CreateEntityContextMenuProps> = (props) => {
 				onClick={() => {
 					globalDispatch(entityActions.updateNewEntityType(EntityType.FOLDER));
 					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
-					clickOnUotSide();
+					clickOnOutSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create model"}
 				onClick={() => {
 					globalDispatch(entityActions.updateNewEntityType(EntityType.MODEL));
 					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
-					clickOnUotSide();
+					clickOnOutSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create shader"}
 				onClick={() => {
 					globalDispatch(entityActions.updateNewEntityType(EntityType.SHADER));
 					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
-					clickOnUotSide();
+					clickOnOutSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create script"}
 				onClick={() => {
 					globalDispatch(entityActions.updateNewEntityType(EntityType.SCRIPT));
 					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
-					clickOnUotSide();
+					clickOnOutSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create sound"}
 				onClick={() => {
 					globalDispatch(entityActions.updateNewEntityType(EntityType.SOUND));
 					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
-					clickOnUotSide();
+					clickOnOutSide();
 				}}/>
 			<ContextMenuAction
 				name={"Create music"}
 				onClick={() => {
 					globalDispatch(entityActions.updateNewEntityType(EntityType.MUSIC));
 					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
-					clickOnUotSide();
+					clickOnOutSide();
+				}}/>
+			<ContextMenuAction
+				name={"Create texture"}
+				onClick={() => {
+					globalDispatch(entityActions.updateNewEntityType(EntityType.TEXTURE));
+					globalDispatch(modalActions.updateCreateEntityIsDisplayed(true));
+					clickOnOutSide();
 				}}/>
 		</BaseContextMenu>
 	);
