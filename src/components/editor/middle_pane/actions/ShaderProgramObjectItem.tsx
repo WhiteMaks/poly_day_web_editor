@@ -4,7 +4,7 @@ import {
 } from "../../../../service_bus/microservices/developer_service/models/shader_program/GetShaderPrograms10BodyResponse";
 import style from "./actions.module.css";
 import FlexboxWrapper from "../../../common/wrappers/FlexboxWrapper";
-import iconShaderProgram from "../../../../resources/icons/gpu.svg";
+import iconModelObject from "../../../../resources/icons/model_object.svg";
 import BaseIcon from "../../../common/actions/BaseIcon";
 import BlockWrapper from "../../../common/wrappers/BlockWrapper";
 
@@ -28,7 +28,7 @@ const ShaderProgramObjectItem: FC<ShaderProgramObjectItemProps> = (props) => {
 			<BaseIcon
 				className={style.hierarchy_item_object_icon}
 				description={props.object.name}
-				iconPath={iconShaderProgram}/>
+				iconPath={iconModelObject}/>
 			<BlockWrapper
 				className={style.hierarchy_item_object_name}>
 				{props.object.name}
