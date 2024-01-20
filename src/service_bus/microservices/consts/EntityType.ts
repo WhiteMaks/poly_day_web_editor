@@ -4,7 +4,8 @@ enum EntityType {
 	SHADER = "SHADER",
 	SCRIPT = "SCRIPT",
 	MUSIC = "MUSIC",
-	SOUND = "SOUND"
+	SOUND = "SOUND",
+	TEXTURE = "TEXTURE"
 }
 
 export default EntityType;
