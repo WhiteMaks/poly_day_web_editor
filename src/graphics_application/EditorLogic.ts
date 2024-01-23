@@ -17,11 +17,14 @@ import Time from "../libs/graphics_engine/src/support/Time";
 import RendererFactory from "../libs/graphics_engine/src/factories/RendererFactory";
 import Vector4 from "../libs/graphics_engine/src/maths/impl/Vector4";
 import ShaderProgramLibrary from "../libs/graphics_engine/src/shader/ShaderProgramLibrary";
+import Renderer2D from "../libs/graphics_engine/src/renderer/Renderer2D";
+import ShaderProgramFactory from "../libs/graphics_engine/src/factories/ShaderProgramFactory";
+import {textureFragmentShaderCode, textureVertexShaderCode} from "./shaders/TextureShader";
 
 class EditorLogic implements IGraphicsLogic {
 	public static readonly shaderProgramLibrary: ShaderProgramLibrary = new ShaderProgramLibrary();
 
-	public static renderer: Renderer;
+	public static renderer: Renderer2D;
 
 	private readonly layerStack: ILayerStack<BaseLayer<MouseEvent, KeyboardEvent>>;
 	private readonly mouse: Mouse;
@@ -39,14 +42,19 @@ class EditorLogic implements IGraphicsLogic {
 
 	public init(graphicsElement: GraphicsElement): void {
 		const context = graphicsElement.getGraphicsContext();
-		EditorLogic.renderer = RendererFactory.create(context);
-		EditorLogic.renderer.init(context);
+
+		const shaderProgram = ShaderProgramFactory.createProgram(context, "First shader program", textureVertexShaderCode, textureFragmentShaderCode);
+		EditorLogic.shaderProgramLibrary.add(shaderProgram);
+
+		EditorLogic.renderer = RendererFactory.create2D(context);
+		EditorLogic.renderer.init(context, shaderProgram);
 
 		const debugLayer = new DebugLayer(graphicsElement);
-		// debugLayer.setFpsIsPrinted(true);
+		debugLayer.setFpsIsPrinted(true);
 		// debugLayer.setTimeIsPrinted(true);
 		// debugLayer.setKeyboardEventsIsPrinted(true);
 		// debugLayer.setMouseEventsIsPrinted(true);
+		// debugLayer.setRendererStatisticsIsPrinted(true);
 		this.layerStack.pushOverlay(debugLayer);
 
 		const testLayer = new TestLayer(graphicsElement, this.mouse, this.keyboard);
@@ -91,6 +99,7 @@ class EditorLogic implements IGraphicsLogic {
 		}
 
 		EditorLogic.shaderProgramLibrary.clean();
+		EditorLogic.renderer.clean();
 	}
 
 	private addMouseListener(canvasElement: HTMLCanvasElement): void {

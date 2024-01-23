@@ -14,8 +14,8 @@ class OrthographicCameraController extends BaseOrthographicCameraController<Mous
 
 	private readonly cameraTranslationSpeed: number;
 
-	public constructor(graphicsElement: GraphicsElement, mouse: Mouse, keyboard: Keyboard, cameraTranslationSpeed: number) {
-		super(graphicsElement);
+	public constructor(graphicsElement: GraphicsElement, mouse: Mouse, keyboard: Keyboard, cameraTranslationSpeed: number, zoomLevel: number = 1) {
+		super(graphicsElement, zoomLevel);
 
 		this.mouse = mouse;
 		this.keyboard = keyboard;

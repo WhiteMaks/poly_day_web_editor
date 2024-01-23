@@ -4,6 +4,7 @@ import KeyboardEvent from "../../libs/events_system/src/keyboard/KeyboardEvent";
 import IGraphicsContext from "../../libs/graphics_engine/src/renderer/IGraphicsContext";
 import Time from "../../libs/graphics_engine/src/support/Time";
 import GraphicsElement from "../../libs/graphics_engine/src/graphics/GraphicsElement";
+import EditorLogic from "../EditorLogic";
 
 class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	private readonly context: IGraphicsContext;
@@ -12,6 +13,7 @@ class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	private keyboardEventsIsPrinted: boolean;
 	private timeIsPrinted: boolean;
 	private fpsIsPrinted: boolean;
+	private rendererStatisticsIsPrinted: boolean;
 
 	public constructor(graphicsElement: GraphicsElement) {
 		super("Debug layer");
@@ -22,6 +24,7 @@ class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		this.keyboardEventsIsPrinted = false;
 		this.timeIsPrinted = false;
 		this.fpsIsPrinted = false;
+		this.rendererStatisticsIsPrinted = false;
 	}
 
 	public attach(): void {
@@ -55,6 +58,9 @@ class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	}
 
 	public render(): void {
+		if (this.rendererStatisticsIsPrinted) {
+			console.log(EditorLogic.renderer.getStatics());
+		}
 	}
 
 	public clean(): void {
@@ -74,6 +80,10 @@ class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 
 	public setFpsIsPrinted(isPrinted: boolean): void {
 		this.fpsIsPrinted = isPrinted;
+	}
+
+	public setRendererStatisticsIsPrinted(isPrinted: boolean): void {
+		this.rendererStatisticsIsPrinted = isPrinted;
 	}
 
 }
