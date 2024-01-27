@@ -107,10 +107,10 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 
 		EditorLogic.renderer.begin(this.cameraController.getCamera());
 
-		for (let y = 0; y < this.world!.length; y++) {
-			for (let x = 0; x < this.world![y].length; x++) {
+		for (let row = 0; row < this.world!.length; row++) {
+			for (let column = 0; column < this.world![row].length; column++) {
 				const offset = this.mapSize / 2;
-				EditorLogic.renderer.drawQuadWithSprite(new Vector3(-offset + x, -offset + y, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), this.world![y][x] ? this.spriteGrass! : this.spriteWatter!);
+				EditorLogic.renderer.drawQuadWithSprite(new Vector3(-offset + column, -offset + row, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), this.world![row][column] ? this.spriteGrass! : this.spriteWatter!);
 			}
 		}
 
