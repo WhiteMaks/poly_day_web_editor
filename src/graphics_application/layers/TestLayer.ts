@@ -4,17 +4,21 @@ import KeyboardEvent from "../../libs/events_system/src/keyboard/KeyboardEvent";
 import IGraphicsContext from "../../libs/graphics_engine/src/renderer/IGraphicsContext";
 import testTexture from "../testures/test.png";
 import testTexture2 from "../testures/test2.png";
+import spriteSheetImg from "../testures/sprite_sheet.png";
 import ResourceFactory from "../../libs/graphics_engine/src/factories/ResourceFactory";
 import ITexture from "../../libs/graphics_engine/src/resource/ITexture";
 import Mouse from "../../libs/events_system/src/mouse/Mouse";
 import Keyboard from "../../libs/events_system/src/keyboard/Keyboard";
 import Time from "../../libs/graphics_engine/src/support/Time";
-import Vector3 from "../../libs/graphics_engine/src/maths/impl/Vector3";
 import GraphicsElement from "../../libs/graphics_engine/src/graphics/GraphicsElement";
 import EditorLogic from "../EditorLogic";
 import CameraController from "../../libs/graphics_engine/src/camera/controller/CameraController";
 import OrthographicCameraController from "../controllers/OrthographicCameraController";
 import Vector4 from "../../libs/graphics_engine/src/maths/impl/Vector4";
+import Sprite2D from "../../libs/graphics_engine/src/resource/Sprite2D";
+import Vector2 from "../../libs/graphics_engine/src/maths/impl/Vector2";
+import RandomWalk2D from "../../libs/graphics_engine/src/maths/algorithm/RandomWalk2D";
+import Vector3 from "../../libs/graphics_engine/src/maths/impl/Vector3";
 
 class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	private readonly cameraController: CameraController<MouseEvent, KeyboardEvent>;
@@ -26,9 +30,19 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	private texture: ITexture | undefined;
 	private texture2: ITexture | undefined;
 
+	private spriteSheet: ITexture | undefined;
+
+	private spriteStairs: Sprite2D | undefined;
+	private spriteBarrel: Sprite2D | undefined;
+	private spriteTree: Sprite2D | undefined;
+	private spriteWatter: Sprite2D | undefined;
+	private spriteGrass: Sprite2D | undefined;
+
+	private world: boolean[][] | undefined;
 	private rotation: number;
 
-	private readonly zoomLevel = 41;
+	private readonly zoomLevel = 10;
+	private readonly mapSize = 50;
 
 	public constructor(graphicsElement: GraphicsElement, mouse: Mouse, keyboard: Keyboard) {
 		super("Test layer");
@@ -44,6 +58,15 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	}
 
 	public attach(): void {
+		const spriteSheetImage = new Image();
+		spriteSheetImage.src = spriteSheetImg;
+		this.spriteSheet = ResourceFactory.create2DTexture(this.context, spriteSheetImage, 4);
+		this.spriteStairs = ResourceFactory.createSprite2D(this.spriteSheet, new Vector2(7, 6), new Vector2(128, 128));
+		this.spriteBarrel = ResourceFactory.createSprite2D(this.spriteSheet, new Vector2(8, 2), new Vector2(128, 128));
+		this.spriteTree = ResourceFactory.createSprite2D(this.spriteSheet, new Vector2(2, 1), new Vector2(128, 128), new Vector2(1, 2));
+		this.spriteWatter = ResourceFactory.createSprite2D(this.spriteSheet, new Vector2(11, 11), new Vector2(128, 128));
+		this.spriteGrass = ResourceFactory.createSprite2D(this.spriteSheet, new Vector2(6, 11), new Vector2(128, 128));
+
 		const image = new Image();
 		image.src = testTexture;
 		this.texture = ResourceFactory.create2DTexture(this.context, image, 3);
@@ -54,6 +77,8 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		this.texture2 = ResourceFactory.create2DTexture(this.context, image2, 4);
 		const textSlot2 = 0;
 		this.texture2.bind(textSlot2);
+
+		this.world = new RandomWalk2D(this.mapSize, this.mapSize).generate(1000);
 	}
 
 	public detach(): void {
@@ -67,30 +92,29 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		this.cameraController.mouseInput(event);
 	}
 
-	public render(): void {
-		EditorLogic.renderer.resetStatistics();
-
-		EditorLogic.renderer.begin(this.cameraController.getCamera());
-
-		for (let x = -this.zoomLevel + 1; x <= this.zoomLevel - 1; x += 0.5) {
-			for (let y = -this.zoomLevel + 1; y <= this.zoomLevel - 1; y += 0.5) {
-				EditorLogic.renderer.drawTrianglesWithColor(new Vector3(x, y, -0.8), new Vector3(0, 0, 0), new Vector3(0.45, 0.45, 1), new Vector4((x + 5) / 10, (y + 5) / 10 , 1.0, 0.5));
-			}
-		}
-
-		// EditorLogic.renderer.drawTrianglesWithColor(new Vector3(0, 0, -0.5), new Vector3(0, 0, 0), new Vector3(1, 1, 1), new Vector4(1, 0, 1, 1));
-		EditorLogic.renderer.drawTrianglesWithTexture(new Vector3(0, 0, -0.5), new Vector3(0, 0, this.rotation), new Vector3(1, 1, 1), this.texture!);
-		EditorLogic.renderer.drawTrianglesWithTexture(new Vector3(0, 0, 0), new Vector3(0, 0, -this.rotation), new Vector3(1, 1, 1), this.texture2!);
-		// EditorLogic.renderer.drawTrianglesWithColor(new Vector3(-0.5, 0, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), new Vector4(1, 1, 0, 1));
-
-		EditorLogic.renderer.end();
-	}
-
 	public update(time: Time): void {
 		this.cameraController.update(time);
 		this.color.setX(Math.abs(Math.cos(time.getTimestamp() * time.getDeltaTime() * 0.0002)));
 
 		this.rotation += 0.02 * time.getDeltaTime();
+	}
+
+	public render(): void {
+		EditorLogic.renderer.resetStatistics();
+
+		EditorLogic.renderer.setClearColor(new Vector4(0, 0, 1, 1.0));
+		EditorLogic.renderer.clear();
+
+		EditorLogic.renderer.begin(this.cameraController.getCamera());
+
+		for (let y = 0; y < this.world!.length; y++) {
+			for (let x = 0; x < this.world![y].length; x++) {
+				const offset = this.mapSize / 2;
+				EditorLogic.renderer.drawQuadWithSprite(new Vector3(-offset + x, -offset + y, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), this.world![y][x] ? this.spriteGrass! : this.spriteWatter!);
+			}
+		}
+
+		EditorLogic.renderer.end();
 	}
 
 	public clean(): void {

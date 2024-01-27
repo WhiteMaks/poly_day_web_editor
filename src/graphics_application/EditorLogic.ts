@@ -15,7 +15,6 @@ import RendererAPI from "../libs/graphics_engine/src/renderer/RendererAPI";
 import TestLayer from "./layers/TestLayer";
 import Time from "../libs/graphics_engine/src/support/Time";
 import RendererFactory from "../libs/graphics_engine/src/factories/RendererFactory";
-import Vector4 from "../libs/graphics_engine/src/maths/impl/Vector4";
 import ShaderProgramLibrary from "../libs/graphics_engine/src/shader/ShaderProgramLibrary";
 import Renderer2D from "../libs/graphics_engine/src/renderer/Renderer2D";
 import ShaderProgramFactory from "../libs/graphics_engine/src/factories/ShaderProgramFactory";
@@ -43,14 +42,14 @@ class EditorLogic implements IGraphicsLogic {
 	public init(graphicsElement: GraphicsElement): void {
 		const context = graphicsElement.getGraphicsContext();
 
-		const shaderProgram = ShaderProgramFactory.createProgram(context, "First shader program", textureVertexShaderCode, textureFragmentShaderCode);
+		const shaderProgram = ShaderProgramFactory.createProgram(context, "2D shader program", textureVertexShaderCode, textureFragmentShaderCode);
 		EditorLogic.shaderProgramLibrary.add(shaderProgram);
 
 		EditorLogic.renderer = RendererFactory.create2D(context);
 		EditorLogic.renderer.init(context, shaderProgram);
 
 		const debugLayer = new DebugLayer(graphicsElement);
-		debugLayer.setFpsIsPrinted(true);
+		// debugLayer.setFpsIsPrinted(true);
 		// debugLayer.setTimeIsPrinted(true);
 		// debugLayer.setKeyboardEventsIsPrinted(true);
 		// debugLayer.setMouseEventsIsPrinted(true);
@@ -63,11 +62,26 @@ class EditorLogic implements IGraphicsLogic {
 		const canvasElement = graphicsElement.getCanvasElement();
 		this.addMouseListener(canvasElement);
 		this.addKeyboardListener(canvasElement);
+		this.addEResizeListener(graphicsElement)
 	}
 
 	public input(): void {
-		this.mouseInput();
-		this.keyboardInput();
+		const layers = this.layerStack.getLayers()
+			.reverse();
+
+		const mouseEvent = this.mouse.read();
+		if (mouseEvent.isValid()) {
+			for (let layer of layers) {
+				layer.mouseInput(mouseEvent);
+			}
+		}
+
+		const keyboardEvent = this.keyboard.readKey();
+		if (keyboardEvent.isValid()) {
+			for (let layer of layers) {
+				layer.keyboardInput(keyboardEvent);
+			}
+		}
 	}
 
 	public update(time: Time): void {
@@ -80,9 +94,6 @@ class EditorLogic implements IGraphicsLogic {
 	}
 
 	public render(): void {
-		EditorLogic.renderer.setClearColor(new Vector4(0, 0, 0, 1.0));
-		EditorLogic.renderer.clear();
-
 		const layers = this.layerStack.getLayers();
 		for (let layer of layers) {
 			layer.render();
@@ -188,28 +199,12 @@ class EditorLogic implements IGraphicsLogic {
 		);
 	}
 
-	private mouseInput(): void {
-		const mouseEvent = this.mouse.read();
-		if (mouseEvent.isValid()) {
-			const layers = this.layerStack.getLayers()
-				.reverse();
-
-			for (let layer of layers) {
-				layer.mouseInput(mouseEvent);
-			}
-		}
-	}
-
-	private keyboardInput(): void {
-		const keyboardEvent = this.keyboard.readKey();
-		if (keyboardEvent.isValid()) {
-			const layers = this.layerStack.getLayers()
-				.reverse();
-
-			for (let layer of layers) {
-				layer.keyboardInput(keyboardEvent);
-			}
-		}
+	private addEResizeListener(graphicsElement: GraphicsElement): void {
+		window.addEventListener(
+			"resize",
+			() =>
+				graphicsElement.resize()
+		);
 	}
 }
 
