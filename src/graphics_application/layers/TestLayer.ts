@@ -41,8 +41,8 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	private world: boolean[][] | undefined;
 	private rotation: number;
 
-	private readonly zoomLevel = 10;
-	private readonly mapSize = 50;
+	private readonly zoomLevel = 100;
+	private readonly mapSize = 200;
 
 	public constructor(graphicsElement: GraphicsElement, mouse: Mouse, keyboard: Keyboard) {
 		super("Test layer");
@@ -102,7 +102,7 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	public render(): void {
 		EditorLogic.renderer.resetStatistics();
 
-		EditorLogic.renderer.setClearColor(new Vector4(0, 0, 1, 1.0));
+		EditorLogic.renderer.setClearColor(new Vector4(0, 0, 0, 1.0));
 		EditorLogic.renderer.clear();
 
 		EditorLogic.renderer.begin(this.cameraController.getCamera());
