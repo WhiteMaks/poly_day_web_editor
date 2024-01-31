@@ -18,7 +18,7 @@ import RendererFactory from "../libs/graphics_engine/src/factories/RendererFacto
 import ShaderProgramLibrary from "../libs/graphics_engine/src/shader/ShaderProgramLibrary";
 import Renderer2D from "../libs/graphics_engine/src/renderer/Renderer2D";
 import ShaderProgramFactory from "../libs/graphics_engine/src/factories/ShaderProgramFactory";
-import {textureFragmentShaderCode, textureVertexShaderCode} from "./shaders/TextureShader";
+import Default2DShader from "../libs/graphics_engine/src/support/Default2DShader";
 
 class EditorLogic implements IGraphicsLogic {
 	public static readonly shaderProgramLibrary: ShaderProgramLibrary = new ShaderProgramLibrary();
@@ -42,7 +42,7 @@ class EditorLogic implements IGraphicsLogic {
 	public init(graphicsElement: GraphicsElement): void {
 		const context = graphicsElement.getGraphicsContext();
 
-		const shaderProgram = ShaderProgramFactory.createProgram(context, "2D shader program", textureVertexShaderCode, textureFragmentShaderCode);
+		const shaderProgram = ShaderProgramFactory.createProgram(context, "2D shader program", Default2DShader.getVertexShader(), Default2DShader.getFragmentShader());
 		EditorLogic.shaderProgramLibrary.add(shaderProgram);
 
 		EditorLogic.renderer = RendererFactory.create2D(context);

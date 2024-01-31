@@ -50,7 +50,7 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		this.context = graphicsElement.getGraphicsContext();
 		this.mouse = mouse;
 		this.keyboard = keyboard;
-		this.color = new Vector4(1.0, 0.0, 1.0, 1.0);
+		this.color = new Vector4(0.0, 0.0, 0.0, 1.0);
 		this.cameraController = new OrthographicCameraController(graphicsElement, this.mouse, this.keyboard, 0.001, this.zoomLevel);
 		// this.cameraController = new PerspectiveCameraController(graphicsElement, this.mouse, this.keyboard, 0.001, 60, 0.01, 1000);
 
@@ -94,7 +94,6 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 
 	public update(time: Time): void {
 		this.cameraController.update(time);
-		this.color.setX(Math.abs(Math.cos(time.getTimestamp() * time.getDeltaTime() * 0.0002)));
 
 		this.rotation += 0.02 * time.getDeltaTime();
 	}
@@ -102,7 +101,7 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	public render(): void {
 		EditorLogic.renderer.resetStatistics();
 
-		EditorLogic.renderer.setClearColor(new Vector4(0, 0, 0, 1.0));
+		EditorLogic.renderer.setClearColor(this.color);
 		EditorLogic.renderer.clear();
 
 		EditorLogic.renderer.begin(this.cameraController.getCamera());
