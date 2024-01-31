@@ -19,8 +19,10 @@ import Sprite2D from "../../libs/graphics_engine/src/resource/Sprite2D";
 import Vector2 from "../../libs/graphics_engine/src/maths/impl/Vector2";
 import RandomWalk2D from "../../libs/graphics_engine/src/maths/algorithm/RandomWalk2D";
 import Vector3 from "../../libs/graphics_engine/src/maths/impl/Vector3";
+import ElementEvent from "../../libs/events_system/src/element/ElementEvent";
+import ElementEventType from "../../libs/events_system/src/element/ElementEventType";
 
-class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
+class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 	private readonly cameraController: CameraController<MouseEvent, KeyboardEvent>;
 	private readonly context: IGraphicsContext;
 	private readonly mouse: Mouse;
@@ -41,8 +43,8 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 	private world: boolean[][] | undefined;
 	private rotation: number;
 
-	private readonly zoomLevel = 100;
-	private readonly mapSize = 200;
+	private readonly zoomLevel = 25;
+	private readonly mapSize = 50;
 
 	public constructor(graphicsElement: GraphicsElement, mouse: Mouse, keyboard: Keyboard) {
 		super("Test layer");
@@ -51,7 +53,7 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		this.mouse = mouse;
 		this.keyboard = keyboard;
 		this.color = new Vector4(0.0, 0.0, 0.0, 1.0);
-		this.cameraController = new OrthographicCameraController(graphicsElement, this.mouse, this.keyboard, 0.001, this.zoomLevel);
+		this.cameraController = new OrthographicCameraController(graphicsElement.getWidth(), graphicsElement.getHeight(), this.mouse, this.keyboard, 0.001, this.zoomLevel);
 		// this.cameraController = new PerspectiveCameraController(graphicsElement, this.mouse, this.keyboard, 0.001, 60, 0.01, 1000);
 
 		this.rotation = 0;
@@ -90,6 +92,12 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 
 	public mouseInput(event: MouseEvent): void {
 		this.cameraController.mouseInput(event);
+	}
+
+	public elementInput(event: ElementEvent) {
+		if (event.getType() === ElementEventType.RESIZE) {
+			this.cameraController.resize(event.getWidth(), event.getHeight());
+		}
 	}
 
 	public update(time: Time): void {

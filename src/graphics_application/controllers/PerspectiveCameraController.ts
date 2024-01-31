@@ -14,8 +14,8 @@ class PerspectiveCameraController extends BasePerspectiveCameraController<MouseE
 
 	private readonly cameraTranslationSpeed: number;
 
-	public constructor(graphicsElement: GraphicsElement, mouse: Mouse, keyboard: Keyboard, cameraTranslationSpeed: number, fieldOfView: number, zNear: number, zFar: number) {
-		super(graphicsElement, fieldOfView, zNear, zFar);
+	public constructor(width: number, height: number, mouse: Mouse, keyboard: Keyboard, cameraTranslationSpeed: number, fieldOfView: number, zNear: number, zFar: number) {
+		super(width, height, fieldOfView, zNear, zFar);
 
 		this.mouse = mouse;
 		this.keyboard = keyboard;

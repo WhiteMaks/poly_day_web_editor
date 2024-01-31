@@ -2,6 +2,7 @@ import IGraphicsLogic from "../libs/graphics_engine/src/graphics/IGraphicsLogic"
 import GraphicsElement from "../libs/graphics_engine/src/graphics/GraphicsElement";
 import Mouse from "../libs/events_system/src/mouse/Mouse";
 import Keyboard from "../libs/events_system/src/keyboard/Keyboard";
+import Element from "../libs/events_system/src/element/Element";
 import ILayerStack from "../libs/graphics_engine/src/layers/ILayerStack";
 import BaseLayer from "../libs/graphics_engine/src/layers/impl/BaseLayer";
 import MouseEvent from "../libs/events_system/src/mouse/MouseEvent";
@@ -19,19 +20,22 @@ import ShaderProgramLibrary from "../libs/graphics_engine/src/shader/ShaderProgr
 import Renderer2D from "../libs/graphics_engine/src/renderer/Renderer2D";
 import ShaderProgramFactory from "../libs/graphics_engine/src/factories/ShaderProgramFactory";
 import Default2DShader from "../libs/graphics_engine/src/support/Default2DShader";
+import ElementEvent from "../libs/events_system/src/element/ElementEvent";
 
 class EditorLogic implements IGraphicsLogic {
 	public static readonly shaderProgramLibrary: ShaderProgramLibrary = new ShaderProgramLibrary();
 
 	public static renderer: Renderer2D;
 
-	private readonly layerStack: ILayerStack<BaseLayer<MouseEvent, KeyboardEvent>>;
+	private readonly layerStack: ILayerStack<BaseLayer<MouseEvent, KeyboardEvent, ElementEvent>>;
 	private readonly mouse: Mouse;
 	private readonly keyboard: Keyboard;
+	private readonly element: Element;
 
 	public constructor() {
 		Renderer.setAPI(RendererAPI.WEB_GL);
 
+		this.element = new Element(16);
 		this.mouse = new Mouse(16);
 		this.keyboard = new Keyboard(16);
 		Input.instance = new BaseInput(this.mouse, this.keyboard);
@@ -40,6 +44,8 @@ class EditorLogic implements IGraphicsLogic {
 	}
 
 	public init(graphicsElement: GraphicsElement): void {
+		this.element.onResize(graphicsElement.getWidth(), graphicsElement.getHeight());
+
 		const context = graphicsElement.getGraphicsContext();
 
 		const shaderProgram = ShaderProgramFactory.createProgram(context, "2D shader program", Default2DShader.getVertexShader(), Default2DShader.getFragmentShader());
@@ -80,6 +86,13 @@ class EditorLogic implements IGraphicsLogic {
 		if (keyboardEvent.isValid()) {
 			for (let layer of layers) {
 				layer.keyboardInput(keyboardEvent);
+			}
+		}
+
+		const elementEvent = this.element.read();
+		if (elementEvent.isValid()) {
+			for (let layer of layers) {
+				layer.elementInput(elementEvent);
 			}
 		}
 	}
@@ -202,8 +215,10 @@ class EditorLogic implements IGraphicsLogic {
 	private addEResizeListener(graphicsElement: GraphicsElement): void {
 		window.addEventListener(
 			"resize",
-			() =>
-				graphicsElement.resize()
+			() => {
+				graphicsElement.resize();
+				this.element.onResize(graphicsElement.getWidth(), graphicsElement.getHeight());
+			}
 		);
 	}
 }

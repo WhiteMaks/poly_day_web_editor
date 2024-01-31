@@ -5,8 +5,9 @@ import IGraphicsContext from "../../libs/graphics_engine/src/renderer/IGraphicsC
 import Time from "../../libs/graphics_engine/src/support/Time";
 import GraphicsElement from "../../libs/graphics_engine/src/graphics/GraphicsElement";
 import EditorLogic from "../EditorLogic";
+import ElementEvent from "../../libs/events_system/src/element/ElementEvent";
 
-class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
+class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 	private readonly context: IGraphicsContext;
 
 	private mouseEventsIsPrinted: boolean;
@@ -55,6 +56,9 @@ class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent> {
 		if (this.mouseEventsIsPrinted) {
 			console.log(event);
 		}
+	}
+
+	public elementInput(event: ElementEvent): void {
 	}
 
 	public render(): void {
