@@ -62,7 +62,7 @@ class EditorLogic implements IGraphicsLogic {
 		// debugLayer.setRendererStatisticsIsPrinted(true);
 		this.layerStack.pushOverlay(debugLayer);
 
-		const testLayer = new TestLayer(graphicsElement, this.mouse, this.keyboard);
+		const testLayer = new TestLayer(graphicsElement);
 		this.layerStack.push(testLayer);
 
 		const canvasElement = graphicsElement.getCanvasElement();
@@ -116,6 +116,7 @@ class EditorLogic implements IGraphicsLogic {
 	public clean(): void {
 		this.mouse.flush();
 		this.keyboard.flush();
+		this.element.flush();
 
 		const layers = this.layerStack.getLayers();
 		for (let layer of layers) {

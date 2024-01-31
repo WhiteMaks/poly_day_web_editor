@@ -3,39 +3,46 @@ import BaseOrthographicCameraController
 import Time from "../../libs/graphics_engine/src/support/Time";
 import MouseEvent from "../../libs/events_system/src/mouse/MouseEvent";
 import KeyboardEvent from "../../libs/events_system/src/keyboard/KeyboardEvent";
-import Mouse from "../../libs/events_system/src/mouse/Mouse";
-import Keyboard from "../../libs/events_system/src/keyboard/Keyboard";
 import Key from "../../libs/events_system/src/keyboard/Key";
+import Input from "../../libs/events_system/src/inputs/Input";
 
 class OrthographicCameraController extends BaseOrthographicCameraController<MouseEvent, KeyboardEvent> {
-	private readonly mouse: Mouse;
-	private readonly keyboard: Keyboard;
-
 	private readonly cameraTranslationSpeed: number;
+	private readonly cameraZoomSpeed: number;
 
-	public constructor(width: number, height: number, mouse: Mouse, keyboard: Keyboard, cameraTranslationSpeed: number, zoomLevel: number = 1) {
+	public constructor(width: number, height: number, cameraTranslationSpeed: number, cameraZoomSpeed: number, zoomLevel: number = 1) {
 		super(width, height, zoomLevel);
 
-		this.mouse = mouse;
-		this.keyboard = keyboard;
 		this.cameraTranslationSpeed = cameraTranslationSpeed;
+		this.cameraZoomSpeed = cameraZoomSpeed;
 	}
 
 	protected updateImpl(time: Time): void {
 		const cameraPosition = this.camera.getPosition();
 		const currentCameraMoveSpeed = this.cameraTranslationSpeed * time.getDeltaTime();
 
-		if (this.keyboard.keyIsPressed(Key.A)) {
+		if (Input.isKeyboardKeyPressed(Key.A)) {
 			cameraPosition.setX(cameraPosition.getX() - currentCameraMoveSpeed);
 		}
-		if (this.keyboard.keyIsPressed(Key.D)) {
+		if (Input.isKeyboardKeyPressed(Key.D)) {
 			cameraPosition.setX(cameraPosition.getX() + currentCameraMoveSpeed);
 		}
-		if (this.keyboard.keyIsPressed(Key.W)) {
+		if (Input.isKeyboardKeyPressed(Key.W)) {
 			cameraPosition.setY(cameraPosition.getY() + currentCameraMoveSpeed);
 		}
-		if (this.keyboard.keyIsPressed(Key.S)) {
+		if (Input.isKeyboardKeyPressed(Key.S)) {
 			cameraPosition.setY(cameraPosition.getY() - currentCameraMoveSpeed);
+		}
+
+		const camera = this.getCamera();
+		const currentCameraZoomSpeed = this.cameraZoomSpeed * time.getDeltaTime();
+		if (Input.isKeyboardKeyPressed(Key.E)) {
+			camera.setZoomLevel(camera.getZoomLevel() + currentCameraZoomSpeed);
+			this.resize(this.width, this.height);
+		}
+		if (Input.isKeyboardKeyPressed(Key.Q)) {
+			camera.setZoomLevel(camera.getZoomLevel() - currentCameraZoomSpeed);
+			this.resize(this.width, this.height);
 		}
 	}
 
