@@ -1,10 +1,10 @@
-import Time from "../../libs/graphics_engine/src/support/Time";
-import MouseEvent from "../../libs/events_system/src/mouse/MouseEvent";
-import KeyboardEvent from "../../libs/events_system/src/keyboard/KeyboardEvent";
-import Key from "../../libs/events_system/src/keyboard/Key";
+import Time from "../../libs/game_engine/src/libs/graphics_engine/src/support/Time";
+import MouseEvent from "../../libs/game_engine/src/libs/events_system/src/mouse/MouseEvent";
+import KeyboardEvent from "../../libs/game_engine/src/libs/events_system/src/keyboard/KeyboardEvent";
+import Key from "../../libs/game_engine/src/libs/events_system/src/keyboard/Key";
 import BasePerspectiveCameraController
-	from "../../libs/graphics_engine/src/camera/controller/BasePerspectiveCameraController";
-import Input from "../../libs/events_system/src/inputs/Input";
+	from "../../libs/game_engine/src/libs/graphics_engine/src/camera/controller/BasePerspectiveCameraController";
+import Input from "../../libs/game_engine/src/libs/events_system/src/inputs/Input";
 
 class PerspectiveCameraController extends BasePerspectiveCameraController<MouseEvent, KeyboardEvent> {
 	private readonly cameraTranslationSpeed: number;

@@ -1,11 +1,11 @@
-import BaseLayer from "../../libs/graphics_engine/src/layers/impl/BaseLayer";
-import MouseEvent from "../../libs/events_system/src/mouse/MouseEvent";
-import KeyboardEvent from "../../libs/events_system/src/keyboard/KeyboardEvent";
-import IGraphicsContext from "../../libs/graphics_engine/src/renderer/IGraphicsContext";
-import Time from "../../libs/graphics_engine/src/support/Time";
-import GraphicsElement from "../../libs/graphics_engine/src/graphics/GraphicsElement";
-import EditorLogic from "../EditorLogic";
-import ElementEvent from "../../libs/events_system/src/element/ElementEvent";
+import BaseLayer from "../../libs/game_engine/src/libs/graphics_engine/src/layers/impl/BaseLayer";
+import MouseEvent from "../../libs/game_engine/src/libs/events_system/src/mouse/MouseEvent";
+import KeyboardEvent from "../../libs/game_engine/src/libs/events_system/src/keyboard/KeyboardEvent";
+import IGraphicsContext from "../../libs/game_engine/src/libs/graphics_engine/src/renderer/IGraphicsContext";
+import Time from "../../libs/game_engine/src/libs/graphics_engine/src/support/Time";
+import GraphicsElement from "../../libs/game_engine/src/libs/graphics_engine/src/graphics/GraphicsElement";
+import ElementEvent from "../../libs/game_engine/src/libs/events_system/src/element/ElementEvent";
+import GameEngine from "../../libs/game_engine/src/application/GameEngine";
 
 class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 	private readonly context: IGraphicsContext;
@@ -63,7 +63,7 @@ class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 
 	public render(): void {
 		if (this.rendererStatisticsIsPrinted) {
-			console.log(EditorLogic.renderer.getStatics());
+			console.log(GameEngine.renderer2D.getStatics());
 		}
 	}
 

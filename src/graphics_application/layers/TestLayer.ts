@@ -1,23 +1,23 @@
-import BaseLayer from "../../libs/graphics_engine/src/layers/impl/BaseLayer";
-import MouseEvent from "../../libs/events_system/src/mouse/MouseEvent";
-import KeyboardEvent from "../../libs/events_system/src/keyboard/KeyboardEvent";
-import IGraphicsContext from "../../libs/graphics_engine/src/renderer/IGraphicsContext";
+import BaseLayer from "../../libs/game_engine/src/libs/graphics_engine/src/layers/impl/BaseLayer";
+import MouseEvent from "../../libs/game_engine/src/libs/events_system/src/mouse/MouseEvent";
+import KeyboardEvent from "../../libs/game_engine/src/libs/events_system/src/keyboard/KeyboardEvent";
+import IGraphicsContext from "../../libs/game_engine/src/libs/graphics_engine/src/renderer/IGraphicsContext";
 import spriteSheetImg from "../testures/sprite_sheet.png";
-import ResourceFactory from "../../libs/graphics_engine/src/factories/ResourceFactory";
-import ITexture from "../../libs/graphics_engine/src/resource/ITexture";
-import Time from "../../libs/graphics_engine/src/support/Time";
-import GraphicsElement from "../../libs/graphics_engine/src/graphics/GraphicsElement";
-import EditorLogic from "../EditorLogic";
+import ResourceFactory from "../../libs/game_engine/src/libs/graphics_engine/src/factories/ResourceFactory";
+import ITexture from "../../libs/game_engine/src/libs/graphics_engine/src/resource/ITexture";
+import Time from "../../libs/game_engine/src/libs/graphics_engine/src/support/Time";
+import GraphicsElement from "../../libs/game_engine/src/libs/graphics_engine/src/graphics/GraphicsElement";
 import OrthographicCameraController from "../controllers/OrthographicCameraController";
-import Vector4 from "../../libs/graphics_engine/src/maths/impl/Vector4";
-import Sprite2D from "../../libs/graphics_engine/src/resource/Sprite2D";
-import Vector2 from "../../libs/graphics_engine/src/maths/impl/Vector2";
-import RandomWalk2D from "../../libs/graphics_engine/src/maths/algorithm/RandomWalk2D";
-import Vector3 from "../../libs/graphics_engine/src/maths/impl/Vector3";
-import ElementEvent from "../../libs/events_system/src/element/ElementEvent";
-import ElementEventType from "../../libs/events_system/src/element/ElementEventType";
+import Vector4 from "../../libs/game_engine/src/libs/graphics_engine/src/maths/impl/Vector4";
+import Sprite2D from "../../libs/game_engine/src/libs/graphics_engine/src/resource/Sprite2D";
+import Vector2 from "../../libs/game_engine/src/libs/graphics_engine/src/maths/impl/Vector2";
+import RandomWalk2D from "../../libs/game_engine/src/libs/graphics_engine/src/maths/algorithm/RandomWalk2D";
+import Vector3 from "../../libs/game_engine/src/libs/graphics_engine/src/maths/impl/Vector3";
+import ElementEvent from "../../libs/game_engine/src/libs/events_system/src/element/ElementEvent";
+import ElementEventType from "../../libs/game_engine/src/libs/events_system/src/element/ElementEventType";
 import BaseOrthographicCameraController
-	from "../../libs/graphics_engine/src/camera/controller/BaseOrthographicCameraController";
+	from "../../libs/game_engine/src/libs/graphics_engine/src/camera/controller/BaseOrthographicCameraController";
+import GameEngine from "../../libs/game_engine/src/application/GameEngine";
 
 class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 	private readonly cameraController: BaseOrthographicCameraController<MouseEvent, KeyboardEvent>;
@@ -89,21 +89,21 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 	}
 
 	public render(): void {
-		EditorLogic.renderer.resetStatistics();
+		GameEngine.renderer2D.resetStatistics();
 
-		EditorLogic.renderer.setClearColor(this.color);
-		EditorLogic.renderer.clear();
+		GameEngine.renderer2D.setClearColor(this.color);
+		GameEngine.renderer2D.clear();
 
-		EditorLogic.renderer.begin(this.cameraController.getCamera());
+		GameEngine.renderer2D.begin(this.cameraController.getCamera());
 
 		for (let row = 0; row < this.world!.length; row++) {
 			for (let column = 0; column < this.world![row].length; column++) {
 				const offset = this.mapSize / 2;
-				EditorLogic.renderer.drawQuadWithSprite(new Vector3(-offset + column + 0.5, -offset + row + 0.5, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), this.world![row][column] ? this.spriteGrass! : this.spriteWatter!);
+				GameEngine.renderer2D.drawQuadWithSprite(new Vector3(-offset + column + 0.5, -offset + row + 0.5, 0), new Vector3(0, 0, 0), new Vector3(1, 1, 1), this.world![row][column] ? this.spriteGrass! : this.spriteWatter!);
 			}
 		}
 
-		EditorLogic.renderer.end();
+		GameEngine.renderer2D.end();
 	}
 
 	public clean(): void {
