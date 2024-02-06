@@ -1,22 +1,22 @@
-import BaseLayer from "../../libs/game_engine/src/libs/graphics_engine/src/layers/impl/BaseLayer";
-import MouseEvent from "../../libs/game_engine/src/libs/events_system/src/mouse/MouseEvent";
-import KeyboardEvent from "../../libs/game_engine/src/libs/events_system/src/keyboard/KeyboardEvent";
-import IGraphicsContext from "../../libs/game_engine/src/libs/graphics_engine/src/renderer/IGraphicsContext";
+import BaseLayer from "#graphics_engine/src/layers/impl/BaseLayer";
+import MouseEvent from "#events_system/src/mouse/MouseEvent";
+import KeyboardEvent from "#events_system/src/keyboard/KeyboardEvent";
+import IGraphicsContext from "#graphics_engine/src/renderer/IGraphicsContext";
 import spriteSheetImg from "../testures/sprite_sheet.png";
-import ResourceFactory from "../../libs/game_engine/src/libs/graphics_engine/src/factories/ResourceFactory";
-import ITexture from "../../libs/game_engine/src/libs/graphics_engine/src/resource/ITexture";
-import Time from "../../libs/game_engine/src/libs/graphics_engine/src/support/Time";
-import GraphicsElement from "../../libs/game_engine/src/libs/graphics_engine/src/graphics/GraphicsElement";
+import ResourceFactory from "#graphics_engine/src/factories/ResourceFactory";
+import ITexture from "#graphics_engine/src/resource/ITexture";
+import Time from "#graphics_engine/src/support/Time";
+import GraphicsElement from "#graphics_engine/src/graphics/GraphicsElement";
 import OrthographicCameraController from "../controllers/OrthographicCameraController";
-import Vector4 from "../../libs/game_engine/src/libs/graphics_engine/src/maths/impl/Vector4";
-import Sprite2D from "../../libs/game_engine/src/libs/graphics_engine/src/resource/Sprite2D";
-import Vector2 from "../../libs/game_engine/src/libs/graphics_engine/src/maths/impl/Vector2";
-import RandomWalk2D from "../../libs/game_engine/src/libs/graphics_engine/src/maths/algorithm/RandomWalk2D";
-import Vector3 from "../../libs/game_engine/src/libs/graphics_engine/src/maths/impl/Vector3";
-import ElementEvent from "../../libs/game_engine/src/libs/events_system/src/element/ElementEvent";
-import ElementEventType from "../../libs/game_engine/src/libs/events_system/src/element/ElementEventType";
+import Vector4 from "#graphics_engine/src/maths/impl/Vector4";
+import Sprite2D from "#graphics_engine/src/resource/Sprite2D";
+import Vector2 from "#graphics_engine/src/maths/impl/Vector2";
+import RandomWalk2D from "#graphics_engine/src/maths/algorithm/RandomWalk2D";
+import Vector3 from "#graphics_engine/src/maths/impl/Vector3";
+import ElementEvent from "#events_system/src/element/ElementEvent";
+import ElementEventType from "#events_system/src/element/ElementEventType";
 import BaseOrthographicCameraController
-	from "../../libs/game_engine/src/libs/graphics_engine/src/camera/controller/BaseOrthographicCameraController";
+	from "#graphics_engine/src/camera/controller/BaseOrthographicCameraController";
 import GameEngine from "../../libs/game_engine/src/application/GameEngine";
 
 class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
