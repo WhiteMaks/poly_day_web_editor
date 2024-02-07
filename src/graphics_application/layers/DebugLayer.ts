@@ -5,7 +5,7 @@ import IGraphicsContext from "#graphics_engine/src/renderer/IGraphicsContext";
 import Time from "#graphics_engine/src/support/Time";
 import GraphicsElement from "#graphics_engine/src/graphics/GraphicsElement";
 import ElementEvent from "#events_system/src/element/ElementEvent";
-import GameEngine from "../../libs/game_engine/src/application/GameEngine";
+import GameEngine from "../../libs/game_engine/src/engine/GameEngine";
 
 class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 	private readonly context: IGraphicsContext;

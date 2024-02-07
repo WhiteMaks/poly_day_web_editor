@@ -1,4 +1,4 @@
-import GameEngine from "../libs/game_engine/src/application/GameEngine";
+import GameEngine from "../libs/game_engine/src/engine/GameEngine";
 
 class Editor extends GameEngine {
 

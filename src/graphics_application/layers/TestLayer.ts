@@ -17,7 +17,7 @@ import ElementEvent from "#events_system/src/element/ElementEvent";
 import ElementEventType from "#events_system/src/element/ElementEventType";
 import BaseOrthographicCameraController
 	from "#graphics_engine/src/camera/controller/BaseOrthographicCameraController";
-import GameEngine from "../../libs/game_engine/src/application/GameEngine";
+import GameEngine from "../../libs/game_engine/src/engine/GameEngine";
 
 class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 	private readonly cameraController: BaseOrthographicCameraController<MouseEvent, KeyboardEvent>;
