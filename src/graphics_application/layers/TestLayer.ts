@@ -14,6 +14,8 @@ import ColorRendererComponent from "../../libs/game_engine/src/engine/ecs/compon
 import CameraControllerScript from "../scripts/CameraControllerScript";
 import TypeScriptComponent from "../../libs/game_engine/src/engine/ecs/component/ext/TypeScriptComponent";
 import OrthographicCamera from "../../libs/game_engine/src/libs/graphics_engine/src/camera/ext/OrthographicCamera";
+import TransformComponent from "../../libs/game_engine/src/engine/ecs/component/ext/TransformComponent";
+import TestScript from "../scripts/TestScript";
 
 class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 	private readonly graphicsElement: GraphicsElement;
@@ -36,18 +38,18 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 		this.scene = new Scene(this.graphicsElement.getWidth(), this.graphicsElement.getHeight());
 
 		this.squareEntity = this.scene.createEntity("Square");
-		this.squareEntity.addComponent(new ColorRendererComponent(this.squareEntity, new Vector4(1, 1, 1, 1)));
+		this.squareEntity.addComponent(ColorRendererComponent);
+
+		const testEntity = this.scene.createEntity("Square2");
+		testEntity.addComponent(ColorRendererComponent);
+		testEntity.getComponent(TransformComponent).position.setX(2);
+		testEntity.addComponent(TypeScriptComponent).bind(TestScript);
 
 		this.cameraEntity = this.scene.createEntity("Camera");
-		this.cameraEntity.addComponent(
-			new CameraComponent(
-				this.cameraEntity,
-				new OrthographicCamera(this.graphicsElement.getWidth(), this.graphicsElement.getHeight()),
-				true
-			)
-		);
-		this.cameraEntity.addComponent(new TypeScriptComponent(this.cameraEntity))
-			.bind(CameraControllerScript);
+		const cameraComponent = this.cameraEntity.addComponent(CameraComponent);
+		cameraComponent.camera = new OrthographicCamera(this.graphicsElement.getWidth(), this.graphicsElement.getHeight());
+		cameraComponent.primary = true;
+		this.cameraEntity.addComponent(TypeScriptComponent).bind(CameraControllerScript);
 	}
 
 	public detach(): void {
