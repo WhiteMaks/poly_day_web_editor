@@ -21,10 +21,10 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 	private readonly graphicsElement: GraphicsElement;
 	private readonly color: Vector4;
 
-	private scene: Scene | undefined;
+	private scene!: Scene;
 
-	private squareEntity: Entity | undefined;
-	private cameraEntity: Entity | undefined;
+	private squareEntity!: Entity;
+	private cameraEntity!: Entity;
 
 	public constructor(graphicsElement: GraphicsElement) {
 		super("Test layer");
@@ -63,12 +63,12 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 
 	public elementInput(event: ElementEvent) {
 		if (event.getType() === ElementEventType.RESIZE) {
-			this.scene!.resize(event.getWidth(), event.getHeight());
+			this.scene.resize(event.getWidth(), event.getHeight());
 		}
 	}
 
 	public update(time: Time): void {
-		this.scene!.update(time);
+		this.scene.update(time);
 	}
 
 	public render(): void {
@@ -77,13 +77,13 @@ class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
 		GameEngine.renderer2D.setClearColor(this.color);
 		GameEngine.renderer2D.clear();
 
-		this.scene!.render();
+		this.scene.render();
 	}
 
 	public clean(): void {
-		this.scene!.clean();
-		this.squareEntity?.clean();
-		this.cameraEntity?.clean();
+		this.scene.clean();
+		this.squareEntity.clean();
+		this.cameraEntity.clean();
 	}
 }
 

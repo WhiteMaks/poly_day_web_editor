@@ -9,7 +9,7 @@ class CameraControllerScript extends BaseScript {
 	private readonly cameraTranslationSpeed: number = 0.001;
 	private readonly cameraZoomSpeed: number = 0.005;
 
-	private camera: OrthographicCamera | undefined;
+	private camera!: OrthographicCamera;
 
 	public init() {
 		this.camera = this.getComponent(CameraComponent).camera as OrthographicCamera;
@@ -18,6 +18,7 @@ class CameraControllerScript extends BaseScript {
 	public update(time: Time): void {
 		const cameraPosition = this.camera!.getPosition();
 		const currentCameraMoveSpeed = this.cameraTranslationSpeed * time.getDeltaTime();
+		const currentCameraZoomSpeed = this.cameraZoomSpeed * time.getDeltaTime();
 
 		if (Input.isKeyboardKeyPressed(Key.A)) {
 			cameraPosition.setX(cameraPosition.getX() - currentCameraMoveSpeed);
@@ -32,12 +33,11 @@ class CameraControllerScript extends BaseScript {
 			cameraPosition.setY(cameraPosition.getY() - currentCameraMoveSpeed);
 		}
 
-		const currentCameraZoomSpeed = this.cameraZoomSpeed * time.getDeltaTime();
 		if (Input.isKeyboardKeyPressed(Key.E)) {
-			this.camera!.setZoomLevel(this.camera!.getZoomLevel() + currentCameraZoomSpeed);
+			this.camera.setZoomLevel(this.camera.getZoomLevel() + currentCameraZoomSpeed);
 		}
 		if (Input.isKeyboardKeyPressed(Key.Q)) {
-			this.camera!.setZoomLevel(this.camera!.getZoomLevel() - currentCameraZoomSpeed);
+			this.camera.setZoomLevel(this.camera.getZoomLevel() - currentCameraZoomSpeed);
 		}
 	}
 }
