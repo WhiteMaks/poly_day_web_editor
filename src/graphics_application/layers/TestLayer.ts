@@ -1,4 +1,4 @@
-import BaseLayer from "#graphics_engine/src/layers/impl/BaseLayer";
+import BaseLayer from "../../libs/game_engine/src/engine/layer/impl/BaseLayer";
 import MouseEvent from "#events_system/src/mouse/MouseEvent";
 import KeyboardEvent from "#events_system/src/keyboard/KeyboardEvent";
 import Time from "#graphics_engine/src/support/Time";
@@ -17,7 +17,7 @@ import OrthographicCamera from "#graphics_engine/src/camera/ext/OrthographicCame
 import TransformComponent from "../../libs/game_engine/src/engine/ecs/component/ext/TransformComponent";
 import TestScript from "../scripts/TestScript";
 
-class TestLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
+class TestLayer extends BaseLayer {
 	private readonly graphicsElement: GraphicsElement;
 	private readonly color: Vector4;
 

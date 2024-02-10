@@ -1,4 +1,4 @@
-import BaseLayer from "#graphics_engine/src/layers/impl/BaseLayer";
+import BaseLayer from "../../libs/game_engine/src/engine/layer/impl/BaseLayer";
 import MouseEvent from "#events_system/src/mouse/MouseEvent";
 import KeyboardEvent from "#events_system/src/keyboard/KeyboardEvent";
 import IGraphicsContext from "#graphics_engine/src/renderer/IGraphicsContext";
@@ -7,7 +7,7 @@ import GraphicsElement from "#graphics_engine/src/graphics/GraphicsElement";
 import ElementEvent from "#events_system/src/element/ElementEvent";
 import GameEngine from "../../libs/game_engine/src/engine/GameEngine";
 
-class DebugLayer extends BaseLayer<MouseEvent, KeyboardEvent, ElementEvent> {
+class DebugLayer extends BaseLayer {
 	private readonly context: IGraphicsContext;
 
 	private mouseEventsIsPrinted: boolean;

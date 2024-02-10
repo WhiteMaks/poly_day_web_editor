@@ -1,8 +1,7 @@
 import {FC, useEffect, useRef} from "react";
 import BlockWrapper from "../../../../common/wrappers/BlockWrapper";
 import style from "./window.module.css";
-import GraphicsApplication
-	from "#graphics_engine/src/graphics/GraphicsApplication";
+import GraphicsApplication from "#graphics_engine/src/graphics/GraphicsApplication";
 import Editor from "../../../../../graphics_application/Editor";
 import DebugLayer from "../../../../../graphics_application/layers/DebugLayer";
 import TestLayer from "../../../../../graphics_application/layers/TestLayer";
