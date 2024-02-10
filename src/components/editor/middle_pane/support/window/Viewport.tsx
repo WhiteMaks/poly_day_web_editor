@@ -1,14 +1,14 @@
 import {FC, useEffect, useRef} from "react";
 import BlockWrapper from "../../../../common/wrappers/BlockWrapper";
 import style from "./window.module.css";
-import GraphicsApplication from "#graphics_engine/src/graphics/GraphicsApplication";
 import Editor from "../../../../../graphics_application/Editor";
 import DebugLayer from "../../../../../graphics_application/layers/DebugLayer";
 import TestLayer from "../../../../../graphics_application/layers/TestLayer";
+import {GameEngine} from "#game_engine/src/namespace/game_engine";
 
 const Viewport: FC = () => {
 	const ref = useRef<HTMLDivElement>(null);
-	const editor = useRef<GraphicsApplication | null>(null);
+	const editor = useRef<GameEngine.GraphicsEngine.GraphicsApplication | null>(null);
 
 	useEffect(() => {
 		if (!ref || !ref.current) {

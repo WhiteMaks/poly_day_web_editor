@@ -46,6 +46,6 @@
     ]
   },
   "imports": {
-    "#*": "./src/libs/game_engine/src/libs/*.ts"
+    "#*": "./src/libs/*.ts"
   }
 }

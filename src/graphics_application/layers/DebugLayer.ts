@@ -1,14 +1,7 @@
-import BaseLayer from "../../libs/game_engine/src/engine/layer/impl/BaseLayer";
-import MouseEvent from "#events_system/src/mouse/MouseEvent";
-import KeyboardEvent from "#events_system/src/keyboard/KeyboardEvent";
-import IGraphicsContext from "#graphics_engine/src/renderer/IGraphicsContext";
-import Time from "#graphics_engine/src/support/Time";
-import GraphicsElement from "#graphics_engine/src/graphics/GraphicsElement";
-import ElementEvent from "#events_system/src/element/ElementEvent";
-import GameEngine from "../../libs/game_engine/src/engine/GameEngine";
+import {GameEngine} from "#game_engine/src/namespace/game_engine";
 
-class DebugLayer extends BaseLayer {
-	private readonly context: IGraphicsContext;
+class DebugLayer extends GameEngine.BaseLayer {
+	private readonly context: GameEngine.GraphicsEngine.IGraphicsContext;
 
 	private mouseEventsIsPrinted: boolean;
 	private keyboardEventsIsPrinted: boolean;
@@ -16,7 +9,7 @@ class DebugLayer extends BaseLayer {
 	private fpsIsPrinted: boolean;
 	private rendererStatisticsIsPrinted: boolean;
 
-	public constructor(graphicsElement: GraphicsElement) {
+	public constructor(graphicsElement: GameEngine.GraphicsEngine.GraphicsElement) {
 		super("Debug layer");
 
 		this.context = graphicsElement.getGraphicsContext();
@@ -36,7 +29,7 @@ class DebugLayer extends BaseLayer {
 
 	}
 
-	public update(time: Time): void {
+	public update(time: GameEngine.GraphicsEngine.Time): void {
 		if (this.timeIsPrinted) {
 			console.log(time);
 		}
@@ -46,24 +39,24 @@ class DebugLayer extends BaseLayer {
 		}
 	}
 
-	public keyboardInput(event: KeyboardEvent): void {
+	public keyboardInput(event: GameEngine.EventSystem.KeyboardEvent): void {
 		if (this.keyboardEventsIsPrinted) {
 			console.log(event);
 		}
 	}
 
-	public mouseInput(event: MouseEvent): void {
+	public mouseInput(event: GameEngine.EventSystem.MouseEvent): void {
 		if (this.mouseEventsIsPrinted) {
 			console.log(event);
 		}
 	}
 
-	public elementInput(event: ElementEvent): void {
+	public elementInput(event: GameEngine.EventSystem.ElementEvent): void {
 	}
 
 	public render(): void {
 		if (this.rendererStatisticsIsPrinted) {
-			console.log(GameEngine.renderer2D.getStatics());
+			console.log(GameEngine.GameEngine.renderer2D.getStatics());
 		}
 	}
 

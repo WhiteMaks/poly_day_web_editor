@@ -1,42 +1,37 @@
-import BaseScript from "../../libs/game_engine/src/engine/ecs/script/BaseScript";
-import Time from "../../libs/game_engine/src/libs/graphics_engine/src/support/Time";
-import CameraComponent from "../../libs/game_engine/src/engine/ecs/component/ext/CameraComponent";
-import Input from "../../libs/game_engine/src/libs/events_system/src/inputs/Input";
-import Key from "../../libs/game_engine/src/libs/events_system/src/keyboard/Key";
-import OrthographicCamera from "../../libs/game_engine/src/libs/graphics_engine/src/camera/ext/OrthographicCamera";
+import {GameEngine} from "#game_engine/src/namespace/game_engine";
 
-class CameraControllerScript extends BaseScript {
+class CameraControllerScript extends GameEngine.BaseScript {
 	private readonly cameraTranslationSpeed: number = 0.001;
 	private readonly cameraZoomSpeed: number = 0.005;
 
-	private camera!: OrthographicCamera;
+	private camera!: GameEngine.GraphicsEngine.OrthographicCamera;
 
 	public init() {
-		this.camera = this.getComponent(CameraComponent).camera as OrthographicCamera;
+		this.camera = this.getComponent(GameEngine.CameraComponent).camera as GameEngine.GraphicsEngine.OrthographicCamera;
 	}
 
-	public update(time: Time): void {
+	public update(time: GameEngine.GraphicsEngine.Time): void {
 		const cameraPosition = this.camera.getPosition();
 		const currentCameraMoveSpeed = this.cameraTranslationSpeed * time.getDeltaTime();
 		const currentCameraZoomSpeed = this.cameraZoomSpeed * time.getDeltaTime();
 
-		if (Input.isKeyboardKeyPressed(Key.A)) {
+		if (GameEngine.EventSystem.Input.isKeyboardKeyPressed(GameEngine.EventSystem.Key.A)) {
 			cameraPosition.setX(cameraPosition.getX() - currentCameraMoveSpeed);
 		}
-		if (Input.isKeyboardKeyPressed(Key.D)) {
+		if (GameEngine.EventSystem.Input.isKeyboardKeyPressed(GameEngine.EventSystem.Key.D)) {
 			cameraPosition.setX(cameraPosition.getX() + currentCameraMoveSpeed);
 		}
-		if (Input.isKeyboardKeyPressed(Key.W)) {
+		if (GameEngine.EventSystem.Input.isKeyboardKeyPressed(GameEngine.EventSystem.Key.W)) {
 			cameraPosition.setY(cameraPosition.getY() + currentCameraMoveSpeed);
 		}
-		if (Input.isKeyboardKeyPressed(Key.S)) {
+		if (GameEngine.EventSystem.Input.isKeyboardKeyPressed(GameEngine.EventSystem.Key.S)) {
 			cameraPosition.setY(cameraPosition.getY() - currentCameraMoveSpeed);
 		}
 
-		if (Input.isKeyboardKeyPressed(Key.E)) {
+		if (GameEngine.EventSystem.Input.isKeyboardKeyPressed(GameEngine.EventSystem.Key.E)) {
 			this.camera.setZoomLevel(this.camera.getZoomLevel() + currentCameraZoomSpeed);
 		}
-		if (Input.isKeyboardKeyPressed(Key.Q)) {
+		if (GameEngine.EventSystem.Input.isKeyboardKeyPressed(GameEngine.EventSystem.Key.Q)) {
 			this.camera.setZoomLevel(this.camera.getZoomLevel() - currentCameraZoomSpeed);
 		}
 	}
