@@ -13,7 +13,7 @@ import CameraComponent from "../../libs/game_engine/src/engine/ecs/component/ext
 import ColorRendererComponent from "../../libs/game_engine/src/engine/ecs/component/ext/ColorRendererComponent";
 import CameraControllerScript from "../scripts/CameraControllerScript";
 import TypeScriptComponent from "../../libs/game_engine/src/engine/ecs/component/ext/TypeScriptComponent";
-import OrthographicCamera from "../../libs/game_engine/src/libs/graphics_engine/src/camera/ext/OrthographicCamera";
+import OrthographicCamera from "#graphics_engine/src/camera/ext/OrthographicCamera";
 import TransformComponent from "../../libs/game_engine/src/engine/ecs/component/ext/TransformComponent";
 import TestScript from "../scripts/TestScript";
 

@@ -2,7 +2,7 @@ import {FC, useEffect, useRef} from "react";
 import BlockWrapper from "../../../../common/wrappers/BlockWrapper";
 import style from "./window.module.css";
 import GraphicsApplication
-	from "../../../../../libs/game_engine/src/libs/graphics_engine/src/graphics/GraphicsApplication";
+	from "#graphics_engine/src/graphics/GraphicsApplication";
 import Editor from "../../../../../graphics_application/Editor";
 import DebugLayer from "../../../../../graphics_application/layers/DebugLayer";
 import TestLayer from "../../../../../graphics_application/layers/TestLayer";
@@ -16,7 +16,7 @@ const Viewport: FC = () => {
 			return;
 		}
 
-		const editorApp = new Editor(ref.current);
+		const editorApp = new Editor(ref.current!);
 		const graphicsElement = editorApp.getGraphicsElement();
 
 		const debugLayer = new DebugLayer(graphicsElement);
@@ -32,11 +32,14 @@ const Viewport: FC = () => {
 
 		editorApp.init2DRenderer();
 		editorApp.start();
+
 		editor.current = editorApp;
 	}, [ref]);
 
 	useEffect(() => () => {
-		editor.current?.stop();
+		if (editor.current) {
+			editor.current.stop();
+		}
 	}, [editor]);
 
 	return (

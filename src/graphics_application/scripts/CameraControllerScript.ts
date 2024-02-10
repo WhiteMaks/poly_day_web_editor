@@ -16,7 +16,7 @@ class CameraControllerScript extends BaseScript {
 	}
 
 	public update(time: Time): void {
-		const cameraPosition = this.camera!.getPosition();
+		const cameraPosition = this.camera.getPosition();
 		const currentCameraMoveSpeed = this.cameraTranslationSpeed * time.getDeltaTime();
 		const currentCameraZoomSpeed = this.cameraZoomSpeed * time.getDeltaTime();
 

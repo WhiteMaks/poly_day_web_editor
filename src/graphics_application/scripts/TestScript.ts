@@ -10,7 +10,8 @@ class TestScript extends BaseScript {
 	}
 
 	public update(time: Time): void {
-		this.colorComponent.color.setX(Math.abs(Math.sin(time.getTimestamp() * 0.001)))
+		this.colorComponent.color.setX(Math.abs(Math.sin(time.getTimestamp() * 0.001)));
+		this.colorComponent.color.setY(Math.abs(Math.cos(time.getTimestamp() * 0.001)));
 	}
 }
 
