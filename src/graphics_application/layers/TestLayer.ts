@@ -23,18 +23,18 @@ class TestLayer extends GameEngine.BaseLayer {
 		this.scene = new GameEngine.Scene(this.graphicsElement.getWidth(), this.graphicsElement.getHeight());
 
 		this.squareEntity = this.scene.createEntity("Square");
-		this.squareEntity.addComponent(GameEngine.ColorRendererComponent);
+		this.squareEntity.addComponent(GameEngine.ECS.ColorRendererComponent);
 
 		const testEntity = this.scene.createEntity("Square2");
-		testEntity.addComponent(GameEngine.ColorRendererComponent);
-		testEntity.getComponent(GameEngine.TransformComponent).position.setX(2);
-		testEntity.addComponent(GameEngine.TypeScriptComponent).bind(TestScript);
+		testEntity.addComponent(GameEngine.ECS.ColorRendererComponent);
+		testEntity.getComponent(GameEngine.ECS.TransformComponent).position.setX(2);
+		testEntity.addComponent(GameEngine.ECS.TypeScriptComponent).bind(TestScript);
 
 		this.cameraEntity = this.scene.createEntity("Camera");
-		const cameraComponent = this.cameraEntity.addComponent(GameEngine.CameraComponent);
+		const cameraComponent = this.cameraEntity.addComponent(GameEngine.ECS.CameraComponent);
 		cameraComponent.camera = new GameEngine.GraphicsEngine.OrthographicCamera(this.graphicsElement.getWidth(), this.graphicsElement.getHeight());
 		cameraComponent.primary = true;
-		this.cameraEntity.addComponent(GameEngine.TypeScriptComponent).bind(CameraControllerScript);
+		this.cameraEntity.addComponent(GameEngine.ECS.TypeScriptComponent).bind(CameraControllerScript);
 	}
 
 	public detach(): void {

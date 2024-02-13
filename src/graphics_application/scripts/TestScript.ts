@@ -1,10 +1,10 @@
 import {GameEngine} from "#game_engine/src/namespace/game_engine";
 
-class TestScript extends GameEngine.BaseScript {
-	private colorComponent!: GameEngine.ColorRendererComponent;
+class TestScript extends GameEngine.ECS.BaseScript {
+	private colorComponent!: GameEngine.ECS.ColorRendererComponent;
 
 	public init() {
-		this.colorComponent = this.getComponent(GameEngine.ColorRendererComponent);
+		this.colorComponent = this.getComponent(GameEngine.ECS.ColorRendererComponent);
 	}
 
 	public update(time: GameEngine.GraphicsEngine.Time): void {

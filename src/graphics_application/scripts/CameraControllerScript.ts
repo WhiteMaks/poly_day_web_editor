@@ -1,13 +1,13 @@
 import {GameEngine} from "#game_engine/src/namespace/game_engine";
 
-class CameraControllerScript extends GameEngine.BaseScript {
+class CameraControllerScript extends GameEngine.ECS.BaseScript {
 	private readonly cameraTranslationSpeed: number = 0.001;
 	private readonly cameraZoomSpeed: number = 0.005;
 
 	private camera!: GameEngine.GraphicsEngine.OrthographicCamera;
 
 	public init() {
-		this.camera = this.getComponent(GameEngine.CameraComponent).camera as GameEngine.GraphicsEngine.OrthographicCamera;
+		this.camera = this.getComponent(GameEngine.ECS.CameraComponent).camera as GameEngine.GraphicsEngine.OrthographicCamera;
 	}
 
 	public update(time: GameEngine.GraphicsEngine.Time): void {
