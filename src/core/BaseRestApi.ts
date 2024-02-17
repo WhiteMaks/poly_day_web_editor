@@ -21,7 +21,7 @@ abstract class BaseRestApi {
 		return this.api.sendPostFile(url, file, headers === undefined ? Common.generateHeadersContentTypeMultipartFormData() : headers);
 	}
 
-	protected responseToJson(response: Response): Promise<any> {
+	protected responseToJson<BODY>(response: Response): Promise<BODY> {
 		return response.json();
 	}
 }

@@ -10,6 +10,7 @@ import IconShader from "../../../common/icons/IconShader";
 import IconScript from "../../../common/icons/IconScript";
 import IconSound from "../../../common/icons/IconSound";
 import IconMusic from "../../../common/icons/IconMusic";
+import IconTexture from "../../../common/icons/IconTexture";
 
 interface EntityObjectProps {
 	entity: Entity;
@@ -59,6 +60,12 @@ const EntityObject: FC<EntityObjectProps> = (props) => {
 			case EntityType.MUSIC: {
 				return (
 					<IconMusic
+						className={className}/>
+				);
+			}
+			case EntityType.TEXTURE: {
+				return (
+					<IconTexture
 						className={className}/>
 				);
 			}
