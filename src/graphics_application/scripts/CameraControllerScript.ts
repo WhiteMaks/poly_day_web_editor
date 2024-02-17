@@ -10,10 +10,10 @@ class CameraControllerScript extends GameEngine.ECS.BaseScript {
 		this.camera = this.getComponent(GameEngine.ECS.CameraComponent).camera as GameEngine.GraphicsEngine.OrthographicCamera;
 	}
 
-	public update(time: GameEngine.GraphicsEngine.Time): void {
+	public update(time: GameEngine.Time): void {
 		const cameraPosition = this.camera.getPosition();
-		const currentCameraMoveSpeed = this.cameraTranslationSpeed * time.getDeltaTime();
-		const currentCameraZoomSpeed = this.cameraZoomSpeed * time.getDeltaTime();
+		const currentCameraMoveSpeed = this.cameraTranslationSpeed * time.getDeltaTimeMs();
+		const currentCameraZoomSpeed = this.cameraZoomSpeed * time.getDeltaTimeMs();
 
 		if (GameEngine.EventSystem.Input.isKeyboardKeyPressed(GameEngine.EventSystem.Key.A)) {
 			cameraPosition.setX(cameraPosition.getX() - currentCameraMoveSpeed);

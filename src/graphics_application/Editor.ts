@@ -1,6 +1,6 @@
 import {GameEngine} from "#game_engine/src/namespace/game_engine";
 
-class Editor extends GameEngine.GameEngine {
+class Editor extends GameEngine.Engine {
 
 	public constructor(parentElement: HTMLElement) {
 		super(parentElement);

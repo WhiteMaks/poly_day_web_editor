@@ -7,7 +7,7 @@ class TestScript extends GameEngine.ECS.BaseScript {
 		this.colorComponent = this.getComponent(GameEngine.ECS.ColorRendererComponent);
 	}
 
-	public update(time: GameEngine.GraphicsEngine.Time): void {
+	public update(time: GameEngine.Time): void {
 		this.colorComponent.color.setX(Math.abs(Math.sin(time.getTimestamp() * 0.001)));
 		this.colorComponent.color.setY(Math.abs(Math.cos(time.getTimestamp() * 0.001)));
 	}

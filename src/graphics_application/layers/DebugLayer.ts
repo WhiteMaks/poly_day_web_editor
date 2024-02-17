@@ -1,6 +1,6 @@
 import {GameEngine} from "#game_engine/src/namespace/game_engine";
 
-class DebugLayer extends GameEngine.BaseLayer {
+class DebugLayer extends GameEngine.Layer.BaseLayer {
 	private readonly context: GameEngine.GraphicsEngine.IGraphicsContext;
 
 	private mouseEventsIsPrinted: boolean;
@@ -29,13 +29,13 @@ class DebugLayer extends GameEngine.BaseLayer {
 
 	}
 
-	public update(time: GameEngine.GraphicsEngine.Time): void {
+	public update(time: GameEngine.Time): void {
 		if (this.timeIsPrinted) {
 			console.log(time);
 		}
 
 		if (this.fpsIsPrinted) {
-			console.log(Math.round(1000 / time.getDeltaTime()));
+			console.log(Math.round(1000 / time.getDeltaTimeMs()));
 		}
 	}
 
@@ -56,7 +56,7 @@ class DebugLayer extends GameEngine.BaseLayer {
 
 	public render(): void {
 		if (this.rendererStatisticsIsPrinted) {
-			console.log(GameEngine.GameEngine.renderer2D.getStatics());
+			console.log(GameEngine.Engine.renderer2D.getStatics());
 		}
 	}
 

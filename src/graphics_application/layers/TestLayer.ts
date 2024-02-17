@@ -2,7 +2,7 @@ import CameraControllerScript from "../scripts/CameraControllerScript";
 import TestScript from "../scripts/TestScript";
 import {GameEngine} from "#game_engine/src/namespace/game_engine";
 
-class TestLayer extends GameEngine.BaseLayer {
+class TestLayer extends GameEngine.Layer.BaseLayer {
 	private readonly graphicsElement: GameEngine.GraphicsEngine.GraphicsElement;
 	private readonly color: GameEngine.GraphicsEngine.Vector4;
 
@@ -52,15 +52,15 @@ class TestLayer extends GameEngine.BaseLayer {
 		}
 	}
 
-	public update(time: GameEngine.GraphicsEngine.Time): void {
+	public update(time: GameEngine.Time): void {
 		this.scene.update(time);
 	}
 
 	public render(): void {
-		GameEngine.GameEngine.renderer2D.resetStatistics();
+		GameEngine.Engine.renderer2D.resetStatistics();
 
-		GameEngine.GameEngine.renderer2D.setClearColor(this.color);
-		GameEngine.GameEngine.renderer2D.clear();
+		GameEngine.Engine.renderer2D.setClearColor(this.color);
+		GameEngine.Engine.renderer2D.clear();
 
 		this.scene.render();
 	}
